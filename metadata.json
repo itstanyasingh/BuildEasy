@@ -1,0 +1,6 @@
+{
+  "name": "BuildEasy Portfolio Builder",
+  "description": "Professional SaaS-style portfolio builder with 100+ unique templates, live preview, resume import, and instant publishing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
