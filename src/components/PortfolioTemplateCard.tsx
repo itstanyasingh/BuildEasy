@@ -204,6 +204,336 @@ export const portfolioPresets: PortfolioPreset[] = [
       period: 'Summer 2025'
     },
     contact: 'sam.rivera@berkeley.edu'
+  },
+  {
+    id: 'terminal',
+    name: 'Cyber-Organic Developer',
+    category: 'Developer / Terminal',
+    author: 'Alex Vance',
+    role: 'Senior Systems & Full-Stack Engineer',
+    location: 'San Francisco, CA',
+    summary: 'Terminal-inspired developer portfolio with a cyber-organic interface, code-driven typography, interactive motion, and technical visual language.',
+    projects: [
+      {
+        title: 'Aether Distributed KV Engine',
+        desc: 'LSM-tree key-value store with Raft consensus protocol, WAL snapshotting, and gRPC client bindings.',
+        tags: ['Rust', 'Raft', 'gRPC'],
+        metric: 'DEPLOYED'
+      },
+      {
+        title: 'Nexus Compiler Toolchain',
+        desc: 'AST parser, bytecode optimizer, and JIT execution playground for typed configuration languages.',
+        tags: ['TypeScript', 'WebAssembly', 'React'],
+        metric: 'ACTIVE'
+      }
+    ],
+    skills: ['Rust', 'TypeScript', 'Go', 'React', 'PostgreSQL', 'Docker', 'Kubernetes', 'Linux'],
+    experience: {
+      role: 'Staff Infrastructure Engineer',
+      company: 'Vanguard Systems',
+      period: '2023 — Present'
+    },
+    contact: 'alex.vance@engineering.dev'
+  },
+  {
+    id: 'interactive',
+    name: 'Interactive Developer',
+    category: 'Interactive',
+    author: 'Sudhanva Nadiger',
+    role: 'Full-Stack & Systems Developer',
+    location: 'Bangalore, India',
+    summary: 'An interaction-focused developer portfolio with motion, dynamic sections, marquee keywords, open-source matrix, and strong technical personality.',
+    projects: [
+      {
+        title: 'Aura Distributed Cache Engine',
+        desc: 'High-speed in-memory key-value cache engine with custom memory allocator and Raft consensus.',
+        tags: ['Go', 'Raft', 'gRPC'],
+        metric: 'PRODUCTION'
+      },
+      {
+        title: 'Chronos Real-Time Canvas',
+        desc: 'Collaborative real-time canvas and whiteboard interface with CRDT synchronization.',
+        tags: ['React', 'TypeScript', 'WebSockets'],
+        metric: 'LIVE'
+      }
+    ],
+    skills: ['React', 'TypeScript', 'Go', 'Next.js', 'Kubernetes', 'PostgreSQL', 'Redis', 'Docker'],
+    experience: {
+      role: 'Software Development Engineer',
+      company: 'HyperFlow Cloud',
+      period: '2023 — Present'
+    },
+    contact: 'sudhanva.nadiger@gmail.com'
+  },
+  {
+    id: 'nikhil',
+    name: 'Nikhil — Interactive Developer',
+    category: 'Interactive / Creative Developer',
+    author: 'Nikhil Rajput',
+    role: 'Full-Stack Developer & UI/UX Enthusiast',
+    location: 'Bangalore, India',
+    summary: 'An immersive developer portfolio with a cursor-reactive hero, expressive motion, project storytelling, and a modern interactive presentation.',
+    projects: [
+      {
+        title: 'Nexus Cloud Management Platform',
+        desc: 'Multi-tenant cloud orchestration dashboard featuring live server metrics and automated deployments.',
+        tags: ['Next.js', 'TypeScript', 'Node.js', 'PostgreSQL'],
+        metric: 'FEATURED'
+      },
+      {
+        title: 'Aether Collaborative Design Space',
+        desc: 'Real-time interactive canvas with multiplayer cursor presence and layer hierarchy.',
+        tags: ['React', 'TypeScript', 'WebSockets', 'Canvas API'],
+        metric: 'LIVE'
+      }
+    ],
+    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js', 'PostgreSQL', 'Docker', 'AWS'],
+    experience: {
+      role: 'Senior Full-Stack Engineer',
+      company: 'Nova Interactive Labs',
+      period: '2023 — Present'
+    },
+    contact: 'nikhilrajput.dev@gmail.com'
+  },
+  {
+    id: 'modern-software-developer',
+    name: 'Modern Software Developer',
+    category: 'Developer',
+    author: 'Hanzla Tauqeer',
+    role: 'Full Stack Software Engineer',
+    location: 'Lahore, Pakistan · Remote',
+    summary: 'A polished software developer portfolio focused on experience, projects, technical skills, and professional identity.',
+    projects: [
+      {
+        title: 'Developer Portfolio Master',
+        desc: 'Open-source, highly customizable modern developer portfolio built with React, Next.js, and Tailwind CSS.',
+        tags: ['React', 'Next.js', 'Tailwind CSS'],
+        metric: '★ 342'
+      },
+      {
+        title: 'CloudScale Microservices Engine',
+        desc: 'Distributed container orchestration dashboard providing real-time telemetry and pod autoscaling.',
+        tags: ['Node.js', 'Docker', 'Kubernetes'],
+        metric: '★ 184'
+      }
+    ],
+    skills: ['React', 'Node.js', 'TypeScript', 'Python', 'Docker', 'AWS', 'PostgreSQL', 'MongoDB'],
+    experience: {
+      role: 'Senior Full Stack Developer',
+      company: 'CodeFlow Technologies',
+      period: '2023 — Present'
+    },
+    contact: 'hanzla.dev@gmail.com'
+  },
+  {
+    id: 'react-developer',
+    name: 'React Developer',
+    category: 'Developer',
+    author: 'Yuji Sato',
+    role: 'Frontend React Developer & UI Engineer',
+    location: 'Tokyo, Japan · Available Remote',
+    summary: 'A polished React developer portfolio focused on projects, technical skills, experience and a strong personal introduction.',
+    projects: [
+      {
+        title: 'OmniCommerce React Platform',
+        desc: 'Modern e-commerce storefront with dynamic cart, Stripe gateway, and responsive UI.',
+        tags: ['React', 'Redux Toolkit', 'Tailwind CSS'],
+        metric: '★ Live Demo'
+      },
+      {
+        title: 'DevPulse SaaS Dashboard',
+        desc: 'Interactive developer metric dashboard with real-time WebSocket telemetry and charts.',
+        tags: ['React', 'TypeScript', 'Supabase'],
+        metric: '★ Live Demo'
+      }
+    ],
+    skills: ['React', 'TypeScript', 'Next.js', 'Redux', 'Tailwind CSS', 'Node.js', 'REST APIs', 'Git'],
+    experience: {
+      role: 'Senior React Developer',
+      company: 'Nexus Creative Studio',
+      period: '2022 — Present'
+    },
+    contact: 'yuji.sato.dev@gmail.com'
+  },
+  {
+    id: 'modern-creative-developer',
+    name: 'Modern Creative Developer',
+    category: 'Developer / Creative',
+    author: 'Chetan Verma',
+    role: 'Creative Technologist & Frontend Architect',
+    location: 'San Francisco, CA · Available Worldwide',
+    summary: 'A modern animated developer portfolio combining projects, services, experience, about, contact and content in a polished interactive layout.',
+    projects: [
+      {
+        title: 'Hyperion Design System',
+        desc: 'Multi-brand component library and documentation workbench with accessible primitives.',
+        tags: ['React', 'TypeScript', 'Tailwind CSS'],
+        metric: '★ Live Demo'
+      },
+      {
+        title: 'ApexFlow Collaborative Hub',
+        desc: 'Real-time workflow orchestrator with multiplayer canvas and Kanban boards.',
+        tags: ['Next.js', 'Zustand', 'PostgreSQL'],
+        metric: '★ Live Demo'
+      }
+    ],
+    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js', 'GraphQL', 'Motion', 'Figma'],
+    experience: {
+      role: 'Lead Frontend Engineer',
+      company: 'Vanguard Digital Lab',
+      period: '2022 — Present'
+    },
+    contact: 'chetan.verma@example.com'
+  },
+  {
+    id: 'gitfolio-cyber',
+    name: 'GitFolio Cyber',
+    category: 'Cyberpunk / Developer',
+    author: 'Alex Vance',
+    role: 'Senior Cyberpunk & Full-Stack Systems Architect',
+    location: 'Neo-Tokyo // San Francisco, CA',
+    summary: 'A retro-futuristic developer portfolio inspired by GitHub\'s GitFolio concept, combining terminal aesthetics, cyberpunk visuals and developer focused content.',
+    projects: [
+      {
+        title: 'quantum-mesh-orchestrator',
+        desc: 'Ultra-low latency microservices mesh visualizer with real-time WebSocket telemetry and topology graphs.',
+        tags: ['React', 'TypeScript', 'Go'],
+        metric: '★ 342 Stars'
+      },
+      {
+        title: 'neon-synth-audio-engine',
+        desc: 'Interactive browser-based modular synthesizer powered by Web Audio API and WebAssembly.',
+        tags: ['Next.js', 'WebAudio', 'WASM'],
+        metric: '★ 521 Stars'
+      }
+    ],
+    skills: ['React', 'TypeScript', 'Node.js', 'Rust', 'Docker', 'PostgreSQL', 'Tailwind CSS', 'Linux'],
+    experience: {
+      role: 'Lead Systems Architect',
+      company: 'NEURAL_CORP LABS',
+      period: '2022 — PRESENT'
+    },
+    contact: 'alex.vance@gitfolio.dev'
+  },
+  {
+    id: 'brittany-developer',
+    name: 'Brittany — Developer',
+    category: 'Professional Developer',
+    author: 'Brittany Chiang',
+    role: 'Software Engineer',
+    location: 'Boston, MA',
+    summary: 'A refined developer portfolio focused on a strong personal introduction, selected work, experience, skills and contact.',
+    projects: [
+      {
+        title: 'Spotify Profile Visualizer',
+        desc: 'A web app for visualizing personalized Spotify data including top tracks and audio analysis.',
+        tags: ['React', 'Spotify API', 'Express'],
+        metric: '★ 1.8k Stars'
+      },
+      {
+        title: 'Halcyon Theme',
+        desc: 'A minimal, dark blue theme for VS Code, Sublime Text, Atom, and iTerm.',
+        tags: ['VS Code', 'Theme', 'CSS'],
+        metric: '400k+ Installs'
+      }
+    ],
+    skills: ['JavaScript', 'TypeScript', 'React', 'Node.js', 'Next.js', 'WordPress', 'GraphQL', 'SCSS'],
+    experience: {
+      role: 'Lead Engineer',
+      company: 'Upstatement',
+      period: '2018 — Present'
+    },
+    contact: 'brittany.chiang@example.com'
+  },
+  {
+    id: 'personal-developer',
+    name: 'Personal Developer',
+    category: 'Developer / Personal',
+    author: 'Eluda Dev',
+    role: 'Full-Stack Developer',
+    location: 'Seattle, WA',
+    summary: 'A polished personal developer portfolio with a strong visual hierarchy, selected work, experience, skills and contact.',
+    projects: [
+      {
+        title: 'UI Buttons & Component Lab',
+        desc: 'A comprehensive collection of 100+ modern animated CSS & Tailwind button components.',
+        tags: ['React', 'Tailwind CSS', 'TypeScript'],
+        metric: '100+ Components'
+      },
+      {
+        title: 'Quant Analytics Dashboard',
+        desc: 'Real-time financial telemetry platform visualizing stock metrics and algorithmic models.',
+        tags: ['Next.js', 'Python', 'Chart.js'],
+        metric: 'Sub-ms Feeds'
+      }
+    ],
+    skills: ['TypeScript', 'React', 'Next.js', 'Node.js', 'Python', 'Tailwind CSS', 'PostgreSQL', 'Docker'],
+    experience: {
+      role: 'Senior Full-Stack Engineer',
+      company: 'Vortex Labs',
+      period: '2022 — Present'
+    },
+    contact: 'hello@eluda.dev'
+  },
+  {
+    id: 'cleanfolio',
+    name: 'Cleanfolio',
+    category: 'Clean Developer',
+    author: 'Raj Shekhar',
+    role: 'Front End Engineer',
+    location: 'San Francisco, CA',
+    summary: 'A clean and focused developer portfolio built around a strong introduction, selected projects, skills and professional information.',
+    projects: [
+      {
+        title: 'Component Design System',
+        desc: 'Accessible React UI components with responsive typography and theme tokens.',
+        tags: ['React', 'TypeScript', 'CSS'],
+        metric: 'Design System'
+      },
+      {
+        title: 'Realtime Telemetry Dashboard',
+        desc: 'Interactive financial performance telemetry with high-frequency live charts.',
+        tags: ['Next.js', 'Tailwind CSS', 'Chart.js'],
+        metric: 'Live Metrics'
+      }
+    ],
+    skills: ['React', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'Node.js', 'Git', 'PostgreSQL'],
+    experience: {
+      role: 'Front End Engineer',
+      company: 'Cleanfolio Systems',
+      period: '2022 — Present'
+    },
+    contact: 'raj.shekhar@example.com'
+  },
+  {
+    id: 'magicfolio',
+    name: 'Magicfolio',
+    category: 'Minimal / Modern Developer',
+    author: 'Dillion Verma',
+    role: 'Software Engineer',
+    location: 'San Francisco, CA',
+    summary: 'A polished modern developer portfolio with minimalist typography, interactive project presentation, professional experience and optional blog content.',
+    projects: [
+      {
+        title: 'Magic UI Component Library',
+        desc: 'UI library for Design Engineers with animated components and micro-interactions.',
+        tags: ['Next.js', 'Tailwind CSS', 'Motion'],
+        metric: 'Featured'
+      },
+      {
+        title: 'Automatic Resume Builder',
+        desc: 'AI-assisted resume optimizer with real-time export and ATS scoring.',
+        tags: ['React', 'TypeScript', 'Node.js'],
+        metric: 'Live Demo'
+      }
+    ],
+    skills: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'Tailwind CSS', 'PostgreSQL', 'Docker'],
+    experience: {
+      role: 'Software Engineer',
+      company: 'Magic UI',
+      period: '2023 — Present'
+    },
+    contact: 'dillion@magicui.design'
   }
 ];
 

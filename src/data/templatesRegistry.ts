@@ -220,12 +220,12 @@ export const templatesRegistry: TemplateDefinition[] = [
   },
   {
     id: 'github-cleanfolio-010',
-    name: 'Cleanfolio Developer Portfolio',
-    category: 'Clean / Professional',
+    name: 'Cleanfolio',
+    category: 'Clean Developer',
     interactionModel: 'Light and Dark mode toggling, clean minimalism, project link icons, pill-style skill tags, and direct mail action trigger',
-    description: 'Faithful reproduction of Raj Shekhars cleanfolio portfolio template. Features ultra-clean layouts, light and dark mode toggles, project cards with tech stack badges and direct repository/preview links, a centered skill cloud, and sleek minimalist typography.',
+    description: 'A clean and focused developer portfolio built around a strong introduction, selected projects, skills and professional information.',
     bestFor: 'Front-End Engineers, Full-Stack Developers, UI Engineers, Minimalist Software Engineers',
-    tags: ['React', 'Clean', 'Minimal', 'Professional', 'Developer', 'Responsive'],
+    tags: ['Clean Developer', 'Cleanfolio', 'Raj Shekhar', 'React', 'Minimal', 'Professional', 'Light/Dark Theme', 'Responsive'],
     previewGradient: 'from-[#fcfcfc] via-[#2978b5] to-[#23283e]',
     supportedSections: ['profile', 'about', 'skills', 'experience', 'projects', 'contact'],
     defaultConfig: {
@@ -239,7 +239,7 @@ export const templatesRegistry: TemplateDefinition[] = [
     },
     rendererType: 'github-cleanfolio-010',
     animationLevel: 'Subtle',
-    layout: 'Clean developer portfolio',
+    layout: 'Clean developer portfolio with centered hero, elevated project cards, pill skill cloud, and clean contact CTA',
     responsive: true,
     status: 'production',
     sourceReference: 'https://github.com/rjshkhr/cleanfolio',
@@ -325,6 +325,276 @@ export const templatesRegistry: TemplateDefinition[] = [
     status: 'production',
     sourceReference: 'https://github.com/alex-bento',
     licenseReference: 'MIT'
+  },
+  {
+    id: 'github-cyber-organic-014',
+    name: 'Cyber-Organic Developer',
+    category: 'Developer / Terminal',
+    interactionModel: 'Interactive terminal execution shell, code/function call navigation, technical case files, and cyber-organic grid system',
+    description: 'Terminal-inspired developer portfolio with a cyber-organic interface, code-driven typography, interactive motion, and technical visual language.',
+    bestFor: 'Systems Engineers, Full-Stack Developers, Backend Architects, Terminal Enthusiasts, Creative Technologists',
+    tags: ['Terminal', 'Developer', 'Cyber-Organic', 'React', 'Motion', 'JetBrains Mono', 'Playfair Display', 'Interactive', 'Code-Driven'],
+    previewGradient: 'from-[#080b11] via-[#0d1424] to-[#10b981]',
+    supportedSections: ['profile', 'about', 'experience', 'projects', 'skills', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'mono',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#10b981',
+      spacing: 'normal',
+      sectionOrder: ['profile', 'about', 'experience', 'projects', 'skills', 'contact']
+    },
+    rendererType: 'github-cyber-organic-014',
+    animationLevel: 'High',
+    layout: 'Terminal-driven developer environment with cyber-organic layout',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/Jimmy2026/modern-portfolio-template',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'github-sudhanva-015',
+    name: 'Interactive Developer',
+    category: 'Interactive',
+    interactionModel: 'Dynamic interactive hero, animated continuous marquee strip, open-source repository matrix, and interactive timeline',
+    description: 'An interaction-focused developer portfolio with motion, dynamic sections, and a strong technical personality.',
+    bestFor: 'Full-Stack Developers, Systems Engineers, Open Source Contributors, Cloud Architects, Creative Technologists',
+    tags: ['Interactive', 'Developer', 'Motion', 'React', 'TypeScript', 'Open-Source', 'Dark-First', 'Marquee'],
+    previewGradient: 'from-[#07090e] via-[#1e1b4b] to-[#6366f1]',
+    supportedSections: ['profile', 'about', 'experience', 'projects', 'skills', 'education', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'sans',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#6366f1',
+      spacing: 'normal',
+      sectionOrder: ['profile', 'about', 'experience', 'projects', 'skills', 'education', 'contact']
+    },
+    rendererType: 'github-sudhanva-015',
+    animationLevel: 'High',
+    layout: 'Dynamic interactive developer canvas with marquee and open source showcase',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/Sudhanva-Nadiger/Portfolio',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'github-nixrajput-016',
+    name: 'Nikhil — Interactive Developer',
+    category: 'Interactive / Creative Developer',
+    interactionModel: 'Cursor-reactive spotlight, floating ambient glows, interactive project case studies, and skills matrix',
+    description: 'An immersive developer portfolio with a cursor-reactive hero, expressive motion, project storytelling, and a modern interactive presentation.',
+    bestFor: 'Full-Stack Developers, UI/UX Engineers, Creative Developers, Frontend Architects',
+    tags: ['Interactive', 'Creative Developer', 'Next.js', 'React', 'Motion', 'Dark-First', 'TypeScript', 'Storytelling'],
+    previewGradient: 'from-[#050814] via-[#0b1329] to-[#38bdf8]',
+    supportedSections: ['profile', 'about', 'skills', 'experience', 'projects', 'education', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'sans',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#38bdf8',
+      spacing: 'normal',
+      sectionOrder: ['profile', 'about', 'skills', 'experience', 'projects', 'education', 'contact']
+    },
+    rendererType: 'github-nixrajput-016',
+    animationLevel: 'High',
+    layout: 'Immersive dark canvas with cursor spotlight, technical snapshot, and case study cards',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/nixrajput/portfolio-nextjs',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'github-hanzla-017',
+    name: 'Modern Software Developer',
+    category: 'Developer',
+    interactionModel: 'Lively developer greeting, coding scene terminal, capability pillars, proficiency progress ratings, and GitHub project showcases',
+    description: 'A polished software developer portfolio focused on experience, projects, technical skills, and professional identity.',
+    bestFor: 'Software Engineers, Full-Stack Developers, Backend Engineers, Cloud Developers',
+    tags: ['Developer', 'Software Engineer', 'Full-Stack', 'React', 'Node.js', 'Python', 'AWS', 'Open Source'],
+    previewGradient: 'from-[#0d1117] via-[#161b22] to-[#6366f1]',
+    supportedSections: ['profile', 'about', 'skills', 'experience', 'projects', 'education', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'sans',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#6366f1',
+      spacing: 'normal',
+      sectionOrder: ['profile', 'about', 'skills', 'experience', 'projects', 'education', 'contact']
+    },
+    rendererType: 'github-hanzla-017',
+    animationLevel: 'High',
+    layout: 'Modern developer layout with terminal scene, capability breakdown, and GitHub open-source showcases',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/1hanzla100/developer-portfolio',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'github-yujisato-018',
+    name: 'React Developer',
+    category: 'Developer',
+    interactionModel: 'Sleek React developer layout with neon cyan accents, glowing avatar frame, proficiency meters, project case cards, and interactive contact form',
+    description: 'A polished React developer portfolio focused on projects, technical skills, experience and a strong personal introduction.',
+    bestFor: 'React Developers, Frontend Engineers, UI/UX Web Developers, JavaScript / TypeScript Specialists',
+    tags: ['React', 'Developer', 'Frontend', 'TypeScript', 'Next.js', 'Redux', 'Tailwind CSS', 'Web Development'],
+    previewGradient: 'from-[#1f242d] via-[#242b38] to-[#0ef]',
+    supportedSections: ['profile', 'about', 'skills', 'experience', 'projects', 'education', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'sans',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#00eeff',
+      spacing: 'normal',
+      sectionOrder: ['profile', 'about', 'skills', 'experience', 'projects', 'education', 'contact']
+    },
+    rendererType: 'github-yujisato-018',
+    animationLevel: 'Moderate',
+    layout: 'Modern dual-column hero with glowing avatar frame, skill meters, project cards, and direct contact form',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/yujisatojr/react-portfolio-template',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'github-chetanverma-019',
+    name: 'Modern Creative Developer',
+    category: 'Developer / Creative',
+    interactionModel: 'Polished modern developer layout featuring bold hero typography, interactive service matrices, case cards, blog insights, and local dark/light theming',
+    description: 'A modern animated developer portfolio combining projects, services, experience, about, contact and content in a polished interactive layout.',
+    bestFor: 'Creative Technologists, Frontend Architects, React / Next.js Engineers, UI/UX Web Developers',
+    tags: ['React', 'Next.js', 'Creative', 'Developer', 'Services', 'Blog', 'Dark/Light', 'Tailwind CSS'],
+    previewGradient: 'from-neutral-900 via-neutral-800 to-neutral-700',
+    supportedSections: ['profile', 'about', 'services', 'skills', 'experience', 'projects', 'articles', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'sans',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#ffffff',
+      spacing: 'normal',
+      sectionOrder: ['profile', 'projects', 'services', 'about', 'skills', 'experience', 'articles', 'contact']
+    },
+    rendererType: 'github-chetanverma-019',
+    animationLevel: 'Moderate',
+    layout: 'Modern editorial developer portfolio with services matrix, project showcase, and blog insights',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/chetanverma16/react-portfolio-template',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'github-gitfolio-020',
+    name: 'GitFolio Cyber',
+    category: 'Cyberpunk / Developer',
+    interactionModel: 'Retro-futuristic terminal HUD with cyber telemetries, command execution console, repository showcase, commit activity graph, and neon glow accents',
+    description: 'A retro-futuristic developer portfolio inspired by GitHub\'s GitFolio concept, combining terminal aesthetics, cyberpunk visuals and developer focused content.',
+    bestFor: 'Full-Stack Developers, Systems Architects, Cyberpunk Enthusiasts, Open Source Maintainers, DevOps Engineers',
+    tags: ['Cyberpunk', 'GitFolio', 'Retro-Futuristic', 'Terminal', 'Developer', 'GitHub', 'Neon', 'Tailwind CSS'],
+    previewGradient: 'from-[#07090e] via-[#0b0f19] to-[#00f0ff]',
+    supportedSections: ['profile', 'about', 'skills', 'experience', 'projects', 'articles', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'mono',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#00f0ff',
+      spacing: 'normal',
+      sectionOrder: ['profile', 'about', 'projects', 'skills', 'experience', 'contact']
+    },
+    rendererType: 'github-gitfolio-020',
+    animationLevel: 'Moderate',
+    layout: 'Retro-futuristic cyber console with telemetry HUD, repository cards, skills benchmark, and packet transmitter',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/github-samples/gitfolio',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'github-bchiang7-021',
+    name: 'Brittany — Developer',
+    category: 'Professional Developer',
+    interactionModel: 'Refined dark navy & mint portfolio with fixed vertical side docks, numbered section headings, interactive experience tabs, and overlapping featured project cards',
+    description: 'A refined developer portfolio focused on a strong personal introduction, selected work, experience, skills and contact.',
+    bestFor: 'Software Engineers, Frontend Architects, Full-Stack Developers, UI/UX Technologists, Creative Developers',
+    tags: ['Professional Developer', 'Brittany', 'Dark Navy', 'Mint Accent', 'Selected Work', 'Experience Tabs', 'Minimalist', 'Tailwind CSS'],
+    previewGradient: 'from-[#0a192f] via-[#112240] to-[#64ffda]',
+    supportedSections: ['profile', 'about', 'experience', 'projects', 'skills', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'sans',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#64ffda',
+      spacing: 'relaxed',
+      sectionOrder: ['profile', 'about', 'experience', 'projects', 'contact']
+    },
+    rendererType: 'github-bchiang7-021',
+    animationLevel: 'Subtle',
+    layout: 'Single-page refined personal developer portfolio with fixed side navigation docks, experience tabs, and alternating featured projects',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/bchiang7/v4',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'github-eludadev-022',
+    name: 'Personal Developer',
+    category: 'Developer / Personal',
+    interactionModel: 'Polished personal developer portfolio with a strong visual hierarchy, selected work, experience, skills, and contact',
+    description: 'A polished personal developer portfolio with a strong visual hierarchy, selected work, experience, skills and contact.',
+    bestFor: 'Full-Stack Developers, Software Craftsmen, UI Engineers, Technical Writers, Open Source Creators',
+    tags: ['Developer / Personal', 'Personal Developer', 'Eluda', 'Software Craftsman', 'Selected Work', 'Skills Grid', 'Experience', 'Tailwind CSS'],
+    previewGradient: 'from-[#0b0f17] via-[#161f30] to-[#38bdf8]',
+    supportedSections: ['profile', 'about', 'experience', 'projects', 'skills', 'education', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'sans',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#38bdf8',
+      spacing: 'relaxed',
+      sectionOrder: ['profile', 'about', 'experience', 'projects', 'skills', 'education', 'contact']
+    },
+    rendererType: 'github-eludadev-022',
+    animationLevel: 'Subtle',
+    layout: 'Polished personal developer portfolio with modern header status, rich project showcases, categorized skill blocks, and clean contact hub',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/eludadev/portfolio',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'github-magicfolio-023',
+    name: 'Magicfolio',
+    category: 'Minimal / Modern Developer',
+    interactionModel: 'Framer Motion BlurFade entrances, Bottom Floating Navigation Dock, work accordion toggles, and standalone article reader',
+    description: 'A polished modern developer portfolio with minimalist typography, interactive project presentation, professional experience and optional blog content.',
+    bestFor: 'Minimalist Developers, Product Engineers, Technical Writers, Open Source Contributors',
+    tags: ['Minimal / Modern Developer', 'Magicfolio', 'Dillion Verma', 'Framer Motion', 'BlurFade', 'Next.js', 'Blog', 'Responsive'],
+    previewGradient: 'from-zinc-100 via-zinc-200 to-zinc-900',
+    supportedSections: ['profile', 'about', 'experience', 'education', 'skills', 'projects', 'articles', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'sans',
+      bgStyle: 'light',
+      cardStyle: 'border',
+      accentColor: '#18181b',
+      spacing: 'compact',
+      sectionOrder: ['profile', 'about', 'experience', 'education', 'skills', 'projects', 'articles', 'contact']
+    },
+    rendererType: 'github-magicfolio-023',
+    animationLevel: 'High',
+    layout: 'Minimal modern developer portfolio with floating navigation dock, BlurFade reveals, and project grid',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/dillionverma/portfolio',
+    licenseReference: 'MIT'
   }
 ];
 
@@ -335,12 +605,23 @@ export const getTemplateById = (id: string): TemplateDefinition => {
   const idLower = (id || '').toLowerCase();
   
   // Specific alias mappings
+  if (idLower === 'magicfolio' || idLower === 'magicfolio-portfolio' || idLower === 'dillion' || idLower === 'dillionverma' || idLower === 'minimal-modern-developer') return templatesRegistry.find(t => t.id === 'github-magicfolio-023') || templatesRegistry[0];
+  if (idLower === 'personal' || idLower === 'personal-developer' || idLower === 'personaldeveloper' || idLower === 'eluda' || idLower === 'eludadev' || idLower === 'eludadev-portfolio') return templatesRegistry.find(t => t.id === 'github-eludadev-022') || templatesRegistry[0];
   if (idLower === 'minimal') return templatesRegistry.find(t => t.id === 'github-magicui-005') || templatesRegistry[0];
   if (idLower === 'creative') return templatesRegistry.find(t => t.id === 'github-folio-003') || templatesRegistry[0];
   if (idLower === 'editorial') return templatesRegistry.find(t => t.id === 'github-alex-013') || templatesRegistry[0];
   if (idLower === 'designer') return templatesRegistry.find(t => t.id === 'github-daniel-011') || templatesRegistry[0];
   if (idLower === 'fullstack') return templatesRegistry.find(t => t.id === 'github-codebucks-001') || templatesRegistry[0];
-  if (idLower === 'student' || idLower === 'studio') return templatesRegistry.find(t => t.id === 'github-cleanfolio-010') || templatesRegistry[0];
+  if (idLower === 'cleanfolio' || idLower === 'clean-developer' || idLower === 'cleanfolio-portfolio' || idLower === 'cleanfoliodeveloper' || idLower === 'clean-developer-portfolio' || idLower === 'rjshkhr' || idLower === 'student' || idLower === 'studio') return templatesRegistry.find(t => t.id === 'github-cleanfolio-010') || templatesRegistry[0];
+  if (idLower === 'cyberorganic' || idLower === 'cyber-organic' || idLower === 'terminal') return templatesRegistry.find(t => t.id === 'github-cyber-organic-014') || templatesRegistry[0];
+  if (idLower === 'gitfolio' || idLower === 'gitfolio-cyber' || idLower === 'gitfoliocyber' || idLower === 'cyberpunk' || idLower === 'cyberpunk-developer') return templatesRegistry.find(t => t.id === 'github-gitfolio-020') || templatesRegistry[0];
+  if (idLower === 'brittany' || idLower === 'brittany-developer' || idLower === 'brittanydeveloper' || idLower === 'bchiang7' || idLower === 'bchiang7-v4') return templatesRegistry.find(t => t.id === 'github-bchiang7-021') || templatesRegistry[0];
+  if (idLower === 'sudhanva') return templatesRegistry.find(t => t.id === 'github-sudhanva-015') || templatesRegistry[0];
+  if (idLower === 'nikhil' || idLower === 'nikhil-interactive' || idLower === 'nixrajput' || idLower === 'interactive-creative') return templatesRegistry.find(t => t.id === 'github-nixrajput-016') || templatesRegistry[0];
+  if (idLower === 'hanzla' || idLower === 'hanzla-developer' || idLower === 'modern-software-developer' || idLower === 'modernsoftwaredeveloper') return templatesRegistry.find(t => t.id === 'github-hanzla-017') || templatesRegistry[0];
+  if (idLower === 'react-developer' || idLower === 'reactdeveloper' || idLower === 'yuji' || idLower === 'yujisato' || idLower === 'yujisatojr') return templatesRegistry.find(t => t.id === 'github-yujisato-018') || templatesRegistry[0];
+  if (idLower === 'modern-creative-developer' || idLower === 'moderncreativedeveloper' || idLower === 'chetan' || idLower === 'chetanverma' || idLower === 'chetanverma16') return templatesRegistry.find(t => t.id === 'github-chetanverma-019') || templatesRegistry[0];
+  if (idLower === 'interactive' || idLower === 'interactive-developer' || idLower === 'interactivedeveloper') return templatesRegistry.find(t => t.id === 'github-nixrajput-016') || templatesRegistry.find(t => t.id === 'github-sudhanva-015') || templatesRegistry[0];
 
   const fallback = templatesRegistry.find(t => 
     t.id === idLower || 

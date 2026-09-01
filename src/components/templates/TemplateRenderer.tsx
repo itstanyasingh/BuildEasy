@@ -12,6 +12,16 @@ import { CleanfolioPortfolioTemplate } from './CleanfolioPortfolioTemplate';
 import { DanielCinematicPortfolioTemplate } from './DanielCinematicPortfolioTemplate';
 import { KalvinMountainPortfolioTemplate } from './KalvinMountainPortfolioTemplate';
 import { AlexEditorialBentoPortfolioTemplate } from './AlexEditorialBentoPortfolioTemplate';
+import { CyberOrganicDeveloperPortfolioTemplate } from './CyberOrganicDeveloperPortfolioTemplate';
+import { InteractiveDeveloperPortfolioTemplate } from './InteractiveDeveloperPortfolioTemplate';
+import { NikhilInteractivePortfolioTemplate } from './NikhilInteractivePortfolioTemplate';
+import { ModernSoftwareDeveloperPortfolioTemplate } from './ModernSoftwareDeveloperPortfolioTemplate';
+import { ReactDeveloperPortfolioTemplate } from './ReactDeveloperPortfolioTemplate';
+import { ModernCreativeDeveloperPortfolioTemplate } from './ModernCreativeDeveloperPortfolioTemplate';
+import { GitFolioCyberPortfolioTemplate } from './GitFolioCyberPortfolioTemplate';
+import { BrittanyDeveloperPortfolioTemplate } from './BrittanyDeveloperPortfolioTemplate';
+import { PersonalDeveloperPortfolioTemplate } from './PersonalDeveloperPortfolioTemplate';
+import { MagicfolioPortfolioTemplate } from './MagicfolioPortfolioTemplate';
 
 interface TemplateRendererProps {
   data: PortfolioData;
@@ -23,6 +33,69 @@ export const TemplateRenderer: React.FC<TemplateRendererProps> = ({ data, config
   const typeLower = (rendererType || '').toLowerCase();
 
   switch (typeLower) {
+    case 'personal-developer':
+    case 'personaldeveloper':
+    case 'eluda':
+    case 'eludadev':
+    case 'eludadev-portfolio':
+    case 'github-eludadev-022':
+      return <PersonalDeveloperPortfolioTemplate data={data} config={config} />;
+    case 'magicfolio':
+    case 'magicfolio-portfolio':
+    case 'minimal-modern-developer':
+    case 'github-magicfolio-023':
+      return <MagicfolioPortfolioTemplate data={data} config={config} />;
+    case 'brittany-developer':
+    case 'brittanydeveloper':
+    case 'brittany':
+    case 'bchiang7':
+    case 'bchiang7-v4':
+    case 'github-bchiang7-021':
+      return <BrittanyDeveloperPortfolioTemplate data={data} config={config} />;
+    case 'gitfolio-cyber':
+    case 'gitfoliocyber':
+    case 'gitfolio':
+    case 'cyberpunk-developer':
+    case 'github-gitfolio-020':
+      return <GitFolioCyberPortfolioTemplate data={data} config={config} />;
+    case 'modern-creative-developer':
+    case 'moderncreativedeveloper':
+    case 'chetanverma':
+    case 'chetan':
+    case 'github-chetanverma-019':
+      return <ModernCreativeDeveloperPortfolioTemplate data={data} config={config} />;
+    case 'react-developer':
+    case 'reactdeveloper':
+    case 'yujisato':
+    case 'yujisatojr':
+    case 'github-yujisato-018':
+      return <ReactDeveloperPortfolioTemplate data={data} config={config} />;
+    case 'modern-software-developer':
+    case 'modernsoftwaredeveloper':
+    case 'hanzla':
+    case 'hanzla-developer':
+    case 'github-hanzla-017':
+      return <ModernSoftwareDeveloperPortfolioTemplate data={data} config={config} />;
+    case 'nikhil':
+    case 'nikhil-interactive':
+    case 'nikhil-interactive-developer':
+    case 'github-nixrajput-016':
+    case 'nixrajput-portfolio':
+    case 'interactive-creative':
+    case 'interactive-creative-developer':
+      return <NikhilInteractivePortfolioTemplate data={data} config={config} />;
+    case 'interactive-developer':
+    case 'interactivedeveloper':
+    case 'github-sudhanva-015':
+    case 'sudhanva-portfolio':
+      return <InteractiveDeveloperPortfolioTemplate data={data} config={config} />;
+    case 'cyber-organic':
+    case 'cyberorganic':
+    case 'cyber-organic-developer':
+    case 'github-cyber-organic-014':
+    case 'modern-portfolio-template':
+    case 'terminal':
+      return <CyberOrganicDeveloperPortfolioTemplate data={data} config={config} />;
     case 'interactive3d':
     case 'interactive-3d':
     case 'threejs':

@@ -24,12 +24,15 @@ export const TemplateGallery: React.FC<TemplateGalleryProps> = ({
   // Exact subtle category filters
   const categories = [
     'All',
+    'Developer',
+    'Interactive',
     'Minimal',
     'Creative',
     'Editorial',
     'Designer',
     'Full-Stack',
-    'Studio'
+    'Studio',
+    'Terminal'
   ];
 
   const filteredTemplates = useMemo(() => {
@@ -172,18 +175,18 @@ export const TemplateGallery: React.FC<TemplateGalleryProps> = ({
                     </div>
 
                     {/* 2. Template Name & 4. Subtle Category Label */}
-                    <div className="space-y-1.5 pt-1">
+                    <div className="space-y-2 pt-1">
                       <div className="flex items-center justify-between gap-2">
                         <h2 className="font-serif text-xl sm:text-2xl font-normal text-zinc-900 tracking-tight">
                           {template.name}
                         </h2>
-                        <span className="text-xs font-medium px-2.5 py-0.5 rounded bg-zinc-100 text-zinc-600 shrink-0">
+                        <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-600 shrink-0">
                           {template.category}
                         </span>
                       </div>
 
                       {/* 3. One Short Description (1-2 lines) */}
-                      <p className="text-zinc-600 text-sm leading-relaxed line-clamp-2">
+                      <p className="text-zinc-600 text-sm leading-relaxed line-clamp-2 min-h-[2.5rem]">
                         {template.description}
                       </p>
                     </div>
@@ -193,7 +196,7 @@ export const TemplateGallery: React.FC<TemplateGalleryProps> = ({
                   <div className="pt-2">
                     <button
                       onClick={() => onSelectTemplate(template.id)}
-                      className="w-full py-3 rounded-xl bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2 shadow-xs cursor-pointer"
+                      className="w-full py-3.5 rounded-xl bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2 shadow-xs cursor-pointer"
                     >
                       {isSelected ? (
                         <>

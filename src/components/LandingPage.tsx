@@ -31,9 +31,9 @@ import {
   Plus,
   Monitor
 } from 'lucide-react';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { PortfolioTemplateCard, portfolioPresets } from './PortfolioTemplateCard';
 import { MiniPortfolioPreview } from './MiniPortfolioPreviews';
+import { HeroLeftAnimation, HeroRightAnimation, CtaBannerAnimation } from './EditorialAnimations';
 
 interface LandingPageProps {
   onExploreTemplates: () => void;
@@ -67,42 +67,42 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       previewKey: 'minimal',
       name: 'Minimal Developer',
       category: 'Minimalist',
-      description: 'Clean, text-first portfolio for software developers with structured project cards, tech stack breakdown, and direct contact.'
+      description: 'Clean, text-first portfolio for software developers with structured projects, technical skills, and focused experience.'
     },
     {
       id: 'creative',
       previewKey: 'creative',
       name: 'Creative Developer',
       category: 'Interactive',
-      description: 'A more expressive layout for developers with strong visual projects, spatial design, and generative systems.'
+      description: 'A more expressive developer portfolio designed for creative coding, interactive experiences, and visual projects.'
     },
     {
       id: 'editorial',
       previewKey: 'editorial',
-      name: 'Editorial',
+      name: 'Editorial Developer',
       category: 'Editorial',
-      description: 'Typography-focused portfolio for designers, writers, and developers featuring publication systems and curated works.'
+      description: 'Typography-focused portfolio for developers, designers, writers, and technical creatives.'
     },
     {
       id: 'designer',
       previewKey: 'designer',
       name: 'Product Designer',
       category: 'Product Design',
-      description: 'Case-study focused portfolio showcasing product workflows, design token systems, and user impact.'
+      description: 'Case-study focused portfolio showcasing product thinking, design systems, and measurable impact.'
     },
     {
       id: 'fullstack',
       previewKey: 'fullstack',
       name: 'Full-Stack Developer',
       category: 'Systems & Web',
-      description: 'Balanced engineering portfolio highlighting distributed systems, backend architectures, and live web apps.'
+      description: 'Balanced engineering portfolio highlighting full-stack systems, backend architecture, and production web applications.'
     },
     {
       id: 'student',
       previewKey: 'student',
-      name: 'Studio',
+      name: 'Student / Entry-Level',
       category: 'Studio & Teams',
-      description: 'Structured portfolio for product builders and creative teams to highlight coursework, projects, and fundamentals.'
+      description: 'Structured portfolio for students and early-career developers highlighting coursework, projects, skills, and fundamentals.'
     }
   ];
 
@@ -114,32 +114,32 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* ========================================================================= */}
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-16 text-center overflow-x-clip">
         
-        {/* Headline Container with Left Editorial Illustration & Right Animation */}
-        <div className="relative max-w-5xl mx-auto">
+        {/* Headline Container with Left & Right Lottie Animations */}
+        <div className="relative max-w-6xl mx-auto flex items-center justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16">
           
           {/* Left Hero Lottie Animation */}
-          <div className="hidden lg:flex absolute -left-12 xl:-left-20 top-1/2 -translate-y-1/2 pointer-events-none select-none items-center justify-center w-44 h-44 xl:w-56 xl:h-56">
-            <DotLottieReact
-              src="https://lottie.host/44eb2d76-c911-4d64-9775-e186d2bdec7b/XhDwOZ3IOO.lottie"
-              loop
-              autoplay
-            />
-          </div>
-
-          {/* Right Hero Lottie Animation */}
-          <div className="hidden lg:flex absolute -right-12 xl:-right-20 top-1/2 -translate-y-1/2 pointer-events-none select-none items-center justify-center w-44 h-44 xl:w-56 xl:h-56">
-            <DotLottieReact
-              src="https://lottie.host/4e648a1c-c0b3-4ae5-b9cc-053acc71df58/6PDwf2X432.lottie"
-              loop
-              autoplay
-            />
+          <div className="hidden sm:flex shrink-0 items-center justify-center pointer-events-none select-none">
+            <HeroLeftAnimation className="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 xl:w-52 xl:h-52" />
           </div>
 
           {/* Centered Main Headline */}
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[76px] font-normal tracking-tight leading-[1.08] text-zinc-900">
-            Your experience.<br />
-            Beautifully presented.
-          </h1>
+          <div className="text-center shrink min-w-0 max-w-2xl lg:max-w-3xl">
+            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[76px] font-normal tracking-tight leading-[1.08] text-zinc-900">
+              Your experience.<br />
+              Beautifully presented.
+            </h1>
+          </div>
+
+          {/* Right Hero Lottie Animation */}
+          <div className="hidden sm:flex shrink-0 items-center justify-center pointer-events-none select-none">
+            <HeroRightAnimation className="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 xl:w-52 xl:h-52" />
+          </div>
+        </div>
+
+        {/* Mobile: Symmetrical animations positioned cleanly below without overlapping */}
+        <div className="flex sm:hidden items-center justify-center gap-6 pt-4 pointer-events-none select-none">
+          <HeroLeftAnimation className="w-20 h-20" />
+          <HeroRightAnimation className="w-20 h-20" />
         </div>
 
         {/* Hero Description Paragraph */}
@@ -253,18 +253,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   </div>
 
                   {/* 2. Template Name & 4. Subtle Category Label */}
-                  <div className="space-y-1.5 pt-1">
+                  <div className="space-y-2 pt-1">
                     <div className="flex items-center justify-between gap-2">
                       <h3 className="font-serif text-xl sm:text-2xl font-normal text-zinc-900 tracking-tight">
                         {template.name}
                       </h3>
-                      <span className="text-xs font-medium px-2.5 py-0.5 rounded bg-zinc-100 text-zinc-600 shrink-0">
+                      <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-600 shrink-0">
                         {template.category}
                       </span>
                     </div>
 
                     {/* 3. One Short Description (1-2 lines) */}
-                    <p className="text-zinc-600 text-sm leading-relaxed line-clamp-2">
+                    <p className="text-zinc-600 text-sm leading-relaxed line-clamp-2 min-h-[2.5rem]">
                       {template.description}
                     </p>
                   </div>
@@ -280,7 +280,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                         onOpenBuilder();
                       }
                     }}
-                    className="w-full py-3 rounded-xl bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2 shadow-xs cursor-pointer"
+                    className="w-full py-3.5 rounded-xl bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2 shadow-xs cursor-pointer"
                   >
                     <span>Use Template</span>
                     <ArrowRight className="w-4 h-4" />
@@ -803,18 +803,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* 6. CALL TO ACTION BANNER (EXACT REFERENCE DESIGN & LOTTIE ANIMATION)     */}
+      {/* 6. CALL TO ACTION BANNER (CENTERED LOTTIE ANIMATION RESTORATION)         */}
       {/* ========================================================================= */}
-      <section className="py-24 sm:py-32 border-t border-zinc-200 bg-[#FAF9F6]">
+      <section className="py-24 sm:py-32 border-t border-zinc-200 bg-[#FAF9F6] relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           
-          {/* Exact Small Lottie Animation Above Headline */}
-          <div className="w-28 h-28 sm:w-32 sm:h-32 mx-auto flex items-center justify-center pointer-events-none select-none">
-            <DotLottieReact
-              src="https://lottie.host/b1347271-4a89-4c5c-af78-db09b1c75f7d/qJZ4TbKIlH.lottie"
-              loop
-              autoplay
-            />
+          {/* Centered Original Lottie Animation Above Heading */}
+          <div className="w-24 h-24 sm:w-28 sm:h-28 mx-auto flex items-center justify-center pointer-events-none select-none">
+            <CtaBannerAnimation className="w-full h-full" />
           </div>
 
           {/* Large Elegant Serif Headline */}
@@ -823,7 +819,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </h2>
 
           {/* Short Centered Supporting Text */}
-          <p className="text-zinc-600 text-base sm:text-lg max-w-xl mx-auto leading-relaxed font-sans">
+          <p className="text-zinc-600 text-base sm:text-lg max-w-xl mx-auto leading-relaxed font-sans font-normal">
             Craft a clean, distraction-free portfolio that highlights your best engineering and design work with confidence.
           </p>
 
