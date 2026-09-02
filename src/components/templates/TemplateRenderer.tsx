@@ -36,6 +36,63 @@ import { PaperframeEditorialTemplate } from './PaperframeEditorialTemplate';
 import { RustfolioBrutalistTemplate } from './RustfolioBrutalistTemplate';
 import { MaisonLuxuryPortfolioTemplate } from './MaisonLuxuryPortfolioTemplate';
 
+// Helper to normalize image sources so they work across different hostnames, protocols, and absolute/relative boundaries
+const normalizeImgSrc = (src: string): string => {
+  if (!src) return '';
+  if (src.startsWith('data:')) return src;
+  
+  try {
+    const url = new URL(src, window.location.origin);
+    if (url.origin === window.location.origin) {
+      return url.pathname + url.search;
+    }
+    return url.href;
+  } catch (err) {
+    return src;
+  }
+};
+
+// Recursively walks the PortfolioData state to update target values (normalized or exact matches) with the new base64 data URL
+const updateValueInObject = (obj: any, targetValue: string, newValue: string): any => {
+  if (!obj) return obj;
+  if (typeof obj !== 'object') return obj;
+
+  if (Array.isArray(obj)) {
+    return obj.map(item => updateValueInObject(item, targetValue, newValue));
+  }
+
+  const newObj = { ...obj };
+  let modified = false;
+
+  const targetNorm = normalizeImgSrc(targetValue);
+
+  for (const key in newObj) {
+    if (Object.prototype.hasOwnProperty.call(newObj, key)) {
+      const val = newObj[key];
+      if (typeof val === 'string') {
+        const valNorm = normalizeImgSrc(val);
+        // Direct match, normalized match, or partial URL match (if it's a long external Unsplash URL)
+        const isMatch = val === targetValue || 
+                        valNorm === targetNorm || 
+                        (val.includes(targetValue) && targetValue.length > 15) || 
+                        (targetValue.includes(val) && val.length > 15);
+        if (isMatch) {
+          newObj[key] = newValue;
+          modified = true;
+        }
+      } else if (typeof val === 'object' && val !== null) {
+        const updatedVal = updateValueInObject(val, targetValue, newValue);
+        if (updatedVal !== val) {
+          newObj[key] = updatedVal;
+          modified = true;
+        }
+      }
+    }
+  }
+
+  return modified ? newObj : obj;
+};
+
 interface ImageEditWrapperProps {
   children: React.ReactNode;
   data: PortfolioData;
@@ -144,7 +201,8 @@ export const ImageEditWrapper: React.FC<ImageEditWrapperProps> = ({
       }
 
       if (originalSrc) {
-        const replacement = data?.imageReplacements?.[originalSrc];
+        const normOriginal = normalizeImgSrc(originalSrc);
+        const replacement = data?.imageReplacements?.[normOriginal] || data?.imageReplacements?.[originalSrc];
         const targetSrc = replacement || originalSrc;
         if (img.src !== targetSrc) {
           img.src = targetSrc;
@@ -170,7 +228,8 @@ export const ImageEditWrapper: React.FC<ImageEditWrapperProps> = ({
         }
 
         if (originalBg) {
-          const replacement = data?.imageReplacements?.[originalBg];
+          const normOriginal = normalizeImgSrc(originalBg);
+          const replacement = data?.imageReplacements?.[normOriginal] || data?.imageReplacements?.[originalBg];
           const expectedBg = replacement ? `url("${replacement}")` : `url("${originalBg}")`;
           if (el.style.backgroundImage !== expectedBg) {
             el.style.backgroundImage = expectedBg;
@@ -314,6 +373,8 @@ export const ImageEditWrapper: React.FC<ImageEditWrapperProps> = ({
     }
   };
 
+  // Helpers relocated to file-level scope
+
   const handleResetClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
@@ -327,13 +388,26 @@ export const ImageEditWrapper: React.FC<ImageEditWrapperProps> = ({
 
     if (target && onUpdateData) {
       const originalSrc = target.src;
+      const normOriginal = normalizeImgSrc(originalSrc);
+
       onUpdateData((prev) => {
+        // 1. Remove from replacements dictionary
         const imageReplacements = { ...(prev.imageReplacements || {}) };
+        const currentDataUrl = imageReplacements[originalSrc] || imageReplacements[normOriginal];
+
         delete imageReplacements[originalSrc];
-        return {
-          ...prev,
-          imageReplacements,
-        };
+        delete imageReplacements[normOriginal];
+
+        // 2. Perform deep traversal replacement to restore the original URL
+        let updatedData = prev;
+        if (currentDataUrl) {
+          updatedData = updateValueInObject(updatedData, currentDataUrl, originalSrc);
+        }
+
+        // 3. Preserve imageReplacements
+        updatedData.imageReplacements = imageReplacements;
+
+        return updatedData;
       });
       setHoveredElement(null);
       setActiveTarget(null);
@@ -367,13 +441,22 @@ export const ImageEditWrapper: React.FC<ImageEditWrapperProps> = ({
 
       if (target && onUpdateData) {
         const originalSrc = target.src;
+        const normOriginal = normalizeImgSrc(originalSrc);
+
         onUpdateData((prev) => {
+          // 1. Update in the imageReplacements dictionary
           const imageReplacements = { ...(prev.imageReplacements || {}) };
           imageReplacements[originalSrc] = dataUrl;
-          return {
-            ...prev,
-            imageReplacements,
-          };
+          imageReplacements[normOriginal] = dataUrl;
+
+          // 2. Perform deep traversal replacement inside the structure
+          let updatedData = updateValueInObject(prev, originalSrc, dataUrl);
+          updatedData = updateValueInObject(updatedData, normOriginal, dataUrl);
+
+          // 3. Make sure to preserve imageReplacements inside the updated structure
+          updatedData.imageReplacements = imageReplacements;
+
+          return updatedData;
         });
       }
       setHoveredElement(null);
