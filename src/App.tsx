@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { templatesRegistry, getTemplateById } from './data/templatesRegistry';
 import { defaultPortfolioData, defaultConfig } from './data/defaultData';
+import { getDemoDataForTemplate } from './data/demoDataByTemplate';
 import { UserPortfolio, TemplateDefinition, PortfolioData } from './types';
 import { Navbar } from './components/Navbar';
 import { LandingPage } from './components/LandingPage';
@@ -16,26 +17,35 @@ const STORAGE_KEY_PORTFOLIOS = 'buildeasy_portfolios_v2';
 const STORAGE_KEY_ACTIVE_ID = 'buildeasy_active_id_v2';
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'landing' | 'gallery' | 'builder' | 'dash' | 'published'>('landing');
+  const [currentView, setCurrentView] = useState<'landing' | 'gallery' | 'builder' | 'dash' | 'published'>(() => {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('template') || urlParams.get('t')) {
+        return 'builder';
+      }
+      const viewParam = urlParams.get('view');
+      if (viewParam === 'gallery' || viewParam === 'builder' || viewParam === 'dash' || viewParam === 'published') {
+        return viewParam as any;
+      }
+    } catch (e) {}
+    return 'landing';
+  });
   
-  // Load portfolios from localStorage or fall back to default
+  // Load portfolios from localStorage or fall back to defaults
   const [portfolios, setPortfolios] = useState<UserPortfolio[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY_PORTFOLIOS);
       if (saved) {
         let parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          // Safeguard fallback: replace any deleted template ID with github-codebucks-001
-          const allowedIds = ['github-codebucks-001', 'github-adrian-002', 'github-folio-003', 'github-hamish-004', 'github-magicui-005', 'github-nixrajput-007', 'github-vscode-008', 'github-yuji-009', 'github-cleanfolio-010', 'github-daniel-011', 'daniel-cinematic', 'github-kalvin-012', 'kalvin-mountain', 'github-alex-013', 'alex-editorial-bento'];
           parsed = parsed.map(p => {
-            if (!allowedIds.includes(p.templateId)) {
-              return {
-                ...p,
-                templateId: 'github-codebucks-001',
-                customizer: templatesRegistry.find(t => t.id === 'github-codebucks-001')?.defaultConfig || defaultConfig
-              };
-            }
-            return p;
+            const tDef = getTemplateById(p.templateId);
+            return {
+              ...p,
+              templateId: tDef.id,
+              customizer: p.customizer || tDef.defaultConfig,
+              data: p.data || getDemoDataForTemplate(tDef.id)
+            };
           });
           return parsed;
         }
@@ -48,7 +58,7 @@ export default function App() {
       id: 'port-codebucks-demo',
       name: 'CodeBucks — Developer Portfolio',
       templateId: 'github-codebucks-001',
-      data: defaultPortfolioData,
+      data: getDemoDataForTemplate('github-codebucks-001'),
       customizer: templatesRegistry.find(t => t.id === 'github-codebucks-001')?.defaultConfig || defaultConfig,
       updatedAt: new Date().toISOString().split('T')[0],
       published: true,
@@ -59,7 +69,7 @@ export default function App() {
       id: 'port-folio-demo',
       name: 'Ayush Singh — Creative UI Engineer',
       templateId: 'github-folio-003',
-      data: defaultPortfolioData,
+      data: getDemoDataForTemplate('github-folio-003'),
       customizer: templatesRegistry.find(t => t.id === 'github-folio-003')?.defaultConfig || defaultConfig,
       updatedAt: new Date().toISOString().split('T')[0],
       published: true,
@@ -74,17 +84,62 @@ export default function App() {
 
   const [activePortfolioId, setActivePortfolioId] = useState<string>(() => {
     try {
-      const savedId = localStorage.getItem(STORAGE_KEY_ACTIVE_ID);
-      if (savedId) {
-        // Fallback or force activation of the new CodeBucks template if stored ID is invalid
-        const allowedIds = ['port-codebucks-demo', 'port-folio-demo'];
-        if (allowedIds.includes(savedId)) return savedId;
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlTemplate = urlParams.get('template') || urlParams.get('t');
+      if (urlTemplate) {
+        const tDef = getTemplateById(urlTemplate);
+        if (tDef) return `port-${tDef.id}`;
       }
+      const savedId = localStorage.getItem(STORAGE_KEY_ACTIVE_ID);
+      if (savedId) return savedId;
     } catch (e) {
-      console.error('Failed to parse active ID from localStorage:', e);
+      console.error('Failed to parse active ID:', e);
     }
     return 'port-codebucks-demo';
   });
+
+  // URL sync handler on mount & navigation
+  useEffect(() => {
+    const handleUrlSync = () => {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlTemplate = urlParams.get('template') || urlParams.get('t');
+        if (urlTemplate) {
+          const tDef = getTemplateById(urlTemplate);
+          if (tDef) {
+            const demoData = getDemoDataForTemplate(tDef.id);
+            setPortfolios(prev => {
+              const existingIndex = prev.findIndex(p => p.templateId === tDef.id || p.id === `port-${tDef.id}`);
+              if (existingIndex >= 0) {
+                setActivePortfolioId(prev[existingIndex].id);
+                return prev;
+              } else {
+                const newPort: UserPortfolio = {
+                  id: `port-${tDef.id}`,
+                  name: tDef.name,
+                  templateId: tDef.id,
+                  data: demoData,
+                  customizer: { ...tDef.defaultConfig },
+                  updatedAt: new Date().toISOString().split('T')[0],
+                  published: false,
+                  username: `user-${tDef.id}`
+                };
+                setActivePortfolioId(newPort.id);
+                return [newPort, ...prev];
+              }
+            });
+            setCurrentView('builder');
+          }
+        }
+      } catch (e) {
+        console.error('Error syncing URL parameters:', e);
+      }
+    };
+
+    handleUrlSync();
+    window.addEventListener('popstate', handleUrlSync);
+    return () => window.removeEventListener('popstate', handleUrlSync);
+  }, []);
 
   // Save to localStorage whenever state changes
   useEffect(() => {
@@ -129,22 +184,51 @@ export default function App() {
   };
 
   const handleSelectTemplate = (templateId: string) => {
-    // Template switching: keep portfolio data intact, update templateId & defaultConfig
     const tDef = getTemplateById(templateId);
+    const demoData = getDemoDataForTemplate(tDef.id);
     
-    setPortfolios(prev => prev.map(p => {
-      if (p.id === activePortfolioId) {
-        return {
-          ...p,
+    setPortfolios(prev => {
+      const activeExists = prev.some(p => p.id === activePortfolioId);
+      if (activeExists) {
+        return prev.map(p => {
+          if (p.id === activePortfolioId) {
+            return {
+              ...p,
+              name: tDef.name,
+              templateId: tDef.id,
+              data: demoData,
+              customizer: {
+                ...tDef.defaultConfig
+              },
+              updatedAt: new Date().toISOString().split('T')[0]
+            };
+          }
+          return p;
+        });
+      } else {
+        const newPort: UserPortfolio = {
+          id: `port-${tDef.id}`,
+          name: tDef.name,
           templateId: tDef.id,
-          customizer: {
-            ...tDef.defaultConfig
-          },
-          updatedAt: new Date().toISOString().split('T')[0]
+          data: demoData,
+          customizer: { ...tDef.defaultConfig },
+          updatedAt: new Date().toISOString().split('T')[0],
+          published: false,
+          username: `user-${tDef.id}`
         };
+        setActivePortfolioId(newPort.id);
+        return [newPort, ...prev];
       }
-      return p;
-    }));
+    });
+
+    try {
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.set('template', tDef.id);
+      newUrl.searchParams.set('view', 'builder');
+      window.history.pushState({}, '', newUrl.toString());
+    } catch (e) {
+      console.error('Failed to update URL search params:', e);
+    }
 
     setCurrentView('builder');
   };

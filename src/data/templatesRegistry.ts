@@ -676,6 +676,60 @@ export const templatesRegistry: TemplateDefinition[] = [
     status: 'production',
     sourceReference: 'https://github.com/1hanzla100/developer-portfolio',
     licenseReference: 'MIT'
+  },
+  {
+    id: 'github-hmbldv-027',
+    name: 'HMBLDV Technical Doc Portfolio',
+    category: 'Documentation / Technical',
+    interactionModel: 'Sticky documentation table-of-contents, JetBrains Mono typography, interactive contact terminal console, security badges, and RFC project specs',
+    description: 'Documentation-style technical developer portfolio featuring JetBrains Mono typography, sticky sidebar table-of-contents, RFC project writeups, security certifications, and interactive terminal.',
+    bestFor: 'Staff Engineers, Systems Architects, Infrastructure Specialists, Security Developers, Technical Writers',
+    tags: ['Technical Doc', 'Documentation', 'JetBrains Mono', 'HMBLDV', 'Systems Architect', 'Dark Theme', 'Terminal'],
+    previewGradient: 'from-[#0d1117] via-[#161b22] to-[#1f6feb]',
+    supportedSections: ['profile', 'about', 'skills', 'projects', 'certifications', 'experience', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'mono',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#1f6feb',
+      spacing: 'normal',
+      sectionOrder: ['profile', 'about', 'skills', 'projects', 'experience', 'contact']
+    },
+    rendererType: 'github-hmbldv-027',
+    animationLevel: 'Moderate',
+    layout: 'Documentation style layout with sticky table-of-contents sidebar, breadcrumbs, and interactive terminal',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/hmbldv/portfolio-template',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'github-astro-glass-028',
+    name: 'Astro Glassmorphic Portfolio',
+    category: 'Glassmorphism / Interactive',
+    interactionModel: 'Translucent glassmorphic panels, ambient mesh glow spots, interactive category filter tabs, and glass contact form',
+    description: 'Modern glassmorphism-oriented Astro portfolio template featuring translucent panels, backdrop blur effects, interactive project filter tabs, and hardware-accelerated aesthetic.',
+    bestFor: 'Glassmorphism Enthusiasts, UI/UX Engineers, WebGL Developers, Astro Developers, Creative Technologists',
+    tags: ['Glassmorphism', 'Astro', 'Translucent', 'Backdrop Blur', 'Dark Theme', 'Tailwind CSS', 'Interactive'],
+    previewGradient: 'from-slate-950 via-cyan-950 to-purple-950',
+    supportedSections: ['profile', 'about', 'skills', 'projects', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'sans',
+      bgStyle: 'dark',
+      cardStyle: 'glass',
+      accentColor: '#06b6d4',
+      spacing: 'normal',
+      sectionOrder: ['profile', 'about', 'skills', 'projects', 'contact']
+    },
+    rendererType: 'github-astro-glass-028',
+    animationLevel: 'Subtle',
+    layout: 'Glassmorphic card layout with dark mesh blur background, category filter tabs, and glass contact form',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/Mohammedaljer/astro-portfolio-template',
+    licenseReference: 'MIT'
   }
 ];
 
@@ -686,6 +740,8 @@ export const getTemplateById = (id: string): TemplateDefinition => {
   const idLower = (id || '').toLowerCase();
   
   // Specific alias mappings
+  if (idLower === 'astro-glass' || idLower === 'astro-portfolio' || idLower === 'mohammedaljer' || idLower === 'glassmorphic') return templatesRegistry.find(t => t.id === 'github-astro-glass-028') || templatesRegistry[0];
+  if (idLower === 'hmbldv' || idLower === 'doc-portfolio' || idLower === 'hmbldv-doc-portfolio' || idLower === 'documentation' || idLower === 'technical-doc') return templatesRegistry.find(t => t.id === 'github-hmbldv-027') || templatesRegistry[0];
   if (idLower === 'developer-showcase' || idLower === 'developershowcase' || idLower === 'developer-showcase-portfolio' || idLower === '1hanzla100' || idLower === '1hanzla100-portfolio') return templatesRegistry.find(t => t.id === 'github-1hanzla100-026') || templatesRegistry[0];
   if (idLower === 'multipage-developer' || idLower === 'multipage' || idLower === 'multipage-portfolio' || idLower === 'paytonjewell' || idLower === 'paytonjewell-portfolio') return templatesRegistry.find(t => t.id === 'github-paytonjewell-025') || templatesRegistry[0];
   if (idLower === '3d-creative' || idLower === '3dcreative' || idLower === 'shaqdeff' || idLower === 'shaqdeff-portfolio' || idLower === 'creative-developer-3d') return templatesRegistry.find(t => t.id === 'github-shaqdeff-024') || templatesRegistry[0];

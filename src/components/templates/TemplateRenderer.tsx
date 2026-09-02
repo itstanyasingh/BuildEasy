@@ -25,6 +25,8 @@ import { MagicfolioPortfolioTemplate } from './MagicfolioPortfolioTemplate';
 import { ThreeDCreativePortfolioTemplate } from './ThreeDCreativePortfolioTemplate';
 import { MultiPageDeveloperPortfolioTemplate } from './MultiPageDeveloperPortfolioTemplate';
 import { DeveloperShowcasePortfolioTemplate } from './DeveloperShowcasePortfolioTemplate';
+import { HmbldvDocPortfolioTemplate } from './HmbldvDocPortfolioTemplate';
+import { AstroGlassPortfolioTemplate } from './AstroGlassPortfolioTemplate';
 
 interface TemplateRendererProps {
   data: PortfolioData;
@@ -36,6 +38,18 @@ export const TemplateRenderer: React.FC<TemplateRendererProps> = ({ data, config
   const typeLower = (rendererType || '').toLowerCase();
 
   switch (typeLower) {
+    case 'astro-glass':
+    case 'astro-portfolio':
+    case 'mohammedaljer':
+    case 'glassmorphic':
+    case 'github-astro-glass-028':
+      return <AstroGlassPortfolioTemplate data={data} config={config} />;
+    case 'doc-portfolio':
+    case 'hmbldv':
+    case 'hmbldv-doc-portfolio':
+    case 'documentation-portfolio':
+    case 'github-hmbldv-027':
+      return <HmbldvDocPortfolioTemplate data={data} config={config} />;
     case 'developer-showcase':
     case 'developershowcase':
     case 'developer-showcase-portfolio':

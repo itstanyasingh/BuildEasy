@@ -205,7 +205,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               onClick={onExploreTemplates}
               className="px-6 py-3 rounded-xl border border-zinc-200 bg-white hover:bg-zinc-50 text-sm font-medium text-zinc-900 flex items-center gap-2 self-start md:self-auto cursor-pointer shadow-2xs transition-colors shrink-0"
             >
-              <span>Explore All 25 Templates</span>
+              <span>Explore All Templates</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -286,7 +286,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               onClick={onExploreTemplates}
               className="px-8 py-4 rounded-xl bg-white border border-zinc-200 text-zinc-900 text-sm font-medium hover:bg-zinc-50 transition-colors inline-flex items-center gap-2 shadow-xs cursor-pointer"
             >
-              <span>Explore All 25 Templates in Gallery</span>
+              <span>Explore All Templates in Gallery</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

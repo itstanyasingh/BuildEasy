@@ -14,8 +14,8 @@ const defaultShowcaseTemplates: ShowcaseTemplate[] = [
   { id: 'github-daniel-011', name: 'Daniel Cinematic' },
   { id: 'github-1hanzla100-026', name: 'Developer Showcase' },
   { id: 'github-cleanfolio-010', name: 'Cleanfolio Developer' },
-  { id: 'github-brittany-002', name: 'Brittany Developer' },
-  { id: 'github-magicui-004', name: 'MagicUI Portfolio' }
+  { id: 'github-bchiang7-021', name: 'Brittany Developer' },
+  { id: 'github-magicui-005', name: 'MagicUI Portfolio' }
 ];
 
 interface ThreePreviewShowcaseProps {
