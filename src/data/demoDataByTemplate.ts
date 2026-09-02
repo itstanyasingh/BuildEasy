@@ -2223,9 +2223,151 @@ export const demoDataByTemplate: Record<string, PortfolioData> = {
       behance: "",
       youtube: ""
     }
+  },
+  "cinematic-sarang-portfolio": {
+    profile: {
+      name: "Sienna Vale",
+      title: "Creative Technologist",
+      profilePhoto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800",
+      location: "San Francisco, CA",
+      bio: "Crafting immersive digital experiences through the intersection of code, cinematography, and 3D design systems.",
+      email: "sienna@vale.studio",
+      phone: "+1 (415) 555-8901",
+      website: "https://vale.studio"
+    },
+    about: {
+      aboutText: "I approach the digital landscape as an interactive medium. By utilizing high-end animation systems, spatial computing elements, and structured typography, I seek to build interfaces that are not only highly usable but leave a lasting impression.",
+      interests: ["Spatial Computing", "GLSL Shaders", "Brutalist Architecture", "Cinematography"],
+      services: ["Creative Engineering", "Frontend Architecture", "UI Design Systems"]
+    },
+    experience: [
+      {
+        id: "exp-ct1",
+        company: "Northstar Studio",
+        role: "Lead Creative Engineer",
+        duration: "2025 — Present",
+        description: "Coordinating fine digital architecture showcases, custom shader systems, and high-contrast editorial portfolios across premium design networks.",
+        current: true,
+        technologies: ["WebGL", "Three.js", "TypeScript"]
+      },
+      {
+        id: "exp-ct2",
+        company: "Frameworks Lab",
+        role: "Frontend Engineer",
+        duration: "2023 — 2025",
+        description: "Engineered ultra-high performance design systems, custom physics canvas layouts, and immersive web graphics for tech clients.",
+        current: false,
+        technologies: ["React", "Framer Motion", "Tailwind CSS"]
+      }
+    ],
+    education: [
+      {
+        id: "edu-ct1",
+        institution: "Stanford University",
+        degree: "B.S. Symbolic Systems (Human-Computer Interaction)",
+        duration: "2019 — 2023"
+      }
+    ],
+    skills: [
+      { id: "sk-ct1", name: "WebGL & Shaders", category: "Creative Development", proficiency: 95 },
+      { id: "sk-ct2", name: "Three.js / React Three Fiber", category: "Creative Development", proficiency: 92 },
+      { id: "sk-ct3", name: "TypeScript", category: "Core Systems", proficiency: 95 },
+      { id: "sk-ct4", name: "Performance Optimization", category: "Core Systems", proficiency: 90 },
+      { id: "sk-ct5", name: "Motion & Parallax", category: "UI Mechanics", proficiency: 98 },
+      { id: "sk-ct6", name: "Tailwind & Design Tokens", category: "UI Mechanics", proficiency: 94 }
+    ],
+    projects: [
+      {
+        id: "prj-ct1",
+        name: "AVANT-GARDE MOTION SYSTEM",
+        description: "An interactive cinematic canvas archiving dynamic spatial physics simulations and custom audio-reactive shaders.",
+        technologies: ["WebGL", "Framer Motion", "GLSL Shaders"],
+        image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "https://github.com/sienna-vale/avant-garde-motion",
+        liveUrl: "https://vale.studio/exhibitions/motion",
+        featured: true,
+        year: "2026",
+        status: "LIVE"
+      },
+      {
+        id: "prj-ct2",
+        name: "MONOLITHIC HOUSING VISUALS",
+        description: "Immersive editorial visualizer designed to highlight brutalist villa architecture and modular structure panels across Northern Europe.",
+        technologies: ["Next.js", "Three.js", "PostCSS"],
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2025",
+        status: "COMPLETED"
+      },
+      {
+        id: "prj-ct3",
+        name: "SPATIAL INTERACTION LABS",
+        description: "Experimental high-contrast 3D projection web systems integrating custom WebGL buffers and physics engine boundary rules.",
+        technologies: ["TypeScript", "Ammo.js Physics", "Vite"],
+        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "https://github.com/sienna-vale/spatial-interaction",
+        liveUrl: "https://vale.studio/labs/spatial",
+        featured: true,
+        year: "2025",
+        status: "RELEASED"
+      }
+    ],
+    testimonials: [
+      {
+        id: "tst-ct1",
+        name: "Marcus Sterling",
+        role: "CEO",
+        company: "Northstar Studio",
+        content: "Sienna possesses a rare blend of design precision and technical performance. The spatial visuals she crafted for our modular monolithic showcases are outstanding.",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300"
+      },
+      {
+        id: "tst-ct2",
+        name: "Elena Rostova",
+        role: "Creative Director",
+        company: "Frameworks Lab",
+        content: "The motion systems designed by Sienna completely elevated our product storytelling. Highly recommended creative technologist.",
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300"
+      }
+    ],
+    articles: [
+      {
+        id: "art-ct1",
+        title: "The Architecture of Spatial Interfaces",
+        excerpt: "Exploring how cinematic lighting principles, camera constraints, and responsive design tokens guide human focus on immersive web screens.",
+        date: "May 14, 2026",
+        category: "Creative Technology"
+      },
+      {
+        id: "art-ct2",
+        title: "Optimizing WebGL Pipelines",
+        excerpt: "A practical guide to vertex shader bounds, standard frame caching strategies, and asset compression workflows for real-time portfolio projects.",
+        date: "Jan 28, 2026",
+        category: "Engineering"
+      }
+    ],
+    achievements: [],
+    certifications: [],
+    publications: [],
+    socialLinks: {
+      github: "https://github.com/sienna-vale",
+      linkedin: "https://linkedin.com/in/sienna-vale",
+      twitter: "https://twitter.com/sienna-vale",
+      website: "https://vale.studio",
+      dribbble: "",
+      behance: "",
+      youtube: ""
+    },
+    contact: {
+      email: "sienna@vale.studio",
+      phone: "+1 (415) 555-8901",
+      location: "San Francisco, CA",
+      messagePrompt: "Let's build something worth remembering."
+    }
   }
 };
-
 
 export function getDemoDataForTemplate(templateId: string): PortfolioData {
   return demoDataByTemplate[templateId] || demoDataByTemplate['github-codebucks-001'] || defaultPortfolioData;

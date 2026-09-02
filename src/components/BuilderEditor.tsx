@@ -15,6 +15,7 @@ interface BuilderEditorProps {
   onUpdatePortfolio: (updated: UserPortfolio) => void;
   onOpenPublish: () => void;
   onOpenTemplateGallery: () => void;
+  saveStatus?: 'saved' | 'saving' | 'failed' | 'offline';
 }
 
 type SectionKey = 'projects' | 'profile' | 'education' | 'experience' | 'skills' | 'certifications';
@@ -24,7 +25,8 @@ export const BuilderEditor: React.FC<BuilderEditorProps> = ({
   templates,
   onUpdatePortfolio,
   onOpenPublish,
-  onOpenTemplateGallery
+  onOpenTemplateGallery,
+  saveStatus = 'saved'
 }) => {
   const [activeTab, setActiveTab] = useState<'content' | 'design'>('content');
   const [expandedSection, setExpandedSection] = useState<string | null>('projects');
@@ -1183,6 +1185,33 @@ export const BuilderEditor: React.FC<BuilderEditorProps> = ({
           <div className="flex items-center gap-2 text-xs text-zinc-500">
             <span className="font-mono text-zinc-400">PREVIEW:</span>
             <span className="font-semibold text-zinc-800">{currentTemplate.name}</span>
+            <div className="h-3 w-px bg-zinc-200 mx-1" />
+            <div className="flex items-center gap-1.5 font-medium select-none">
+              {saveStatus === 'saving' && (
+                <>
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                  <span className="text-zinc-500 text-[11px]">Saving...</span>
+                </>
+              )}
+              {saveStatus === 'saved' && (
+                <>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  <span className="text-zinc-600 text-[11px]">Saved</span>
+                </>
+              )}
+              {saveStatus === 'failed' && (
+                <>
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+                  <span className="text-rose-600 text-[11px] font-semibold">Save failed</span>
+                </>
+              )}
+              {saveStatus === 'offline' && (
+                <>
+                  <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
+                  <span className="text-zinc-500 text-[11px]">Offline</span>
+                </>
+              )}
+            </div>
           </div>
 
           {/* Viewport modes */}

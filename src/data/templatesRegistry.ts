@@ -946,6 +946,33 @@ export const templatesRegistry: TemplateDefinition[] = [
     status: 'production',
     sourceReference: 'https://github.com/moriletech000/Template-Luxury-Portfolio',
     licenseReference: 'MIT'
+  },
+  {
+    id: 'cinematic-sarang-portfolio',
+    name: 'Cinematic Sarang Portfolio',
+    category: 'Cinematic / Premium',
+    interactionModel: 'Mouse-tilt cinematic widescreen portrait cards, responsive grid transitions, and active media hub indicators',
+    description: 'Immersive cinematic developer portfolio inspired by the 5araang/Nextjs-cinematic-portfolio. Features widescreen editorial framing, custom HUD recording layout overlays, mouse-tilt interactive depth portrait elements, and elegant high-contrast dark theme presets.',
+    bestFor: 'Creative Technologists, Motion Developers, Interactive Media Designers, 3D/Front-End Engineers',
+    tags: ['Cinematic', 'Creative Technologist', 'Dark Ambiance', 'Framer Motion', '3D Tilt', 'Editorial'],
+    previewGradient: 'from-[#060608] via-amber-950/20 to-black',
+    supportedSections: ['profile', 'about', 'experience', 'projects', 'skills', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'serif',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#f59e0b',
+      spacing: 'relaxed',
+      sectionOrder: ['profile', 'about', 'projects', 'experience', 'skills', 'contact']
+    },
+    rendererType: 'cinematic-sarang-portfolio',
+    animationLevel: 'High',
+    layout: 'Immersive Dark Cinematic Editorial System',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/5araang/Nextjs-cinematic-portfolio',
+    licenseReference: 'MIT'
   }
 ];
 
@@ -956,6 +983,7 @@ export const getTemplateById = (id: string): TemplateDefinition => {
   const idLower = (id || '').toLowerCase();
   
   // Specific alias mappings
+  if (idLower === 'cinematic-sarang-portfolio' || idLower === 'sarang' || idLower === 'cinematic-sarang' || idLower === '5araang') return templatesRegistry.find(t => t.id === 'cinematic-sarang-portfolio') || templatesRegistry[0];
   if (idLower === 'maison-luxury-portfolio' || idLower === 'maison' || idLower === 'maison-luxury') return templatesRegistry.find(t => t.id === 'maison-luxury-portfolio') || templatesRegistry[0];
   if (idLower === 'rustfolio-brutalist' || idLower === 'rustfolio' || idLower === 'rust-portfolio') return templatesRegistry.find(t => t.id === 'rustfolio-brutalist') || templatesRegistry[0];
   if (idLower === 'paperframe-editorial' || idLower === 'paperframe' || idLower === 'paperframe-portfolio') return templatesRegistry.find(t => t.id === 'paperframe-editorial') || templatesRegistry[0];

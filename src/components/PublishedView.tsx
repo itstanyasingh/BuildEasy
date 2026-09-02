@@ -20,7 +20,7 @@ export const PublishedView: React.FC<PublishedViewProps> = ({
       <div className="bg-zinc-900 text-white px-6 py-3 flex items-center justify-between text-sm">
         <div className="flex items-center gap-2">
           <Globe className="w-4 h-4 text-zinc-400" />
-          <span>Published Portfolio: <strong className="font-mono text-zinc-200">buildeasy.app/p/{portfolio.username || 'portfolio'}</strong></span>
+          <span>Published Portfolio: <strong className="font-mono text-zinc-200">{window.location.origin}/p/{portfolio.username || 'portfolio'}</strong></span>
         </div>
         <button
           onClick={onBackToBuilder}
@@ -33,8 +33,8 @@ export const PublishedView: React.FC<PublishedViewProps> = ({
 
       <div className="flex-1">
         <TemplateRenderer 
-          data={portfolio.data} 
-          config={portfolio.customizer} 
+          data={portfolio.publishedData || portfolio.data} 
+          config={portfolio.publishedCustomizer || portfolio.customizer} 
           rendererType={template.rendererType} 
         />
       </div>

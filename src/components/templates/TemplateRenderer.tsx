@@ -35,6 +35,7 @@ import { X100VisualPortfolioTemplate } from './X100VisualPortfolioTemplate';
 import { PaperframeEditorialTemplate } from './PaperframeEditorialTemplate';
 import { RustfolioBrutalistTemplate } from './RustfolioBrutalistTemplate';
 import { MaisonLuxuryPortfolioTemplate } from './MaisonLuxuryPortfolioTemplate';
+import { CinematicSarangPortfolioTemplate } from './CinematicSarangPortfolioTemplate';
 
 // Helper to normalize image sources so they work across different hostnames, protocols, and absolute/relative boundaries
 const normalizeImgSrc = (src: string): string => {
@@ -591,6 +592,78 @@ export const ImageEditWrapper: React.FC<ImageEditWrapperProps> = ({
   );
 };
 
+// Helper to sanitize external links and social URLs safely (Requirements 11 & 12)
+const sanitizeUrl = (url: string | null | undefined, isEmail = false): string => {
+  if (!url) return '';
+  const trimmed = url.trim();
+  if (!trimmed || trimmed === '#' || trimmed.toLowerCase().startsWith('javascript:')) {
+    return '';
+  }
+
+  if (isEmail) {
+    if (trimmed.toLowerCase().startsWith('mailto:')) {
+      return trimmed;
+    }
+    return `mailto:${trimmed}`;
+  }
+
+  // Ensure it has a protocol if it's an external link
+  if (/^(https?:\/\/|\/\/)/i.test(trimmed)) {
+    return trimmed;
+  }
+
+  // If it is a relative anchor or path, let it pass
+  if (trimmed.startsWith('#') || trimmed.startsWith('/')) {
+    return trimmed;
+  }
+
+  // Fallback: prepend https://
+  return `https://${trimmed}`;
+};
+
+// Recursively clones and sanitizes links in PortfolioData on the fly
+const sanitizePortfolioLinks = (data: PortfolioData): PortfolioData => {
+  if (!data) return data;
+
+  // Deep clone data to avoid mutating original state
+  const cloned = JSON.parse(JSON.stringify(data)) as PortfolioData;
+
+  // Sanitize main profile links
+  if (cloned.profile) {
+    if (cloned.profile.email) {
+      cloned.profile.email = cloned.profile.email.trim();
+    }
+    if (cloned.profile.website) {
+      cloned.profile.website = sanitizeUrl(cloned.profile.website);
+    }
+  }
+
+  // Sanitize social links
+  if (cloned.socialLinks) {
+    const keys = Object.keys(cloned.socialLinks) as Array<keyof typeof cloned.socialLinks>;
+    keys.forEach(key => {
+      const val = cloned.socialLinks[key];
+      cloned.socialLinks[key] = sanitizeUrl(val);
+    });
+  }
+
+  // Sanitize project links
+  if (Array.isArray(cloned.projects)) {
+    cloned.projects = cloned.projects.map(proj => {
+      if (proj) {
+        return {
+          ...proj,
+          liveUrl: sanitizeUrl(proj.liveUrl),
+          githubUrl: sanitizeUrl(proj.githubUrl),
+        };
+      }
+      return proj;
+    });
+  }
+
+  return cloned;
+};
+
 interface TemplateRendererProps {
   data: PortfolioData;
   config: LayoutConfiguration;
@@ -600,13 +673,18 @@ interface TemplateRendererProps {
 }
 
 export const TemplateRenderer: React.FC<TemplateRendererProps> = ({ 
-  data, 
+  data: rawOriginalData, 
   config, 
   rendererType, 
   isEditable = false, 
   onUpdateData 
 }) => {
   const typeLower = (rendererType || '').toLowerCase();
+
+  // Memoized sanitized portfolio data ensuring 100% URL safety across all templates
+  const data = React.useMemo(() => {
+    return sanitizePortfolioLinks(rawOriginalData);
+  }, [rawOriginalData]);
 
   const renderActiveTemplate = () => {
 
@@ -819,6 +897,11 @@ export const TemplateRenderer: React.FC<TemplateRendererProps> = ({
     case 'editorial-bento':
     case 'alex-portfolio':
       return <AlexEditorialBentoPortfolioTemplate data={data} config={config} />;
+
+    case 'cinematic-sarang-portfolio':
+    case 'sarang':
+    case 'cinematic-sarang':
+      return <CinematicSarangPortfolioTemplate data={data} config={config} />;
 
     case 'codebucks':
     case 'codebucksportfolio':

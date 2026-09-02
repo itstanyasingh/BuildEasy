@@ -203,4 +203,8 @@ export interface UserPortfolio {
   updatedAt: string;
   published: boolean;
   username: string;
+  version?: number;
+  publishedData?: PortfolioData;
+  publishedCustomizer?: LayoutConfiguration;
+  creatorToken?: string;
 }

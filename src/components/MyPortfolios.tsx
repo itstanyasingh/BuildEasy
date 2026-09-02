@@ -64,9 +64,18 @@ export const MyPortfolios: React.FC<MyPortfoliosProps> = ({
                   <p className="text-sm font-medium text-zinc-500">{template?.name || 'Custom Template'}</p>
                 </div>
 
-                <div className="text-xs text-zinc-500 font-mono bg-zinc-50 dark:bg-zinc-800/50 p-2 rounded-lg truncate">
-                  buildeasy.app/p/{portfolio.username || 'portfolio'}
-                </div>
+                <a
+                  href={`/p/${portfolio.username || 'portfolio'}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-xs text-zinc-500 font-mono bg-zinc-50 dark:bg-zinc-800/50 p-2.5 rounded-lg truncate hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                  title="Open live portfolio website in a new tab"
+                >
+                  <span className="flex items-center gap-1.5 justify-between">
+                    <span>{window.location.origin.replace(/^https?:\/\//, '')}/p/{portfolio.username || 'portfolio'}</span>
+                    <ExternalLink className="w-3 h-3 shrink-0 opacity-60" />
+                  </span>
+                </a>
               </div>
 
               <div className="p-4 bg-zinc-50 dark:bg-zinc-900/50 border-t border-zinc-100 dark:border-zinc-800/60 flex items-center justify-between">
