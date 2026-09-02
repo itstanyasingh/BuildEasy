@@ -22,6 +22,9 @@ import { GitFolioCyberPortfolioTemplate } from './GitFolioCyberPortfolioTemplate
 import { BrittanyDeveloperPortfolioTemplate } from './BrittanyDeveloperPortfolioTemplate';
 import { PersonalDeveloperPortfolioTemplate } from './PersonalDeveloperPortfolioTemplate';
 import { MagicfolioPortfolioTemplate } from './MagicfolioPortfolioTemplate';
+import { ThreeDCreativePortfolioTemplate } from './ThreeDCreativePortfolioTemplate';
+import { MultiPageDeveloperPortfolioTemplate } from './MultiPageDeveloperPortfolioTemplate';
+import { DeveloperShowcasePortfolioTemplate } from './DeveloperShowcasePortfolioTemplate';
 
 interface TemplateRendererProps {
   data: PortfolioData;
@@ -33,6 +36,27 @@ export const TemplateRenderer: React.FC<TemplateRendererProps> = ({ data, config
   const typeLower = (rendererType || '').toLowerCase();
 
   switch (typeLower) {
+    case 'developer-showcase':
+    case 'developershowcase':
+    case 'developer-showcase-portfolio':
+    case '1hanzla100':
+    case '1hanzla100-portfolio':
+    case 'github-1hanzla100-026':
+      return <DeveloperShowcasePortfolioTemplate data={data} config={config} />;
+    case 'multipage-developer':
+    case 'multipage':
+    case 'multipage-portfolio':
+    case 'paytonjewell':
+    case 'paytonjewell-portfolio':
+    case 'github-paytonjewell-025':
+      return <MultiPageDeveloperPortfolioTemplate data={data} config={config} />;
+    case '3d-creative':
+    case '3dcreative':
+    case 'shaqdeff':
+    case 'shaqdeff-portfolio':
+    case 'creative-developer-3d':
+    case 'github-shaqdeff-024':
+      return <ThreeDCreativePortfolioTemplate data={data} config={config} />;
     case 'personal-developer':
     case 'personaldeveloper':
     case 'eluda':

@@ -33,6 +33,9 @@ import {
 } from 'lucide-react';
 import { PortfolioTemplateCard, portfolioPresets } from './PortfolioTemplateCard';
 import { MiniPortfolioPreview } from './MiniPortfolioPreviews';
+import { TemplatePreview } from './TemplatePreview';
+import { getDemoDataForTemplate } from '../data/demoDataByTemplate';
+import { ThreePreviewShowcase } from './ThreePreviewShowcase';
 import { HeroLeftAnimation, HeroRightAnimation, CtaBannerAnimation } from './EditorialAnimations';
 
 interface LandingPageProps {
@@ -60,49 +63,49 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     }
   };
 
-  // 6 Curated Portfolio Website Templates strictly matching BuildEasy format
+  // 6 Curated Portfolio Website Templates matching BuildEasy template registry
   const portfolioWebsiteTemplates = [
     {
-      id: 'minimal',
-      previewKey: 'minimal',
-      name: 'Minimal Developer',
-      category: 'Minimalist',
-      description: 'Clean, text-first portfolio for software developers with structured projects, technical skills, and focused experience.'
+      id: 'github-codebucks-001',
+      previewKey: 'github-codebucks-001',
+      name: 'CodeBucks Developer',
+      category: 'Developer Portfolio',
+      description: 'Multi-page tabbed developer portfolio with orbital skills web and staggered entrances.'
     },
     {
-      id: 'creative',
-      previewKey: 'creative',
-      name: 'Creative Developer',
-      category: 'Interactive',
-      description: 'A more expressive developer portfolio designed for creative coding, interactive experiences, and visual projects.'
+      id: 'github-folio-003',
+      previewKey: 'github-folio-003',
+      name: 'Folio Interactive',
+      category: 'Creative Developer',
+      description: 'High-contrast creative portfolio with interactive timeline and 3D tilt project cards.'
     },
     {
-      id: 'editorial',
-      previewKey: 'editorial',
-      name: 'Editorial Developer',
+      id: 'github-alex-013',
+      previewKey: 'github-alex-013',
+      name: 'Alex Editorial Bento',
       category: 'Editorial',
-      description: 'Typography-focused portfolio for developers, designers, writers, and technical creatives.'
+      description: 'Typography-focused bento grid layout for developers, designers, and creative technologists.'
     },
     {
-      id: 'designer',
-      previewKey: 'designer',
-      name: 'Product Designer',
-      category: 'Product Design',
-      description: 'Case-study focused portfolio showcasing product thinking, design systems, and measurable impact.'
+      id: 'github-daniel-011',
+      previewKey: 'github-daniel-011',
+      name: 'Daniel Cinematic',
+      category: 'Product & Design',
+      description: 'Dark, cinematic media-rich portfolio designed for high-impact project showcases.'
     },
     {
-      id: 'fullstack',
-      previewKey: 'fullstack',
-      name: 'Full-Stack Developer',
-      category: 'Systems & Web',
-      description: 'Balanced engineering portfolio highlighting full-stack systems, backend architecture, and production web applications.'
+      id: 'github-1hanzla100-026',
+      previewKey: 'github-1hanzla100-026',
+      name: 'Developer Showcase',
+      category: 'Full-Stack Developer',
+      description: 'Deep navy portfolio featuring animated coding illustration, skill grid, and open source cards.'
     },
     {
-      id: 'student',
-      previewKey: 'student',
-      name: 'Student / Entry-Level',
-      category: 'Studio & Teams',
-      description: 'Structured portfolio for students and early-career developers highlighting coursework, projects, skills, and fundamentals.'
+      id: 'github-cleanfolio-010',
+      previewKey: 'github-cleanfolio-010',
+      name: 'Cleanfolio Developer',
+      category: 'Minimalist',
+      description: 'Clean developer portfolio built around focused typography, skills cloud, and project cards.'
     }
   ];
 
@@ -165,47 +168,24 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
 
         {/* ========================================================================= */}
-        {/* HERO PREVIEW COMPOSITION (CLEAN EDITORIAL PORTFOLIO PREVIEW)             */}
+        {/* HERO PREVIEW COMPOSITION (3D THREE-PREVIEW PORTFOLIO SHOWCASE)            */}
         {/* ========================================================================= */}
-        <div className="pt-14 sm:pt-16 max-w-5xl mx-auto relative space-y-6">
-          
-          {/* Template Switcher Tabs */}
-          <div className="flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
-            {portfolioPresets.map((preset, idx) => (
-              <button
-                key={preset.id}
-                onClick={() => setActivePresetIndex(idx)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs transition-all cursor-pointer ${
-                  activePresetIndex === idx
-                    ? 'bg-zinc-900 text-white font-semibold shadow-xs'
-                    : 'bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-100/70'
-                }`}
-              >
-                {preset.name}
-              </button>
-            ))}
-          </div>
-
-          {/* Clean Static Editorial Showcase Card */}
-          <div className="relative pt-4 pb-4 flex items-center justify-center">
-            <div className="w-full max-w-2xl transition-all duration-300">
-              <PortfolioTemplateCard 
-                preset={currentPreset} 
-                isMain={true} 
-                onUse={handleUseActiveTemplate} 
-              />
-            </div>
-          </div>
-
+        <div className="pt-6 sm:pt-8 max-w-6xl mx-auto relative">
+          <ThreePreviewShowcase 
+            onSelectTemplate={(id) => {
+              if (onSelectTemplate) onSelectTemplate(id);
+              else onOpenBuilder();
+            }} 
+          />
         </div>
 
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. TEMPLATES SECTION (EXACT EDITORIAL 3-COL GRID & CLEAN CARDS)           */}
+      {/* 2. TEMPLATES SECTION (3-COLUMN SIDE-BY-SIDE REAL PORTFOLIO GRID)            */}
       {/* ========================================================================= */}
-      <section id="templates" className="py-24 sm:py-32 border-t border-zinc-200 bg-[#FAF9F6]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
+      <section id="templates" className="py-20 sm:py-28 border-t border-zinc-200 bg-[#FAF9F6]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-14">
           
           {/* Header Row */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -225,69 +205,90 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               onClick={onExploreTemplates}
               className="px-6 py-3 rounded-xl border border-zinc-200 bg-white hover:bg-zinc-50 text-sm font-medium text-zinc-900 flex items-center gap-2 self-start md:self-auto cursor-pointer shadow-2xs transition-colors shrink-0"
             >
-              <span>Explore All Templates</span>
+              <span>Explore All 25 Templates</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
 
-          {/* Clean 3-Column Template Grid */}
+          {/* 3-Column Side-by-Side Real Website Previews Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-            {portfolioWebsiteTemplates.map((template) => (
-              <div 
-                key={template.id}
-                className="rounded-2xl border border-zinc-200 bg-white p-6 space-y-5 hover:border-zinc-300 transition-all flex flex-col justify-between hover:shadow-md group"
-              >
-                <div className="space-y-4">
-                  {/* 1. Large Portfolio Preview */}
-                  <div 
-                    onClick={() => {
-                      if (onSelectTemplate) {
-                        onSelectTemplate(template.id);
-                      } else {
-                        onOpenBuilder();
-                      }
-                    }}
-                    className="h-64 sm:h-72 rounded-xl border border-zinc-200 bg-[#FAF9F6] overflow-hidden relative shadow-2xs cursor-pointer"
-                  >
-                    <MiniPortfolioPreview id={template.previewKey} />
-                  </div>
+            {[
+              { id: 'github-codebucks-001', name: 'CodeBucks Developer', category: 'Full-Stack Developer' },
+              { id: 'github-folio-003', name: 'Folio Interactive', category: 'Creative UI Engineer' },
+              { id: 'github-adrian-002', name: 'Interactive 3D', category: '3D Game / Graphics' },
+              { id: 'github-magicui-005', name: 'Magic UI Minimal', category: 'Minimalist Maker' },
+              { id: 'github-nixrajput-007', name: 'Aceternity Modern', category: 'Modern Developer' },
+              { id: 'github-cleanfolio-010', name: 'Cleanfolio', category: 'Clean Developer' }
+            ].map((tmpl) => {
+              const demoData = getDemoDataForTemplate(tmpl.id);
+              const authorName = demoData.profile.name;
+              const authorTitle = demoData.profile.title;
 
-                  {/* 2. Template Name & 4. Subtle Category Label */}
-                  <div className="space-y-2 pt-1">
-                    <div className="flex items-center justify-between gap-2">
-                      <h3 className="font-serif text-xl sm:text-2xl font-normal text-zinc-900 tracking-tight">
-                        {template.name}
-                      </h3>
-                      <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-600 shrink-0">
-                        {template.category}
-                      </span>
+              return (
+                <div 
+                  key={tmpl.id}
+                  className="rounded-2xl border border-zinc-200/90 bg-white p-5 space-y-4 hover:border-zinc-400 transition-all flex flex-col justify-between hover:shadow-xl group"
+                >
+                  <div className="space-y-4">
+                    {/* Realistic Website Preview Container */}
+                    <div 
+                      className="h-72 sm:h-80 rounded-xl border border-zinc-200 bg-zinc-950 overflow-hidden relative shadow-xs cursor-pointer group/preview"
+                      onClick={() => onSelectTemplate ? onSelectTemplate(tmpl.id) : onOpenBuilder()}
+                    >
+                      <TemplatePreview id={tmpl.id} />
+
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-black/35 opacity-0 group-hover/preview:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[1.5px] z-20">
+                        <span className="px-4 py-2 rounded-xl bg-white text-zinc-900 font-medium text-xs flex items-center gap-2 shadow-xl transform translate-y-1 group-hover/preview:translate-y-0 transition-transform">
+                          <Eye className="w-3.5 h-3.5 text-zinc-900" />
+                          <span>Preview & Select</span>
+                        </span>
+                      </div>
                     </div>
 
-                    {/* 3. One Short Description (1-2 lines) */}
-                    <p className="text-zinc-600 text-sm leading-relaxed line-clamp-2 min-h-[2.5rem]">
-                      {template.description}
-                    </p>
+                    {/* Metadata & Author Name */}
+                    <div className="space-y-1 pt-1">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-semibold">
+                          {tmpl.category}
+                        </span>
+                        <span className="text-xs text-zinc-500 font-medium">
+                          Demo: <strong className="text-zinc-800 font-semibold">{authorName}</strong>
+                        </span>
+                      </div>
+                      <h3 className="font-serif text-xl font-normal text-zinc-900 tracking-tight">
+                        {tmpl.name}
+                      </h3>
+                      <p className="text-xs text-zinc-500 line-clamp-1 font-sans">
+                        {authorTitle}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Full-Width CTA Button */}
+                  <div className="pt-2">
+                    <button
+                      onClick={() => onSelectTemplate ? onSelectTemplate(tmpl.id) : onOpenBuilder()}
+                      className="w-full py-3.5 rounded-xl bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2 shadow-xs cursor-pointer group-hover:bg-black"
+                    >
+                      <span>Use Template</span>
+                      <ArrowRight className="w-4 h-4 text-zinc-300 group-hover:translate-x-0.5 transition-transform" />
+                    </button>
                   </div>
                 </div>
+              );
+            })}
+          </div>
 
-                {/* 5. Full-Width Black Button */}
-                <div className="pt-2">
-                  <button
-                    onClick={() => {
-                      if (onSelectTemplate) {
-                        onSelectTemplate(template.id);
-                      } else {
-                        onOpenBuilder();
-                      }
-                    }}
-                    className="w-full py-3.5 rounded-xl bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2 shadow-xs cursor-pointer"
-                  >
-                    <span>Use Template</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            ))}
+          {/* Bottom Explore Button */}
+          <div className="text-center pt-4">
+            <button
+              onClick={onExploreTemplates}
+              className="px-8 py-4 rounded-xl bg-white border border-zinc-200 text-zinc-900 text-sm font-medium hover:bg-zinc-50 transition-colors inline-flex items-center gap-2 shadow-xs cursor-pointer"
+            >
+              <span>Explore All 25 Templates in Gallery</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
 
         </div>

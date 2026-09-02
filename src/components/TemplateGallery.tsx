@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { TemplateDefinition } from '../types';
-import { MiniPortfolioPreview } from './MiniPortfolioPreviews';
+import { TemplatePreview } from './TemplatePreview';
+import { getDemoDataForTemplate } from '../data/demoDataByTemplate';
 import { Search, ArrowRight, Eye, X, Check } from 'lucide-react';
 import { TemplateRenderer } from './templates/TemplateRenderer';
 import { defaultPortfolioData } from '../data/defaultData';
@@ -141,72 +142,79 @@ export const TemplateGallery: React.FC<TemplateGalleryProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
             {filteredTemplates.map((template) => {
               const isSelected = template.id === currentTemplateId;
+              const demoData = getDemoDataForTemplate(template.id);
+              const authorName = demoData.profile.name;
+              const authorTitle = demoData.profile.title;
+
               return (
                 <div 
                   key={template.id}
-                  className={`rounded-2xl border bg-white p-6 space-y-5 hover:border-zinc-300 transition-all flex flex-col justify-between hover:shadow-md group ${
+                  className={`rounded-2xl border bg-white p-5 space-y-4 hover:border-zinc-400 transition-all flex flex-col justify-between hover:shadow-xl group ${
                     isSelected 
-                      ? 'border-zinc-900 ring-2 ring-zinc-900/10' 
-                      : 'border-zinc-200'
+                      ? 'border-zinc-900 ring-2 ring-zinc-900/10 shadow-sm' 
+                      : 'border-zinc-200/90 shadow-2xs'
                   }`}
                 >
                   <div className="space-y-4">
-                    {/* 1. Large Portfolio Website Preview */}
+                    {/* 1. Large Realistic Portfolio Website Preview */}
                     <div 
-                      className="h-64 sm:h-72 rounded-xl border border-zinc-200 bg-[#FAF9F6] overflow-hidden relative shadow-2xs cursor-pointer group/preview"
+                      className="h-72 sm:h-80 rounded-xl border border-zinc-200 bg-zinc-950 overflow-hidden relative shadow-inner cursor-pointer group/preview"
                       onClick={() => setModalPreviewTemplate(template)}
                     >
-                      <MiniPortfolioPreview id={template.id} category={template.category} name={template.name} />
+                      <TemplatePreview id={template.id} />
 
                       {/* Hover Overlay with Preview Trigger */}
-                      <div className="absolute inset-0 bg-black/35 opacity-0 group-hover/preview:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[1.5px] z-20">
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/preview:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[1.5px] z-20">
                         <span className="px-4 py-2 rounded-xl bg-white text-zinc-900 font-medium text-xs flex items-center gap-2 shadow-xl transform translate-y-1 group-hover/preview:translate-y-0 transition-transform">
                           <Eye className="w-3.5 h-3.5 text-zinc-900" />
-                          <span>Full Preview</span>
+                          <span>Full Screen Preview</span>
                         </span>
                       </div>
 
                       {isSelected && (
-                        <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-zinc-900 text-white text-[10px] font-mono font-bold tracking-wider shadow z-10 flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                          CURRENT
+                        <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-zinc-900 text-white text-[10px] font-mono font-bold tracking-wider shadow z-10 flex items-center gap-1.5 border border-zinc-700">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                          ACTIVE
                         </div>
                       )}
                     </div>
 
-                    {/* 2. Template Name & 4. Subtle Category Label */}
-                    <div className="space-y-2 pt-1">
+                    {/* 2. Template Info & Demo Identity */}
+                    <div className="space-y-1 pt-1">
                       <div className="flex items-center justify-between gap-2">
-                        <h2 className="font-serif text-xl sm:text-2xl font-normal text-zinc-900 tracking-tight">
-                          {template.name}
-                        </h2>
-                        <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-600 shrink-0">
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-semibold">
                           {template.category}
+                        </span>
+                        <span className="text-xs text-zinc-500 font-medium">
+                          Demo: <strong className="text-zinc-800 font-semibold">{authorName}</strong>
                         </span>
                       </div>
 
-                      {/* 3. One Short Description (1-2 lines) */}
-                      <p className="text-zinc-600 text-sm leading-relaxed line-clamp-2 min-h-[2.5rem]">
-                        {template.description}
+                      <h2 className="font-serif text-xl font-normal text-zinc-900 tracking-tight">
+                        {template.name}
+                      </h2>
+
+                      <p className="text-xs text-zinc-500 line-clamp-1 font-sans">
+                        {authorTitle}
                       </p>
                     </div>
                   </div>
 
-                  {/* 5. Full-Width Black CTA Button */}
+                  {/* 3. Full-Width Black CTA Button */}
                   <div className="pt-2">
                     <button
                       onClick={() => onSelectTemplate(template.id)}
-                      className="w-full py-3.5 rounded-xl bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2 shadow-xs cursor-pointer"
+                      className="w-full py-3.5 rounded-xl bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2 shadow-xs cursor-pointer group-hover:bg-black"
                     >
                       {isSelected ? (
                         <>
-                          <Check className="w-4 h-4" />
+                          <Check className="w-4 h-4 text-emerald-400" />
                           <span>Active Template</span>
                         </>
                       ) : (
                         <>
                           <span>Use Template</span>
-                          <ArrowRight className="w-4 h-4" />
+                          <ArrowRight className="w-4 h-4 text-zinc-300 group-hover:translate-x-0.5 transition-transform" />
                         </>
                       )}
                     </button>
@@ -285,7 +293,7 @@ export const TemplateGallery: React.FC<TemplateGalleryProps> = ({
             <div className="flex-1 overflow-y-auto bg-zinc-100 p-4 sm:p-6">
               <div className="max-w-4xl mx-auto bg-white rounded-xl shadow border border-zinc-200 overflow-hidden">
                 <TemplateRenderer
-                  data={defaultPortfolioData}
+                  data={getDemoDataForTemplate(modalPreviewTemplate.id)}
                   config={modalPreviewTemplate.defaultConfig}
                   rendererType={modalPreviewTemplate.rendererType}
                 />

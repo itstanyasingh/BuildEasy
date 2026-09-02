@@ -595,6 +595,87 @@ export const templatesRegistry: TemplateDefinition[] = [
     status: 'production',
     sourceReference: 'https://github.com/dillionverma/portfolio',
     licenseReference: 'MIT'
+  },
+  {
+    id: 'github-shaqdeff-024',
+    name: '3D Creative',
+    category: 'Creative Developer',
+    interactionModel: 'Three.js background particle stars, interactive 3D hero cyber mesh object, 3D tech skill spheres, vertical experience timeline, and 3D Earth globe contact hub',
+    description: 'A visually expressive developer portfolio combining creative presentation, selected work, skills and professional information.',
+    bestFor: '3D Developers, Creative Engineers, Game Developers, Full-Stack Architects, UI Designers',
+    tags: ['Creative Developer', '3D Creative', 'Shaquille Deon', 'shaqdeff', 'Three.js', '3D Canvas', 'WebGL', 'Interactive'],
+    previewGradient: 'from-[#050816] via-[#151030] to-[#915eff]',
+    supportedSections: ['profile', 'about', 'experience', 'skills', 'projects', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'sans',
+      bgStyle: 'dark',
+      cardStyle: 'glass',
+      accentColor: '#915eff',
+      spacing: 'relaxed',
+      sectionOrder: ['profile', 'about', 'experience', 'skills', 'projects', 'contact']
+    },
+    rendererType: 'github-shaqdeff-024',
+    animationLevel: 'High',
+    layout: 'Expressive 3D developer portfolio with WebGL canvas elements, vertical timeline, and color project showcase',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/shaqdeff/Portfolio-Template',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'github-paytonjewell-025',
+    name: 'MultiPage Developer',
+    category: 'Professional / Multi-Page',
+    interactionModel: 'Multi-page tabbed router navigation (Home, About, Projects, Experience, Contact), isolated light/dark mode toggle, and color project showcase grid',
+    description: 'A polished multi-page developer portfolio with separate pages for projects, experience, skills, about information and contact.',
+    bestFor: 'Full-Stack Developers, Frontend Engineers, Tech Leads, Software Architects, Engineering Graduates',
+    tags: ['Professional / Multi-Page', 'MultiPage Developer', 'Payton Jewell', 'paytonjewell', 'React', 'Multi-Page', 'Dark Mode', 'Responsive'],
+    previewGradient: 'from-[#181623] via-[#221f33] to-[#8c52ff]',
+    supportedSections: ['profile', 'about', 'experience', 'education', 'skills', 'projects', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'sans',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#8c52ff',
+      spacing: 'relaxed',
+      sectionOrder: ['profile', 'about', 'experience', 'education', 'skills', 'projects', 'contact']
+    },
+    rendererType: 'github-paytonjewell-025',
+    animationLevel: 'Moderate',
+    layout: 'Polished multi-page developer portfolio with clean header navigation, dark mode switch, and full color project cards',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/paytonjewell/ReactPortfolioTemplate',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'github-1hanzla100-026',
+    name: 'Developer Showcase',
+    category: 'Professional Developer',
+    interactionModel: 'Deep midnight canvas (#001C55) with animated coding SVG vector illustration, full stack skills grid, timeline, and color project cards',
+    description: 'A polished developer portfolio focused on personal introduction, skills, projects, experience and professional presence.',
+    bestFor: 'Full Stack Developers, Software Engineers, Open Source Contributors, Cloud Engineers',
+    tags: ['Professional Developer', 'Developer Showcase', 'Hanzla Tauqeer', '1hanzla100', 'React', 'Full Stack', 'Coding Illustration'],
+    previewGradient: 'from-[#001C55] via-[#002855] to-[#0077B6]',
+    supportedSections: ['profile', 'about', 'experience', 'education', 'skills', 'projects', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'sans',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#5BC0BE',
+      spacing: 'relaxed',
+      sectionOrder: ['profile', 'about', 'skills', 'projects', 'experience', 'education', 'contact']
+    },
+    rendererType: 'github-1hanzla100-026',
+    animationLevel: 'Moderate',
+    layout: 'Classic developer portfolio with hero illustration, skill icon grid, work timeline, and open source cards',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/1hanzla100/developer-portfolio',
+    licenseReference: 'MIT'
   }
 ];
 
@@ -605,6 +686,9 @@ export const getTemplateById = (id: string): TemplateDefinition => {
   const idLower = (id || '').toLowerCase();
   
   // Specific alias mappings
+  if (idLower === 'developer-showcase' || idLower === 'developershowcase' || idLower === 'developer-showcase-portfolio' || idLower === '1hanzla100' || idLower === '1hanzla100-portfolio') return templatesRegistry.find(t => t.id === 'github-1hanzla100-026') || templatesRegistry[0];
+  if (idLower === 'multipage-developer' || idLower === 'multipage' || idLower === 'multipage-portfolio' || idLower === 'paytonjewell' || idLower === 'paytonjewell-portfolio') return templatesRegistry.find(t => t.id === 'github-paytonjewell-025') || templatesRegistry[0];
+  if (idLower === '3d-creative' || idLower === '3dcreative' || idLower === 'shaqdeff' || idLower === 'shaqdeff-portfolio' || idLower === 'creative-developer-3d') return templatesRegistry.find(t => t.id === 'github-shaqdeff-024') || templatesRegistry[0];
   if (idLower === 'magicfolio' || idLower === 'magicfolio-portfolio' || idLower === 'dillion' || idLower === 'dillionverma' || idLower === 'minimal-modern-developer') return templatesRegistry.find(t => t.id === 'github-magicfolio-023') || templatesRegistry[0];
   if (idLower === 'personal' || idLower === 'personal-developer' || idLower === 'personaldeveloper' || idLower === 'eluda' || idLower === 'eludadev' || idLower === 'eludadev-portfolio') return templatesRegistry.find(t => t.id === 'github-eludadev-022') || templatesRegistry[0];
   if (idLower === 'minimal') return templatesRegistry.find(t => t.id === 'github-magicui-005') || templatesRegistry[0];

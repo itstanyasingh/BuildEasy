@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, ExternalLink } from 'lucide-react';
+import { TemplatePreview } from './TemplatePreview';
 
 export interface PortfolioPreset {
   id: string;
@@ -534,6 +535,96 @@ export const portfolioPresets: PortfolioPreset[] = [
       period: '2023 — Present'
     },
     contact: 'dillion@magicui.design'
+  },
+  {
+    id: '3d-creative',
+    name: '3D Creative',
+    category: 'Creative Developer',
+    author: 'Shaquille Deon',
+    role: '3D & Web Developer',
+    location: 'New York, NY',
+    summary: 'A visually expressive developer portfolio combining creative presentation, selected work, skills and professional information.',
+    projects: [
+      {
+        title: '3D Car Configurator',
+        desc: 'Real-time WebGL interactive car customization studio built with Three.js.',
+        tags: ['React', 'Three.js', 'WebGL', 'Tailwind'],
+        metric: 'Featured'
+      },
+      {
+        title: 'Cyberpunk Portfolio Engine',
+        desc: 'Interactive 3D particle landscape and responsive web experience.',
+        tags: ['TypeScript', 'Three.js', 'React', 'Motion'],
+        metric: 'Live Demo'
+      }
+    ],
+    skills: ['React', 'Three.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Node.js', 'HTML5', 'CSS3'],
+    experience: {
+      role: 'Senior 3D & Frontend Engineer',
+      company: 'Tech Innovations',
+      period: '2023 — Present'
+    },
+    contact: 'shaquille@example.com'
+  },
+  {
+    id: 'multipage-developer',
+    name: 'MultiPage Developer',
+    category: 'Professional / Multi-Page',
+    author: 'Payton Jewell',
+    role: 'Full-Stack Software Engineer',
+    location: 'San Francisco, CA',
+    summary: 'A polished multi-page developer portfolio with separate pages for projects, experience, skills, about information and contact.',
+    projects: [
+      {
+        title: 'Cloud Analytics Dashboard',
+        desc: 'Full-stack SaaS platform with real-time data visualizers and RBAC access.',
+        tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL'],
+        metric: 'Featured'
+      },
+      {
+        title: 'Developer Productivity Extension',
+        desc: 'VS Code plugin for automated code snippets and API contract testing.',
+        tags: ['TypeScript', 'VS Code API', 'React'],
+        metric: 'Live Demo'
+      }
+    ],
+    skills: ['React', 'TypeScript', 'JavaScript', 'Node.js', 'Python', 'Tailwind CSS', 'PostgreSQL', 'Docker', 'AWS'],
+    experience: {
+      role: 'Senior Software Engineer',
+      company: 'Tech Solutions Inc.',
+      period: '2022 — Present'
+    },
+    contact: 'payton@example.com'
+  },
+  {
+    id: 'developer-showcase',
+    name: 'Developer Showcase',
+    category: 'Professional Developer',
+    author: 'Hanzla Tauqeer',
+    role: 'Full Stack Software Engineer',
+    location: 'Pakistan',
+    summary: 'A polished developer portfolio focused on personal introduction, skills, projects, experience and professional presence.',
+    projects: [
+      {
+        title: 'Developer Portfolio Engine',
+        desc: 'React open-source portfolio showcase template for modern web developers.',
+        tags: ['React', 'Node.js', 'JavaScript', 'CSS3'],
+        metric: 'Featured'
+      },
+      {
+        title: 'Cloud Service Microservices',
+        desc: 'Scalable RESTful API backend architecture with automated deployment pipeline.',
+        tags: ['Node.js', 'Express', 'MongoDB', 'Docker'],
+        metric: 'Live Demo'
+      }
+    ],
+    skills: ['JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js', 'Python', 'MongoDB', 'PostgreSQL', 'Docker'],
+    experience: {
+      role: 'Software Engineer',
+      company: 'Tech Software Solutions',
+      period: '2022 — Present'
+    },
+    contact: 'hanzla@example.com'
   }
 ];
 
@@ -549,79 +640,28 @@ export const PortfolioTemplateCard: React.FC<PortfolioTemplateCardProps> = ({
   onUse
 }) => {
   return (
-    <div className="w-full bg-white rounded-2xl border border-zinc-200 shadow-sm p-6 sm:p-8 text-left space-y-5 select-none relative transition-all">
-      {/* Top Header */}
-      <div className="flex items-center justify-between border-b border-zinc-200 pb-3 text-xs font-mono text-zinc-400">
-        <span className="font-serif font-bold text-zinc-900 text-sm tracking-tight">{preset.author}</span>
-        <div className="flex items-center gap-3 text-zinc-500 font-sans">
-          <span className="font-semibold text-zinc-900">Work</span>
-          <span>About</span>
-          <span>Experience</span>
-          <span>Contact</span>
-        </div>
+    <div className="w-full bg-white rounded-2xl border border-zinc-200 shadow-sm p-5 sm:p-6 text-left space-y-4 select-none relative transition-all overflow-hidden">
+      {/* Real Portfolio Preview */}
+      <div className="h-72 sm:h-80 rounded-xl border border-zinc-200 bg-[#FAF9F6] overflow-hidden relative shadow-2xs">
+        <TemplatePreview id={preset.id} />
       </div>
 
-      {/* Hero Section */}
-      <div className="space-y-1.5">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-semibold">{preset.category}</span>
-        <h2 className="font-serif text-2xl sm:text-3xl font-normal text-zinc-900 tracking-tight leading-tight">
-          {preset.role}
-        </h2>
-        <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed font-sans max-w-xl">
-          {preset.summary}
-        </p>
-      </div>
-
-      {/* Selected Projects */}
-      <div className="space-y-2.5 pt-1">
-        <div className="flex items-center justify-between text-[11px] font-mono text-zinc-400 border-b border-zinc-100 pb-1 uppercase tracking-wider">
-          <span>SELECTED WORK</span>
-          <span>2024 — 2026</span>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {preset.projects.map((p, i) => (
-            <div key={i} className="p-3.5 rounded-xl bg-zinc-50 border border-zinc-200 space-y-1.5 hover:border-zinc-300 transition-all">
-              <div className="flex items-center justify-between">
-                <h4 className="text-xs font-serif font-bold text-zinc-900">{p.title}</h4>
-                {p.metric && <span className="text-[9px] font-mono text-zinc-500">{p.metric}</span>}
-              </div>
-              <p className="text-[11px] text-zinc-600 leading-snug">{p.desc}</p>
-              <div className="flex items-center gap-1.5 pt-1">
-                {p.tags.map((t, idx) => (
-                  <span key={idx} className="text-[9px] font-mono text-zinc-700 bg-white px-1.5 py-0.5 rounded border border-zinc-200">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Skills & Experience */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1 text-xs border-t border-zinc-200">
-        <div className="space-y-1">
-          <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Skills</span>
-          <div className="text-[11px] text-zinc-700 font-sans leading-relaxed">
-            {preset.skills.join(' · ')}
+      {/* Template Info & Action */}
+      <div className="flex items-center justify-between border-t border-zinc-100 pt-3">
+        <div className="space-y-0.5">
+          <div className="flex items-center gap-2">
+            <h3 className="font-serif text-lg sm:text-xl font-normal text-zinc-900 tracking-tight">{preset.name}</h3>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-600 uppercase font-semibold">
+              {preset.category}
+            </span>
           </div>
+          <p className="text-xs text-zinc-500">{preset.role} • {preset.author}</p>
         </div>
-        <div className="space-y-1">
-          <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Current Role</span>
-          <div className="text-[11px] font-medium text-zinc-900">
-            {preset.experience.role}
-          </div>
-          <div className="text-[10px] text-zinc-500">{preset.experience.company} ({preset.experience.period})</div>
-        </div>
-      </div>
 
-      {/* Footer Contact */}
-      <div className="pt-3 border-t border-zinc-200 flex items-center justify-between text-xs text-zinc-500">
-        <span className="font-mono text-[11px] text-zinc-700">{preset.contact}</span>
         {isMain && onUse && (
           <button
             onClick={onUse}
-            className="px-4 py-2 rounded-xl bg-zinc-900 text-white font-medium text-xs flex items-center gap-1.5 hover:bg-zinc-800 transition-colors shadow-sm cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-zinc-900 text-white font-medium text-xs flex items-center gap-1.5 hover:bg-zinc-800 transition-colors shadow-sm cursor-pointer shrink-0"
           >
             <span>Use Template</span>
             <ArrowRight className="w-3.5 h-3.5" />
