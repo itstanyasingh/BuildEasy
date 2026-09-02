@@ -111,13 +111,13 @@ export interface PublicationItem {
 }
 
 export interface SocialLinks {
-  github: string;
-  linkedin: string;
-  twitter: string;
-  dribbble: string;
-  behance: string;
-  youtube: string;
-  website: string;
+  github?: string;
+  linkedin?: string;
+  twitter?: string;
+  dribbble?: string;
+  behance?: string;
+  youtube?: string;
+  website?: string;
 }
 
 export interface ContactData {
@@ -207,4 +207,27 @@ export interface UserPortfolio {
   publishedData?: PortfolioData;
   publishedCustomizer?: LayoutConfiguration;
   creatorToken?: string;
+  publicUrl?: string;
+  deploymentId?: string;
+  publishedAt?: string;
 }
+
+export interface DeploymentConfig {
+  configured: boolean;
+  provider: 'vercel' | 'native' | 'unconfigured';
+  canonicalDomain: string;
+  environment: string;
+}
+
+export interface DeploymentResult {
+  success: boolean;
+  portfolioId: string;
+  slug: string;
+  publicUrl: string;
+  deploymentId: string;
+  version: number;
+  status: 'ready' | 'building' | 'failed';
+  publishedAt: string;
+  error?: string;
+}
+

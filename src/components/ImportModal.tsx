@@ -100,44 +100,44 @@ export const ImportModal: React.FC<ImportModalProps> = ({ onClose, onImportData 
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-zinc-950 w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800">
-        <div className="p-6 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+      <div className="bg-white dark:bg-zinc-950 w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 max-h-[92vh] flex flex-col">
+        <div className="p-4 sm:p-6 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between shrink-0">
           <div>
-            <h2 className="text-xl font-bold">Import Profile Information</h2>
-            <p className="text-zinc-500 text-sm">Populate your portfolio instantly from GitHub or Resume.</p>
+            <h2 className="text-lg sm:text-xl font-bold">Import Profile Information</h2>
+            <p className="text-zinc-500 text-xs sm:text-sm">Populate your portfolio instantly from GitHub or Resume.</p>
           </div>
           <button onClick={onClose} className="p-2 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-4 sm:p-6 space-y-5 sm:space-y-6 overflow-y-auto flex-1">
           <div className="flex bg-zinc-100 dark:bg-zinc-900 p-1 rounded-xl">
             <button
               onClick={() => setActiveTab('resume')}
-              className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
-                activeTab === 'resume' ? 'bg-white dark:bg-zinc-800 shadow-sm' : 'text-zinc-500'
+              className={`flex-1 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-colors flex items-center justify-center gap-1.5 sm:gap-2 ${
+                activeTab === 'resume' ? 'bg-white dark:bg-zinc-800 shadow-sm font-semibold text-zinc-900 dark:text-zinc-100' : 'text-zinc-500'
               }`}
             >
               <FileText className="w-4 h-4" />
-              Upload Resume text
+              <span>Resume Text</span>
             </button>
             <button
               onClick={() => setActiveTab('github')}
-              className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
-                activeTab === 'github' ? 'bg-white dark:bg-zinc-800 shadow-sm' : 'text-zinc-500'
+              className={`flex-1 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-colors flex items-center justify-center gap-1.5 sm:gap-2 ${
+                activeTab === 'github' ? 'bg-white dark:bg-zinc-800 shadow-sm font-semibold text-zinc-900 dark:text-zinc-100' : 'text-zinc-500'
               }`}
             >
               <Github className="w-4 h-4" />
-              Import from GitHub
+              <span>GitHub Profile</span>
             </button>
           </div>
 
           {activeTab === 'github' ? (
             <div className="space-y-4">
-              <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">GitHub Username</label>
-              <div className="flex gap-2">
+              <label className="block text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300">GitHub Username</label>
+              <div className="flex flex-col sm:flex-row gap-2">
                 <input
                   type="text"
                   placeholder="e.g. torvalds or octocat"
@@ -148,7 +148,7 @@ export const ImportModal: React.FC<ImportModalProps> = ({ onClose, onImportData 
                 <button
                   onClick={handleGitHubImport}
                   disabled={loading || success}
-                  className="px-6 py-2.5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-medium text-sm hover:opacity-90 disabled:opacity-50 flex items-center gap-2"
+                  className="px-5 py-2.5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-medium text-sm hover:opacity-90 disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer shrink-0"
                 >
                   {success ? <Check className="w-4 h-4 text-white dark:text-zinc-900" /> : loading ? 'Importing...' : 'Fetch Profile'}
                 </button>
@@ -157,18 +157,18 @@ export const ImportModal: React.FC<ImportModalProps> = ({ onClose, onImportData 
             </div>
           ) : (
             <div className="space-y-4">
-              <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Paste Resume Text / Summary</label>
+              <label className="block text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300">Paste Resume Text / Summary</label>
               <textarea
                 rows={5}
                 placeholder="Paste your professional experience, bio, and skills here..."
                 value={resumeText}
                 onChange={(e) => setResumeText(e.target.value)}
-                className="w-full p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-white resize-none"
+                className="w-full p-3.5 sm:p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-white resize-none"
               />
               <button
                 onClick={handleResumeParse}
                 disabled={loading || success}
-                className="w-full py-3 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-medium text-sm hover:opacity-90 disabled:opacity-50 flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-medium text-sm hover:opacity-90 disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer"
               >
                 {success ? <Check className="w-4 h-4 text-white dark:text-zinc-900" /> : loading ? 'Parsing Resume...' : 'Parse & Populate'}
               </button>

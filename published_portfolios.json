@@ -1,0 +1,459 @@
+{
+  "codebucks": {
+    "id": "port-codebucks-demo",
+    "name": "CodeBucks — Developer Portfolio",
+    "templateId": "github-codebucks-001",
+    "username": "codebucks",
+    "published": true,
+    "updatedAt": "2026-09-02",
+    "version": 1,
+    "publicUrl": "https://buildeasy.com/p/codebucks",
+    "deploymentId": "dep_codebucks_init",
+    "publishedAt": "2026-09-02T00:00:00.000Z",
+    "creatorToken": "init-demo-token-codebucks",
+    "data": {
+      "profile": {
+        "name": "CodeBucks",
+        "title": "Full-Stack Developer & UI Designer",
+        "location": "San Francisco, CA",
+        "bio": "Passionate about creating modern, accessible, and high-performance web experiences with React and Tailwind CSS.",
+        "email": "codebucks@example.com",
+        "phone": "+1 (555) 019-2834",
+        "website": "https://codebucks.dev",
+        "profilePhoto": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600"
+      },
+      "about": {
+        "aboutText": "Building modern digital experiences with an emphasis on typography, micro-interactions, and pristine execution.",
+        "interests": ["Web Design", "Open Source", "Design Systems", "Animation"],
+        "services": ["Frontend Development", "UI/UX Design", "Performance Optimization"]
+      },
+      "experience": [
+        {
+          "id": "exp-1",
+          "company": "Stripe Labs",
+          "role": "Staff Frontend Engineer",
+          "duration": "2022 — Present",
+          "description": "Architected checkout telemetry and modern design system components across web & mobile.",
+          "current": true
+        },
+        {
+          "id": "exp-2",
+          "company": "Vercel Ecosystem",
+          "role": "Senior UI Engineer",
+          "duration": "2020 — 2022",
+          "description": "Led open-source dashboard development and responsive web applications.",
+          "current": false
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-1",
+          "institution": "University of California, Berkeley",
+          "degree": "B.S. in Computer Science",
+          "duration": "2016 — 2020",
+          "grade": "Summa Cum Laude"
+        }
+      ],
+      "skills": [
+        { "id": "s-1", "name": "React / Next.js", "category": "Frontend", "proficiency": 98 },
+        { "id": "s-2", "name": "TypeScript", "category": "Languages", "proficiency": 95 },
+        { "id": "s-3", "name": "Tailwind CSS", "category": "Styling", "proficiency": 99 },
+        { "id": "s-4", "name": "Node.js / Express", "category": "Backend", "proficiency": 90 }
+      ],
+      "projects": [
+        {
+          "id": "proj-1",
+          "name": "DevStudio — Design System",
+          "description": "A comprehensive open-source UI component library built for rapid prototyping and production apps.",
+          "technologies": ["React", "TypeScript", "Tailwind CSS", "Radix UI"],
+          "image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=800",
+          "githubUrl": "https://github.com/codebucks/devstudio",
+          "liveUrl": "https://devstudio.demo",
+          "featured": true,
+          "year": "2025"
+        },
+        {
+          "id": "proj-2",
+          "name": "HyperLog Analytics",
+          "description": "Real-time edge log visualizer with zero-latency telemetry charts and streaming WebSockets.",
+          "technologies": ["React", "TypeScript", "WebSockets", "D3.js"],
+          "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+          "githubUrl": "https://github.com/codebucks/hyperlog",
+          "liveUrl": "https://hyperlog.demo",
+          "featured": true,
+          "year": "2025"
+        }
+      ],
+      "socialLinks": {
+        "github": "https://github.com/codebucks27",
+        "linkedin": "https://linkedin.com",
+        "twitter": "https://twitter.com",
+        "website": "https://codebucks.dev"
+      },
+      "contact": {
+        "email": "codebucks@example.com",
+        "phone": "+1 (555) 019-2834",
+        "location": "San Francisco, CA",
+        "messagePrompt": "Let's collaborate on high-impact projects. Feel free to reach out!"
+      }
+    },
+    "customizer": {
+      "typography": "sans",
+      "accentColor": "#0284c7",
+      "bgStyle": "dark",
+      "spacing": "normal",
+      "headerStyle": "sticky",
+      "cardStyle": "border",
+      "sectionOrder": ["profile", "about", "skills", "experience", "projects", "contact"],
+      "hiddenSections": []
+    }
+  },
+  "ayushsingh": {
+    "id": "port-folio-demo",
+    "name": "Ayush Singh — Creative UI Engineer",
+    "templateId": "github-folio-003",
+    "username": "ayushsingh",
+    "published": true,
+    "updatedAt": "2026-09-02",
+    "version": 1,
+    "publicUrl": "https://buildeasy.com/p/ayushsingh",
+    "deploymentId": "dep_ayush_init",
+    "publishedAt": "2026-09-02T00:00:00.000Z",
+    "creatorToken": "init-demo-token-ayush",
+    "data": {
+      "profile": {
+        "name": "Ayush Singh",
+        "title": "Creative UI Engineer & Interaction Designer",
+        "location": "Bangalore, India",
+        "bio": "Crafting micro-interactions, generative canvas experiences, and fluid design systems.",
+        "email": "ayush@example.com",
+        "phone": "+91 98765 43210",
+        "website": "https://ayushsingh.design",
+        "profilePhoto": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600"
+      },
+      "about": {
+        "aboutText": "Bridging engineering precision with creative visual interaction design.",
+        "interests": ["Creative Coding", "WebGL", "Three.js", "Design Systems"],
+        "services": ["Creative Direction", "Frontend Development", "Interactive Prototyping"]
+      },
+      "experience": [
+        {
+          "id": "exp-ayush-1",
+          "company": "Kinetic Studio",
+          "role": "Lead Creative Technologist",
+          "duration": "2023 — Present",
+          "description": "Spearheaded award-winning web GL interactions and brand marketing platforms.",
+          "current": true
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-ayush-1",
+          "institution": "Indian Institute of Technology",
+          "degree": "B.Tech in Computer Science & Design",
+          "duration": "2018 — 2022",
+          "grade": "Distinction"
+        }
+      ],
+      "skills": [
+        { "id": "sayush-1", "name": "Three.js / WebGL", "category": "Graphics", "proficiency": 95 },
+        { "id": "sayush-2", "name": "React / Framer Motion", "category": "Frontend", "proficiency": 98 },
+        { "id": "sayush-3", "name": "TypeScript", "category": "Languages", "proficiency": 94 }
+      ],
+      "projects": [
+        {
+          "id": "payush-1",
+          "name": "Fluid Canvas Studio",
+          "description": "Real-time generative particle canvas and procedural visual sound synthesizer in WebGL.",
+          "technologies": ["WebGL", "Three.js", "TypeScript", "GLSL Shaders"],
+          "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800",
+          "githubUrl": "https://github.com/ayushsingh/fluid-canvas",
+          "liveUrl": "https://fluidcanvas.demo",
+          "featured": true,
+          "year": "2025"
+        }
+      ],
+      "socialLinks": {
+        "github": "https://github.com/ayushsingh",
+        "linkedin": "https://linkedin.com",
+        "twitter": "https://twitter.com",
+        "website": "https://ayushsingh.design"
+      },
+      "contact": {
+        "email": "ayush@example.com",
+        "phone": "+91 98765 43210",
+        "location": "Bangalore, India",
+        "messagePrompt": "Open for creative tech and design consulting opportunities."
+      }
+    },
+    "customizer": {
+      "typography": "sans",
+      "accentColor": "#8b5cf6",
+      "bgStyle": "dark",
+      "spacing": "normal",
+      "headerStyle": "sticky",
+      "cardStyle": "border",
+      "sectionOrder": ["profile", "about", "skills", "experience", "projects", "contact"],
+      "hiddenSections": []
+    }
+  },
+  "user-github-hanzla-017": {
+    "id": "port-github-hanzla-017",
+    "name": "Classic React Developer Portfolio",
+    "templateId": "github-yuji-009",
+    "username": "user-github-hanzla-017",
+    "published": true,
+    "updatedAt": "2026-09-02",
+    "version": 2,
+    "creatorToken": "18844a55-5008-46c4-9cbb-32ae5e5030e5",
+    "data": {
+      "profile": {
+        "name": "Yuji Sato",
+        "title": "Senior Frontend Architect & React Specialist",
+        "location": "Vancouver, Canada",
+        "bio": "Specializing in React performance optimization, design systems, and enterprise web architecture.",
+        "email": "yuji.sato@frontend.ca",
+        "phone": "+1 (604) 555-0188",
+        "website": "https://yujisato.dev",
+        "profilePhoto": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=600"
+      },
+      "about": {
+        "aboutText": "Architecting high-scale frontend systems with zero-compromise bundle sizes and bulletproof unit testing.",
+        "interests": [
+          "React Architecture",
+          "Micro-Frontends",
+          "Web Vitals",
+          "State Management"
+        ],
+        "services": [
+          "Frontend Architecture Consulting",
+          "Performance Auditing",
+          "Design System Strategy"
+        ]
+      },
+      "experience": [
+        {
+          "id": "exp-yuj-1",
+          "company": "Pacific Web Scale",
+          "role": "Staff Frontend Architect",
+          "duration": "2021 — Present",
+          "description": "Optimized Core Web Vitals across 12 SaaS applications, reducing LCP by 1.8 seconds.",
+          "current": true
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-1",
+          "institution": "Stanford University",
+          "degree": "M.S. in Computer Science (Artificial Intelligence)",
+          "duration": "2017 — 2019",
+          "grade": "GPA: 3.94 / 4.0"
+        },
+        {
+          "id": "edu-2",
+          "institution": "UC Berkeley",
+          "degree": "B.S. in Electrical Engineering & Computer Sciences",
+          "duration": "2013 — 2017",
+          "grade": "Summa Cum Laude"
+        }
+      ],
+      "skills": [
+        {
+          "id": "syuj-1",
+          "name": "React 19 / Redux Toolkit",
+          "category": "Frontend",
+          "proficiency": 98
+        },
+        {
+          "id": "syuj-2",
+          "name": "TypeScript",
+          "category": "Languages",
+          "proficiency": 96
+        },
+        {
+          "id": "syuj-3",
+          "name": "Vite / Webpack Build Tooling",
+          "category": "Build Tools",
+          "proficiency": 94
+        },
+        {
+          "id": "syuj-4",
+          "name": "Tailwind CSS / Emotion",
+          "category": "Styling",
+          "proficiency": 92
+        }
+      ],
+      "projects": [
+        {
+          "id": "pyuj-1",
+          "name": "React Flow Dashboard Suite",
+          "description": "Enterprise interactive node editor and analytics dashboard with real-time data streaming.",
+          "technologies": [
+            "React",
+            "TypeScript",
+            "Tailwind CSS",
+            "Zustand"
+          ],
+          "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+          "githubUrl": "https://github.com/yujisato/react-flow-suite",
+          "liveUrl": "https://reactflow-suite.dev",
+          "featured": true,
+          "year": "2025"
+        }
+      ],
+      "articles": [
+        {
+          "id": "art-1",
+          "title": "Architecting Zero-Latency Streaming Pipelines with WebSockets and Redis Streams",
+          "excerpt": "A deep dive into distributed event brokers, memory-efficient data serialization with FlatBuffers, and client-side reactive reconciling.",
+          "date": "Oct 24, 2025",
+          "readingTime": "6 min read",
+          "category": "Distributed Systems",
+          "tags": [
+            "TypeScript",
+            "Redis",
+            "WebSockets",
+            "Performance"
+          ],
+          "slug": "architecting-zero-latency-streaming-pipelines",
+          "content": "Distributed web applications frequently struggle with the delicate balance between real-time data push latency and server compute overhead. \n\nWhen building telemetry and collaborative canvases, naive polling or uncompressed JSON over WebSockets creates severe performance bottlenecks once client concurrency scales past 10,000 active nodes.\n\n### 1. The Bottleneck: Unbounded Buffer Allocation\nStandard JSON serialization forces the V8 engine to allocate and garbage-collect millions of intermediate string objects per second. By moving to structured binary schemas using FlatBuffers or Protocol Buffers, we eliminated 70% of GC pauses.\n\n### 2. Redis Streams as Backpressure Governors\nUsing Redis Consumer Groups with PEL (Pending Entry Lists), we decoupled fast event producers from heterogeneous client consumption rates. This ensures slow network clients never cause server memory bloat.\n\n### 3. Client-Side Virtual Reconciling\nOn the browser thread, incoming frame deltas are merged into an OffscreenCanvas buffer using `requestAnimationFrame` scheduling, avoiding UI thread stutter and guaranteeing solid 60 FPS renders even under heavy load."
+        },
+        {
+          "id": "art-2",
+          "title": "Rethinking Modern Frontend: From Monolithic Bundles to Fine-Grained Primitives",
+          "excerpt": "Why modern web engineering is pivoting from heavy client runtimes toward compile-time signals, edge-rendered islands, and minimal JavaScript footprints.",
+          "date": "Jul 12, 2025",
+          "readingTime": "8 min read",
+          "category": "Frontend Architecture",
+          "tags": [
+            "React",
+            "Architecture",
+            "Web Standards",
+            "Signals"
+          ],
+          "slug": "rethinking-modern-frontend-primitives",
+          "content": "The modern web has reached a pivotal juncture. For a decade, the industry prioritized developer experience by shipping increasingly large client runtimes to user devices. Today, we are seeing the resurgence of content-first, performance-centric architectures.\n\n### The Problem with Runtime Virtual DOM Overhead\nVirtual DOM diffing was a breakthrough in 2013, but modern browsers have grown extraordinarily fast at fine-grained DOM updates when driven by reactive signal primitives or compile-time optimizations.\n\n### Content-First Design as an Architectural Discipline\nWhen building knowledge platforms and developer tools, content must be first-class. Code, typography, hierarchy, and keyboard ergonomics should take precedence over unnecessary visual gimmicks.\n\n```typescript\n// Example fine-grained reactive subscriber\nexport function createSignal<T>(initialValue: T): [() => T, (next: T) => void] {\n  let value = initialValue;\n  const subscribers = new Set<() => void>();\n  \n  const read = () => {\n    if (activeEffect) subscribers.add(activeEffect);\n    return value;\n  };\n  \n  const write = (next: T) => {\n    value = next;\n    subscribers.forEach(fn => fn());\n  };\n  \n  return [read, write];\n}\n```\n\n### Key Takeaways\n1. Keep the main thread idle by default.\n2. Treat typography and content hierarchy as the primary interface.\n3. Optimize for fast initial paint and instantaneous navigation."
+        },
+        {
+          "id": "art-3",
+          "title": "Building Production-Grade Multi-Agent LLM Orchestration in TypeScript",
+          "excerpt": "Designing resilient tool-use pipelines, deterministic schema enforcement, and structured state machines with modern AI SDKs.",
+          "date": "Mar 05, 2025",
+          "readingTime": "5 min read",
+          "category": "AI Engineering",
+          "tags": [
+            "LLM",
+            "TypeScript",
+            "Tool Use",
+            "AI Systems"
+          ],
+          "slug": "building-multi-agent-orchestration-in-typescript",
+          "content": "Integrating Large Language Models into mission-critical production workflows requires moving beyond basic single-prompt completions toward deterministic, verifiable multi-agent state machines.\n\n### 1. Strict Schema Enforcement\nUsing Zod and Function Calling schemas, every model step produces strictly typed JSON outputs validated at runtime before executing database or API mutations.\n\n### 2. State Machine Coordination\nBy representing agent conversations as directed acyclic graphs (DAGs), each node performs targeted reasoning with dedicated system prompts and restricted tool access.\n\n```typescript\ninterface AgentNode {\n  id: string;\n  systemPrompt: string;\n  tools: ToolDefinition[];\n  transitionCondition: (output: AgentOutput) => string | null;\n}\n```\n\n### 3. Observability and Fallback Strategies\nEvery agent step records token counts, tool execution latency, and error states to ensure full auditability across production workflows."
+        }
+      ],
+      "achievements": [
+        {
+          "id": "ach-1",
+          "title": "ACM Distinguished Speaker",
+          "date": "2025",
+          "description": "Invited speaker on scalable transformer architectures at international developer conferences."
+        },
+        {
+          "id": "ach-2",
+          "title": "Open Source Contributor of the Year",
+          "date": "2023",
+          "description": "Recognized for foundational contributions to high-performance client-side rendering engines."
+        }
+      ],
+      "certifications": [
+        {
+          "id": "cert-1",
+          "name": "AWS Certified Solutions Architect Professional",
+          "issuer": "Amazon Web Services",
+          "date": "2024",
+          "url": "https://aws.amazon.com/certification"
+        },
+        {
+          "id": "cert-2",
+          "name": "Google Cloud Professional Data Engineer",
+          "issuer": "Google Cloud",
+          "date": "2023",
+          "url": "https://cloud.google.com/certification"
+        }
+      ],
+      "testimonials": [
+        {
+          "id": "test-1",
+          "name": "Sarah Jenkins",
+          "role": "VP of Engineering",
+          "company": "Vortex AI",
+          "content": "Alex is an absolute powerhouse of engineering execution. Their ability to simplify complex distributed systems is unmatched.",
+          "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200"
+        },
+        {
+          "id": "test-2",
+          "name": "David Chen",
+          "role": "Principal Scientist",
+          "company": "DeepCore Labs",
+          "content": "Working with Alex on our LLM indexing pipeline was a masterclass in clean architecture and rigorous performance optimization.",
+          "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200"
+        }
+      ],
+      "publications": [
+        {
+          "id": "pub-1",
+          "title": "Scaling Low-Latency LLM Inference across Distributed Edges",
+          "publisher": "Journal of Systems Software Engineering",
+          "date": "2024",
+          "url": "https://doi.org/example"
+        }
+      ],
+      "socialLinks": {
+        "github": "https://github.com",
+        "linkedin": "https://linkedin.com",
+        "twitter": "https://twitter.com",
+        "dribbble": "https://dribbble.com",
+        "behance": "https://behance.net",
+        "youtube": "https://youtube.com",
+        "website": "https://alexmorgan.dev"
+      },
+      "contact": {
+        "email": "alex.morgan@example.com",
+        "phone": "+1 (555) 234-5678",
+        "location": "San Francisco, CA",
+        "messagePrompt": "Let's build something exceptional together. Drop me a line below."
+      },
+      "services": [
+        "High-Performance System Architecture",
+        "Full-Stack Web & Realtime Engineering",
+        "LLM Fine-Tuning & Multi-Agent Orchestration",
+        "Technical Consulting & Code Audits"
+      ],
+      "githubUsername": "alexmorgan",
+      "activity": {
+        "currentlyBuilding": "Real-time distributed edge event router & schema compiler",
+        "currentlyLearning": "Distributed consensus algorithms & WASM SIMD optimization",
+        "availableFor": "Architectural consulting & high-impact engineering leadership",
+        "latestProject": "NexusDB Studio",
+        "statusNote": "Available for Q3/Q4 engineering contracts & advisory"
+      }
+    },
+    "customizer": {
+      "typography": "sans",
+      "accentColor": "#6366f1",
+      "bgStyle": "dark",
+      "spacing": "normal",
+      "headerStyle": "sticky",
+      "cardStyle": "border",
+      "sectionOrder": [
+        "profile",
+        "about",
+        "skills",
+        "experience",
+        "projects",
+        "contact"
+      ],
+      "hiddenSections": []
+    }
+  }
+}

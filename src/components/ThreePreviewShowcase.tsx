@@ -66,29 +66,29 @@ export const ThreePreviewShowcase: React.FC<ThreePreviewShowcaseProps> = ({
       </div>
 
       {/* 3-Preview Composition Container */}
-      <div className="relative w-full h-[360px] sm:h-[460px] md:h-[520px] lg:h-[560px] flex items-center justify-center overflow-visible">
+      <div className="relative w-full h-[340px] sm:h-[460px] md:h-[520px] lg:h-[560px] flex items-center justify-center overflow-hidden sm:overflow-visible">
         
         {/* Navigation Arrows for Cycling */}
         <button
           onClick={handlePrev}
-          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-40 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 border border-zinc-200 shadow-md text-zinc-700 hover:text-zinc-900 hover:bg-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-xs"
+          className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-40 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/95 border border-zinc-200 shadow-md text-zinc-700 hover:text-zinc-900 hover:bg-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-xs"
           title="Previous Template"
         >
-          <ChevronLeft className="w-5 h-5" />
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
         <button
           onClick={handleNext}
-          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-40 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 border border-zinc-200 shadow-md text-zinc-700 hover:text-zinc-900 hover:bg-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-xs"
+          className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-40 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/95 border border-zinc-200 shadow-md text-zinc-700 hover:text-zinc-900 hover:bg-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-xs"
           title="Next Template"
         >
-          <ChevronRight className="w-5 h-5" />
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
         {/* 1. LEFT PORTFOLIO PREVIEW */}
         <div
           onClick={() => setActiveIndex(leftIndex)}
-          className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-[102%] sm:-translate-x-[108%] md:-translate-x-[112%] lg:-translate-x-[115%] w-[210px] sm:w-[310px] md:w-[400px] lg:w-[460px] h-[280px] sm:h-[380px] md:h-[450px] lg:h-[490px] rounded-2xl border border-zinc-200 bg-white shadow-xl overflow-hidden -rotate-6 sm:-rotate-6 hover:-rotate-2 transition-all duration-500 ease-out z-10 cursor-pointer group opacity-95 hover:opacity-100 hover:scale-[0.98] hover:z-30 hover:shadow-2xl"
+          className="hidden sm:block absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-[102%] sm:-translate-x-[108%] md:-translate-x-[112%] lg:-translate-x-[115%] w-[210px] sm:w-[310px] md:w-[400px] lg:w-[460px] h-[280px] sm:h-[380px] md:h-[450px] lg:h-[490px] rounded-2xl border border-zinc-200 bg-white shadow-xl overflow-hidden -rotate-6 sm:-rotate-6 hover:-rotate-2 transition-all duration-500 ease-out z-10 cursor-pointer group opacity-95 hover:opacity-100 hover:scale-[0.98] hover:z-30 hover:shadow-2xl"
         >
           {/* Real Live Website Render */}
           <TemplatePreview id={leftTemplate.id} />
@@ -116,7 +116,7 @@ export const ThreePreviewShowcase: React.FC<ThreePreviewShowcaseProps> = ({
         {/* 3. RIGHT PORTFOLIO PREVIEW */}
         <div
           onClick={() => setActiveIndex(rightIndex)}
-          className="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-[2%] sm:translate-x-[8%] md:translate-x-[12%] lg:translate-x-[15%] w-[210px] sm:w-[310px] md:w-[400px] lg:w-[460px] h-[280px] sm:h-[380px] md:h-[450px] lg:h-[490px] rounded-2xl border border-zinc-200 bg-white shadow-xl overflow-hidden rotate-6 sm:rotate-6 hover:rotate-2 transition-all duration-500 ease-out z-10 cursor-pointer group opacity-95 hover:opacity-100 hover:scale-[0.98] hover:z-30 hover:shadow-2xl"
+          className="hidden sm:block absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-[2%] sm:translate-x-[8%] md:translate-x-[12%] lg:translate-x-[15%] w-[210px] sm:w-[310px] md:w-[400px] lg:w-[460px] h-[280px] sm:h-[380px] md:h-[450px] lg:h-[490px] rounded-2xl border border-zinc-200 bg-white shadow-xl overflow-hidden rotate-6 sm:rotate-6 hover:rotate-2 transition-all duration-500 ease-out z-10 cursor-pointer group opacity-95 hover:opacity-100 hover:scale-[0.98] hover:z-30 hover:shadow-2xl"
         >
           {/* Real Live Website Render */}
           <TemplatePreview id={rightTemplate.id} />
@@ -144,7 +144,7 @@ export const ThreePreviewShowcase: React.FC<ThreePreviewShowcaseProps> = ({
         {/* 2. CENTER PORTFOLIO PREVIEW (DOMINANT FRONT) */}
         <div
           onClick={() => onSelectTemplate(centerTemplate.id)}
-          className="relative z-20 w-[260px] sm:w-[360px] md:w-[460px] lg:w-[530px] h-[320px] sm:h-[420px] md:h-[490px] lg:h-[530px] rounded-2xl border border-zinc-300 bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:z-30 group cursor-pointer"
+          className="relative z-20 w-[270px] xs:w-[300px] sm:w-[360px] md:w-[460px] lg:w-[530px] h-[310px] sm:h-[420px] md:h-[490px] lg:h-[530px] rounded-2xl border border-zinc-300 bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:z-30 group cursor-pointer"
         >
           {/* Real Live Website Render */}
           <TemplatePreview id={centerTemplate.id} />

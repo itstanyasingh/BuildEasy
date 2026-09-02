@@ -683,8 +683,19 @@ export const TemplateRenderer: React.FC<TemplateRendererProps> = ({
 
   // Memoized sanitized portfolio data ensuring 100% URL safety across all templates
   const data = React.useMemo(() => {
-    return sanitizePortfolioLinks(rawOriginalData);
-  }, [rawOriginalData]);
+    const sanitized = sanitizePortfolioLinks(rawOriginalData);
+    if (config && Array.isArray(config.hiddenSections)) {
+      config.hiddenSections.forEach(sectionKey => {
+        if (sectionKey === 'projects') sanitized.projects = [];
+        if (sectionKey === 'education') sanitized.education = [];
+        if (sectionKey === 'experience') sanitized.experience = [];
+        if (sectionKey === 'skills') sanitized.skills = [];
+        if (sectionKey === 'articles') sanitized.articles = [];
+        if (sectionKey === 'certifications') sanitized.certifications = [];
+      });
+    }
+    return sanitized;
+  }, [rawOriginalData, config?.hiddenSections]);
 
   const renderActiveTemplate = () => {
 
@@ -849,7 +860,6 @@ export const TemplateRenderer: React.FC<TemplateRendererProps> = ({
 
     case 'github-nixrajput-007':
     case 'nixrajput':
-    case 'nixrajput-portfolio':
     case 'aceternity':
     case 'aceternity-portfolio':
       return <NixPortfolioTemplate data={data} config={config} />;

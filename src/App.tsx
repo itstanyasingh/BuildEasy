@@ -681,13 +681,20 @@ export default function App() {
     }));
   };
 
-  const handleUpdatePublish = (published: boolean, username: string) => {
+  const handleUpdatePublish = (
+    published: boolean, 
+    username: string, 
+    metadata?: { publicUrl?: string; version?: number; publishedAt?: string }
+  ) => {
     setPortfolios(prev => prev.map(p => {
       if (publishPortfolioTarget && p.id === publishPortfolioTarget.id) {
         return { 
           ...p, 
           published, 
           username,
+          publicUrl: metadata?.publicUrl || p.publicUrl,
+          version: metadata?.version || (p.version ? p.version + 1 : 1),
+          publishedAt: metadata?.publishedAt || p.publishedAt || new Date().toISOString(),
           publishedData: published ? JSON.parse(JSON.stringify(p.data)) : p.publishedData,
           publishedCustomizer: published ? JSON.parse(JSON.stringify(p.customizer)) : p.publishedCustomizer
         };
@@ -701,6 +708,9 @@ export default function App() {
           ...prev,
           published,
           username,
+          publicUrl: metadata?.publicUrl || prev.publicUrl,
+          version: metadata?.version || (prev.version ? prev.version + 1 : 1),
+          publishedAt: metadata?.publishedAt || prev.publishedAt || new Date().toISOString(),
           publishedData: published ? JSON.parse(JSON.stringify(prev.data)) : prev.publishedData,
           publishedCustomizer: published ? JSON.parse(JSON.stringify(prev.customizer)) : prev.publishedCustomizer
         };
@@ -709,7 +719,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans antialiased">
+    <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans antialiased overflow-x-hidden w-full max-w-full">
       {currentView !== 'published' && currentView !== 'public_portfolio' && (
         <Navbar
           currentView={currentView}
@@ -720,7 +730,7 @@ export default function App() {
         />
       )}
 
-      <main>
+      <main className="w-full max-w-full overflow-x-hidden">
         {currentView === 'landing' && (
           <LandingPage
             onExploreTemplates={() => setCurrentView('gallery')}

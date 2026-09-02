@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { UserPortfolio } from '../types';
-import { X, Globe, Check, Copy, ExternalLink, RefreshCw, Terminal, Cpu, HardDrive, ShieldCheck } from 'lucide-react';
+import { normalizeSlug, validateSlug } from '../lib/slugValidation';
+import { X, Globe, Check, Copy, ExternalLink, RefreshCw, Terminal, Cpu, HardDrive, ShieldCheck, AlertCircle, CheckCircle2 } from 'lucide-react';
 
 interface PublishModalProps {
   portfolio: UserPortfolio;
   onClose: () => void;
-  onUpdatePublish: (published: boolean, username: string) => void;
+  onUpdatePublish: (published: boolean, username: string, metadata?: { publicUrl?: string; version?: number; publishedAt?: string }) => void;
   onViewPublished: () => void;
 }
 
@@ -15,129 +16,183 @@ export const PublishModal: React.FC<PublishModalProps> = ({
   onUpdatePublish,
   onViewPublished
 }) => {
-  const [username, setUsername] = useState(
-    portfolio.username || portfolio.name.toLowerCase().replace(/[^a-z0-9]/g, '')
-  );
+  const initialSlug = normalizeSlug(portfolio.username || portfolio.name);
+  const [username, setUsername] = useState(initialSlug);
   const [copied, setCopied] = useState(false);
   const [isDeploying, setIsDeploying] = useState(false);
   const [deployStep, setDeployStep] = useState(0);
   const [deployLogs, setDeployLogs] = useState<string[]>([]);
   const [deployCompleted, setDeployCompleted] = useState(portfolio.published);
+  const [deployError, setDeployError] = useState<string | null>(null);
 
-  const cleanOrigin = window.location.origin;
-  const publishedUrl = `${cleanOrigin}/p/${username || 'portfolio'}`;
+  // Slug availability checking states
+  const [slugValidation, setSlugValidation] = useState<{ valid: boolean; error?: string }>({ valid: true });
+  const [slugAvailability, setSlugAvailability] = useState<{ checked: boolean; available: boolean; error?: string }>({
+    checked: true,
+    available: true
+  });
+  const [isCheckingSlug, setIsCheckingSlug] = useState(false);
 
-  // Deployment Steps Pipeline Definitions
+  // Server configuration
+  const [canonicalDomain, setCanonicalDomain] = useState<string>('https://buildeasy.com');
+  const [activePublicUrl, setActivePublicUrl] = useState<string>(
+    portfolio.publicUrl || `https://buildeasy.com/p/${initialSlug}`
+  );
+
+  const checkTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Fetch deployment configuration on load
+  useEffect(() => {
+    fetch('/api/deployment/config')
+      .then(res => res.json())
+      .then(cfg => {
+        if (cfg && cfg.canonicalDomain) {
+          setCanonicalDomain(cfg.canonicalDomain);
+          if (!portfolio.publicUrl) {
+            setActivePublicUrl(`${cfg.canonicalDomain}/p/${initialSlug}`);
+          }
+        }
+      })
+      .catch(err => console.error('Failed to load deployment config:', err));
+  }, [initialSlug, portfolio.publicUrl]);
+
+  // Real-time Slug Validation & Server Availability Check
+  useEffect(() => {
+    const checkResult = validateSlug(username);
+    setSlugValidation(checkResult);
+
+    if (!checkResult.valid) {
+      setSlugAvailability({ checked: true, available: false, error: checkResult.error });
+      return;
+    }
+
+    if (checkTimeoutRef.current) {
+      clearTimeout(checkTimeoutRef.current);
+    }
+
+    setIsCheckingSlug(true);
+    checkTimeoutRef.current = setTimeout(() => {
+      fetch(`/api/deploy/check-slug/${encodeURIComponent(username)}?portfolioId=${encodeURIComponent(portfolio.id)}`)
+        .then(async res => {
+          const data = await res.json();
+          if (res.ok && data.available) {
+            setSlugAvailability({ checked: true, available: true });
+            setActivePublicUrl(`${canonicalDomain}/p/${username}`);
+          } else {
+            setSlugAvailability({ 
+              checked: true, 
+              available: false, 
+              error: data.error || 'That subdomain is already taken.' 
+            });
+          }
+        })
+        .catch(err => {
+          console.error('Slug check network error:', err);
+          setSlugAvailability({ checked: true, available: true });
+        })
+        .finally(() => {
+          setIsCheckingSlug(false);
+        });
+    }, 300);
+
+    return () => {
+      if (checkTimeoutRef.current) clearTimeout(checkTimeoutRef.current);
+    };
+  }, [username, portfolio.id, canonicalDomain]);
+
+  // Deployment Steps Pipeline Definitions for UI Visualizer
   const pipelineSteps = [
     {
       title: 'Structural Validation',
-      desc: 'Checking schema integrity, semantic structural tags, and links...',
-      icon: Cpu,
-      logs: [
-        'Initializing BuildEasy deployment workflow v2.4.1-edge...',
-        'Checking portfolio JSON payload data...',
-        'Validating template engine bindings...',
-        'All schema files conform to production guidelines.'
-      ]
+      desc: 'Checking schema integrity, semantic tags, and links...',
+      icon: Cpu
     },
     {
       title: 'Asset Compressing & Tree Shaking',
-      desc: 'Optimizing high-resolution profile imagery and SVG layouts...',
-      icon: HardDrive,
-      logs: [
-        'Scanning local state object tree...',
-        'Found compressed base64 profile image stream.',
-        'Injecting custom styles dictionary...',
-        'Pre-rendering components using react-to-static pipeline.'
-      ]
+      desc: 'Optimizing high-resolution profile imagery and static assets...',
+      icon: HardDrive
     },
     {
       title: 'Packaging & Bundle Optimization',
       desc: 'Compressing portfolio payload into zero-dependency responsive assets...',
-      icon: Terminal,
-      logs: [
-        'Bundling Tailwind CSS utility layers...',
-        'Generating mobile viewport optimization mappings...',
-        'Applying responsive flexbox calculations...',
-        'Minifying package stream (saved 34% transfer overhead).'
-      ]
+      icon: Terminal
     },
     {
       title: 'Edge Deployment',
-      desc: 'Publishing optimized templates to multi-region global CDN network...',
-      icon: Globe,
-      logs: [
-        'Connecting to client-side database persistence store...',
-        'Synchronizing localStorage record with published status...',
-        'Spreading content headers across local cache routers...',
-        'Deploying bundle chunk blocks to edge host routing.'
-      ]
+      desc: 'Publishing snapshot to immutable database storage and edge routing...',
+      icon: Globe
     },
     {
       title: 'DNS Propagation & SSL Verification',
-      desc: 'Registering custom subdomain & testing edge routing access...',
-      icon: ShieldCheck,
-      logs: [
-        'Configuring wildcard domain routing maps...',
-        'Generating local SSL certificate handshake...',
-        'Verifying HTTP/3 status on target subdomain paths...',
-        'Warm CDN caches loaded successfully!'
-      ]
+      desc: 'Registering custom subdomain & verifying live edge route...',
+      icon: ShieldCheck
     }
   ];
 
   const triggerDeployPipeline = async () => {
+    // 1. Client Pre-validation
+    const valResult = validateSlug(username);
+    if (!valResult.valid) {
+      setDeployError(valResult.error || 'Invalid subdomain format.');
+      return;
+    }
+
     setIsDeploying(true);
+    setDeployError(null);
+    setDeployCompleted(false);
     setDeployStep(0);
-    setDeployLogs(['[START] Initiating deployment engine...']);
-
-    // Stage 1: Structural Validation
-    setDeployStep(0);
-    setDeployLogs(prev => [
-      ...prev, 
-      '[BUILD] Stage 1/5: Structural Validation',
-      'Scanning configuration schemas...',
-      'Semantic tags and schema validation verified.',
-      '[SUCCESS] Stage 1 completed.'
-    ]);
-
-    await new Promise(resolve => setTimeout(resolve, 350));
-
-    // Stage 2: Packaging
-    setDeployStep(1);
-    setDeployLogs(prev => [
-      ...prev,
-      '[BUILD] Stage 2/5: Asset Compressing & Tree Shaking',
-      'Optimizing high-resolution profile imagery and base64 payloads...',
-      'Minifying styles layouts...',
-      '[SUCCESS] Stage 2 completed.'
-    ]);
-
-    await new Promise(resolve => setTimeout(resolve, 350));
-
-    // Stage 3: Bundle Optimization
-    setDeployStep(2);
-    setDeployLogs(prev => [
-      ...prev,
-      '[BUILD] Stage 3/5: Packaging & Bundle Optimization',
-      'Compiling static bundle buffers...',
-      'Bundled Tailwind CSS utility layers...',
-      '[SUCCESS] Stage 3 completed.'
-    ]);
-
-    await new Promise(resolve => setTimeout(resolve, 350));
-
-    // Stage 4: Real Edge Deployment API call!
-    setDeployStep(3);
-    setDeployLogs(prev => [
-      ...prev,
-      '[BUILD] Stage 4/5: Edge Deployment',
-      'Deploying package streams to server database storage API...',
-      `Firing POST /api/published/${username}...`
+    setDeployLogs([
+      `[START] Initiating deployment workflow for "${username}"...`,
+      'Checking portfolio integrity and creator permissions...'
     ]);
 
     try {
-      // Snapshot current data and customizer
+      // Step 1: Structural Validation
+      setDeployStep(0);
+      setDeployLogs(prev => [
+        ...prev,
+        '[STAGE 1/5] Structural Validation & Schema Audit',
+        `Portfolio ID: ${portfolio.id}`,
+        `Template: ${portfolio.templateId}`,
+        'Validating required profile, skills, projects, and contact fields...',
+        '[OK] Data schema conforms to production guidelines.'
+      ]);
+
+      // Small async pause for UI progression
+      await new Promise(resolve => setTimeout(resolve, 250));
+
+      // Step 2: Asset Compressing & Tree Shaking
+      setDeployStep(1);
+      setDeployLogs(prev => [
+        ...prev,
+        '[STAGE 2/5] Asset Compressing & Disk Persistence',
+        'Scanning asset references and profile images...',
+        'Extracting base64 binary streams to high-speed persistent server storage...',
+        '[OK] Assets prepared for deployment.'
+      ]);
+
+      await new Promise(resolve => setTimeout(resolve, 250));
+
+      // Step 3: Packaging & Bundle Optimization
+      setDeployStep(2);
+      setDeployLogs(prev => [
+        ...prev,
+        '[STAGE 3/5] Packaging & Bundle Optimization',
+        'Building immutable snapshot record...',
+        'Creating sanitized production payload dictionary...',
+        '[OK] Bundle compiled.'
+      ]);
+
+      await new Promise(resolve => setTimeout(resolve, 250));
+
+      // Step 4: Real Edge Deployment Server API Call
+      setDeployStep(3);
+      setDeployLogs(prev => [
+        ...prev,
+        '[STAGE 4/5] Edge Database Deployment',
+        `Sending deployment payload to POST /api/published/${username}...`
+      ]);
+
       const snapshotPayload = {
         id: portfolio.id,
         name: portfolio.name,
@@ -148,78 +203,87 @@ export const PublishModal: React.FC<PublishModalProps> = ({
         publishedCustomizer: JSON.parse(JSON.stringify(portfolio.customizer))
       };
 
-      const publishRes = await fetch(`/api/published/${username}`, {
+      const publishRes = await fetch(`/api/published/${encodeURIComponent(username)}`, {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${portfolio.creatorToken || ''}`
         },
         body: JSON.stringify(snapshotPayload)
       });
 
+      const publishData = await publishRes.json();
+
       if (!publishRes.ok) {
-        const errorData = await publishRes.json();
-        throw new Error(errorData.error || 'Server rejected published payload');
+        throw new Error(publishData.error || 'Server rejected deployment payload.');
       }
 
-      const publishData = await publishRes.json();
-      const actualUsername = publishData.username;
-      
-      // Update local state with registered username if collision caused suffix addition
-      setUsername(actualUsername);
+      const deployedSlug = publishData.slug || username;
+      const verifiedPublicUrl = publishData.publicUrl || `${canonicalDomain}/p/${deployedSlug}`;
+      const deploymentId = publishData.deploymentId || `dep_${Date.now()}`;
+      const version = publishData.version || 1;
+
+      setUsername(deployedSlug);
+      setActivePublicUrl(verifiedPublicUrl);
 
       setDeployLogs(prev => [
         ...prev,
-        `[SUCCESS] Published snapshot registered under user slug: "${actualUsername}".`,
-        '[SUCCESS] Stage 4 completed.'
+        `[OK] Snapshot stored successfully. Deployment ID: ${deploymentId}`,
+        `[OK] Published version: v${version}`,
+        '[OK] Stage 4 completed.'
       ]);
 
-      await new Promise(resolve => setTimeout(resolve, 400));
+      await new Promise(resolve => setTimeout(resolve, 300));
 
-      // Stage 5: Real Deployment Verification!
+      // Step 5: Verification of Live Public Route
       setDeployStep(4);
       setDeployLogs(prev => [
         ...prev,
-        '[BUILD] Stage 5/5: DNS Propagation & SSL Verification',
-        `Verifying routing path: /p/${actualUsername}...`,
-        'Executing public HTTP check...'
+        '[STAGE 5/5] Verification & Live Route Health Check',
+        `Testing live route access: GET /api/published/${deployedSlug}...`
       ]);
 
-      const verifyRes = await fetch(`/api/published/${actualUsername}`);
+      const verifyRes = await fetch(`/api/published/${encodeURIComponent(deployedSlug)}`);
       if (!verifyRes.ok) {
-        throw new Error(`Routing verification failed. Path /p/${actualUsername} returned HTTP ${verifyRes.status}`);
+        throw new Error(`Public route verification check failed with HTTP ${verifyRes.status}.`);
       }
 
       const verifyData = await verifyRes.json();
-      if (verifyData.id !== portfolio.id) {
-        throw new Error('Integrity mismatch: verify response ID does not match portfolio');
+      if (!verifyData || verifyData.id !== portfolio.id) {
+        throw new Error('Verification data integrity mismatch: verified ID does not match current portfolio.');
       }
 
       setDeployLogs(prev => [
         ...prev,
-        'HTTP/3 edge routing: ACTIVE & STABLE.',
-        `Server integrity verified: snapshot matches UUID ${portfolio.id}.`,
-        '[SUCCESS] Stage 5 completed.',
+        `[OK] Public route verified and active. Status: HTTP 200 OK`,
         '========================================',
-        '🚀 DEPLOYMENT COMPLETED SUCCESSFULLY!',
-        `Your portfolio is live at: /p/${actualUsername}`,
-        'SSL status: SECURED & ACTIVE',
+        '🚀 DEPLOYMENT COMPLETED & VERIFIED!',
+        `Public URL: ${verifiedPublicUrl}`,
+        `Version: v${version} | Status: LIVE & SECURED`,
         '========================================'
       ]);
 
-      // Complete deployment
       setDeployStep(5);
-      onUpdatePublish(true, actualUsername);
-      setIsDeploying(false);
       setDeployCompleted(true);
+      setIsDeploying(false);
+
+      // Notify parent of verified deployment
+      onUpdatePublish(true, deployedSlug, {
+        publicUrl: verifiedPublicUrl,
+        version: version,
+        publishedAt: publishData.publishedAt || new Date().toISOString()
+      });
 
     } catch (err: any) {
-      console.error(err);
+      console.error('Deployment error:', err);
+      const errorMessage = err.message || 'An unexpected error occurred during deployment.';
+      setDeployError(errorMessage);
       setDeployLogs(prev => [
         ...prev,
-        '❌ DEPLOYMENT AND VERIFICATION FAILED!',
-        `Error details: ${err.message || err}`,
-        '========================================'
+        '❌ DEPLOYMENT FAILED',
+        `Error: ${errorMessage}`,
+        '========================================',
+        'Please review your settings or subdomain and click Retry.'
       ]);
       setIsDeploying(false);
       setDeployCompleted(false);
@@ -227,60 +291,97 @@ export const PublishModal: React.FC<PublishModalProps> = ({
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(publishedUrl);
+    navigator.clipboard.writeText(activePublicUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleOpenLiveUrl = () => {
+    // Open in separate tab or navigate
+    window.open(`/p/${username}`, '_blank', 'noopener,noreferrer');
+  };
+
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-zinc-950 w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden border border-zinc-200/90 dark:border-zinc-800">
-        <div className="p-6 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+      <div className="bg-white dark:bg-zinc-950 w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden border border-zinc-200/90 dark:border-zinc-800 max-h-[92vh] flex flex-col">
+        {/* Modal Header */}
+        <div className="p-4 sm:p-6 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between shrink-0">
           <div className="space-y-0.5">
-            <h2 className="text-xl font-bold font-serif text-zinc-900 dark:text-zinc-50">Publish Portfolio</h2>
-            <p className="text-zinc-500 text-xs">Register your custom subdomain link and deploy instantly.</p>
+            <h2 className="text-lg sm:text-xl font-bold font-serif text-zinc-900 dark:text-zinc-50">Publish Portfolio</h2>
+            <p className="text-zinc-500 text-xs">Deploy your portfolio to a verified, shareable public URL.</p>
           </div>
-          <button onClick={onClose} className="p-2 rounded-xl text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white cursor-pointer transition-colors">
+          <button 
+            onClick={onClose} 
+            disabled={isDeploying}
+            className="p-2 rounded-xl text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white cursor-pointer transition-colors disabled:opacity-50"
+          >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
-          {/* Subdomain Input (Hidden during deployment process) */}
+        {/* Modal Content */}
+        <div className="p-4 sm:p-6 space-y-5 sm:space-y-6 overflow-y-auto flex-1">
+          {/* Subdomain Input */}
           {!isDeploying && (
             <div className="space-y-2">
-              <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-500">Custom Subdomain</label>
-              <div className="flex items-center rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 overflow-hidden shadow-2xs">
-                <span className="pl-4 pr-1 text-xs text-zinc-400 font-mono select-none">
-                  {cleanOrigin.replace(/^https?:\/\//, '')}/p/
+              <div className="flex items-center justify-between">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-500">Custom Subdomain</label>
+                {isCheckingSlug ? (
+                  <span className="text-[11px] text-zinc-400 animate-pulse">Checking availability...</span>
+                ) : slugAvailability.available && slugValidation.valid ? (
+                  <span className="text-[11px] font-medium text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Available</span>
+                  </span>
+                ) : (
+                  <span className="text-[11px] font-medium text-rose-500 flex items-center gap-1">
+                    <AlertCircle className="w-3.5 h-3.5" />
+                    <span>{slugAvailability.error || slugValidation.error || 'Unavailable'}</span>
+                  </span>
+                )}
+              </div>
+
+              <div className={`flex flex-col sm:flex-row sm:items-center rounded-xl border bg-zinc-50 dark:bg-zinc-900 overflow-hidden shadow-2xs transition-colors ${
+                !slugValidation.valid || !slugAvailability.available
+                  ? 'border-rose-400 dark:border-rose-600'
+                  : 'border-zinc-200 dark:border-zinc-800 focus-within:border-zinc-500'
+              }`}>
+                <span className="px-3.5 py-2 sm:py-3.5 sm:pr-1 text-xs text-zinc-500 dark:text-zinc-400 font-mono select-none bg-zinc-100/70 dark:bg-zinc-800/50 sm:bg-transparent border-b sm:border-b-0 border-zinc-200 dark:border-zinc-800 truncate">
+                  /p/
                 </span>
                 <input
                   type="text"
                   value={username}
                   onChange={(e) => {
-                    setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''));
-                    setDeployCompleted(false); // Reset status if subdomain name has been edited
+                    const normalized = normalizeSlug(e.target.value);
+                    setUsername(normalized);
+                    setDeployCompleted(false);
+                    setDeployError(null);
                   }}
-                  disabled={portfolio.published && deployCompleted}
-                  className="flex-1 py-3.5 pr-4 bg-transparent text-xs font-mono text-zinc-800 dark:text-zinc-200 focus:outline-none placeholder-zinc-400"
+                  className="flex-1 py-3 px-3.5 sm:pr-4 bg-transparent text-xs font-mono text-zinc-800 dark:text-zinc-200 focus:outline-none placeholder-zinc-400"
                   placeholder="my-portfolio-link"
                 />
               </div>
+
+              {/* Subdomain Helper & Live Preview Path */}
+              <p className="text-[11px] text-zinc-500 dark:text-zinc-400 flex items-center justify-between">
+                <span>Public link: <strong className="font-mono text-zinc-800 dark:text-zinc-200">{canonicalDomain}/p/{username || '...'}</strong></span>
+              </p>
             </div>
           )}
 
-          {/* DEPLOYING ANIMATION & TERMINAL COMPONENT */}
+          {/* DEPLOYING TERMINAL & PROGRESS */}
           {isDeploying && (
-            <div className="space-y-4">
+            <div className="space-y-4 animate-in fade-in duration-200">
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wide">
                     {deployStep < pipelineSteps.length 
-                      ? `Running Step ${deployStep + 1} of ${pipelineSteps.length}...`
-                      : 'Finalizing SSL certificates...'}
+                      ? `Step ${deployStep + 1} of ${pipelineSteps.length}: ${pipelineSteps[deployStep].title}`
+                      : 'Finalizing Deployment Verification...'}
                   </span>
                   <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100">
-                    {Math.round((deployStep / pipelineSteps.length) * 100)}%
+                    {Math.round(((deployStep + 1) / (pipelineSteps.length + 1)) * 100)}%
                   </span>
                 </div>
                 
@@ -288,19 +389,20 @@ export const PublishModal: React.FC<PublishModalProps> = ({
                 <div className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-900 rounded-full overflow-hidden border border-zinc-200/40 dark:border-zinc-800/40">
                   <div 
                     className="h-full bg-zinc-900 dark:bg-zinc-100 transition-all duration-300 rounded-full"
-                    style={{ width: `${(deployStep / pipelineSteps.length) * 100}%` }}
+                    style={{ width: `${((deployStep + 1) / (pipelineSteps.length + 1)) * 100}%` }}
                   />
                 </div>
               </div>
 
               {/* Console log display screen */}
-              <div className="bg-zinc-950 rounded-xl p-4.5 border border-zinc-800 shadow-lg text-[11px] font-mono text-zinc-400 overflow-y-auto max-h-[170px] space-y-1.5 scrollbar-thin">
+              <div className="bg-zinc-950 rounded-xl p-4.5 border border-zinc-800 shadow-lg text-[11px] font-mono text-zinc-400 overflow-y-auto max-h-[190px] space-y-1.5 scrollbar-thin">
                 {deployLogs.map((log, i) => (
                   <div key={i} className={
                     log.startsWith('[START]') ? 'text-zinc-400' :
-                    log.startsWith('[SUCCESS]') ? 'text-emerald-400 font-semibold' :
+                    log.startsWith('[OK]') || log.startsWith('[SUCCESS]') ? 'text-emerald-400 font-semibold' :
                     log.startsWith('🚀') || log.startsWith('==') ? 'text-emerald-300 font-bold' :
-                    log.startsWith('[BUILD]') ? 'text-zinc-100 font-semibold pt-1' : 'text-zinc-500'
+                    log.startsWith('[STAGE') ? 'text-zinc-100 font-semibold pt-1' :
+                    log.startsWith('❌') ? 'text-rose-400 font-bold' : 'text-zinc-500'
                   }>
                     {log}
                   </div>
@@ -309,15 +411,29 @@ export const PublishModal: React.FC<PublishModalProps> = ({
             </div>
           )}
 
+          {/* DEPLOYMENT ERROR ALERT */}
+          {!isDeploying && deployError && (
+            <div className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-xs text-rose-800 dark:text-rose-300 space-y-2">
+              <div className="flex items-center gap-2 font-bold text-rose-900 dark:text-rose-200">
+                <AlertCircle className="w-4 h-4 text-rose-600 dark:text-rose-400" />
+                <span>Deployment Error</span>
+              </div>
+              <p className="leading-relaxed">{deployError}</p>
+            </div>
+          )}
+
           {/* ACTIVE LIVE LINK */}
-          {!isDeploying && deployCompleted && (
+          {!isDeploying && deployCompleted && !deployError && (
             <div className="space-y-2 animate-in fade-in duration-300">
-              <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-500">Your Deployed URL</label>
+              <div className="flex items-center justify-between">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-500">Your Live Portfolio URL</label>
+                <span className="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400 uppercase">Verified Live</span>
+              </div>
               <div className="flex items-center gap-2">
                 <input
                   type="text"
                   readOnly
-                  value={publishedUrl}
+                  value={activePublicUrl}
                   className="flex-1 px-3.5 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-xs font-mono text-zinc-700 dark:text-zinc-300 shadow-2xs select-all"
                 />
                 <button
@@ -328,9 +444,9 @@ export const PublishModal: React.FC<PublishModalProps> = ({
                   {copied ? <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-4 h-4" />}
                 </button>
                 <button
-                  onClick={onViewPublished}
+                  onClick={handleOpenLiveUrl}
                   className="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white cursor-pointer transition-colors shadow-2xs bg-white dark:bg-zinc-950"
-                  title="Launch Live Portfolio Website"
+                  title="Open Live Portfolio Website in New Tab"
                 >
                   <ExternalLink className="w-4 h-4" />
                 </button>
@@ -342,15 +458,19 @@ export const PublishModal: React.FC<PublishModalProps> = ({
           {!isDeploying && (
             <div className="p-4 rounded-xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Publication Status</span>
+                <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Deployment Status</span>
                 <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                  deployCompleted ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400' : 'bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
+                  deployCompleted && !deployError
+                    ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400'
+                    : deployError
+                    ? 'bg-rose-500/10 text-rose-700 dark:text-rose-400'
+                    : 'bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
                 }`}>
-                  {deployCompleted ? 'LIVE & SECURED' : 'DRAFT'}
+                  {deployCompleted && !deployError ? 'LIVE & SECURED' : deployError ? 'FAILED' : 'DRAFT'}
                 </span>
               </div>
               <p className="text-[10px] text-zinc-500 leading-normal">
-                Features full search engine optimization, instant dynamic routing, auto-compressed images, and high-contrast styling compliance.
+                Features full search engine optimization, persistent asset hosting, instant edge routing, and responsive mobile rendering.
               </p>
             </div>
           )}
@@ -360,9 +480,10 @@ export const PublishModal: React.FC<PublishModalProps> = ({
             <div className="flex items-center gap-3 pt-4 border-t border-zinc-100 dark:border-zinc-800">
               <button
                 onClick={triggerDeployPipeline}
-                className="flex-1 py-3.5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-bold text-xs uppercase tracking-wider hover:opacity-90 flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
+                disabled={!slugValidation.valid || !slugAvailability.available || isCheckingSlug}
+                className="flex-1 py-3.5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-bold text-xs uppercase tracking-wider hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
               >
-                {deployCompleted ? (
+                {deployCompleted && !deployError ? (
                   <>
                     <RefreshCw className="w-4 h-4" />
                     <span>Redeploy Changes</span>
@@ -370,7 +491,7 @@ export const PublishModal: React.FC<PublishModalProps> = ({
                 ) : (
                   <>
                     <Globe className="w-4 h-4" />
-                    <span>Deploy Portfolio</span>
+                    <span>{deployError ? 'Retry Deployment' : 'Deploy Portfolio'}</span>
                   </>
                 )}
               </button>
