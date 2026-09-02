@@ -180,24 +180,53 @@ export const TemplateGallery: React.FC<TemplateGalleryProps> = ({
                     </div>
 
                     {/* 2. Template Info & Demo Identity */}
-                    <div className="space-y-1 pt-1">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-semibold">
-                          {template.category}
-                        </span>
-                        <span className="text-xs text-zinc-500 font-medium">
-                          Demo: <strong className="text-zinc-800 font-semibold">{authorName}</strong>
-                        </span>
+                    {template.id === 'paperframe-editorial' ? (
+                      <div className="space-y-1 pt-1">
+                        <h2 className="font-serif text-xl font-normal text-zinc-900 tracking-tight uppercase">
+                          PAPERFRAME
+                        </h2>
+                        <p className="text-xs text-zinc-500 line-clamp-1 font-sans">
+                          Editorial Portfolio
+                        </p>
                       </div>
+                    ) : template.id === 'maison-luxury-portfolio' ? (
+                      <div className="space-y-1 pt-1">
+                        <h2 className="font-serif text-xl font-normal text-zinc-900 tracking-tight uppercase">
+                          MAISON
+                        </h2>
+                        <p className="text-xs text-zinc-500 line-clamp-1 font-sans">
+                          Luxury Creative Portfolio
+                        </p>
+                      </div>
+                    ) : template.id === 'rustfolio-brutalist' ? (
+                      <div className="space-y-1 pt-1">
+                        <h2 className="font-serif text-xl font-normal text-zinc-900 tracking-tight uppercase">
+                          RUSTFOLIO
+                        </h2>
+                        <p className="text-xs text-zinc-500 line-clamp-1 font-sans">
+                          Brutalist Interactive Portfolio
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="space-y-1 pt-1">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-semibold">
+                            {template.category}
+                          </span>
+                          <span className="text-xs text-zinc-500 font-medium">
+                            Demo: <strong className="text-zinc-800 font-semibold">{authorName}</strong>
+                          </span>
+                        </div>
 
-                      <h2 className="font-serif text-xl font-normal text-zinc-900 tracking-tight">
-                        {template.name}
-                      </h2>
+                        <h2 className="font-serif text-xl font-normal text-zinc-900 tracking-tight">
+                          {template.name}
+                        </h2>
 
-                      <p className="text-xs text-zinc-500 line-clamp-1 font-sans">
-                        {authorTitle}
-                      </p>
-                    </div>
+                        <p className="text-xs text-zinc-500 line-clamp-1 font-sans">
+                          {authorTitle}
+                        </p>
+                      </div>
+                    )}
                   </div>
 
                   {/* 3. Full-Width Black CTA Button */}

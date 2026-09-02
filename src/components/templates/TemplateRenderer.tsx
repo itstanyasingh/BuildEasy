@@ -27,6 +27,14 @@ import { MultiPageDeveloperPortfolioTemplate } from './MultiPageDeveloperPortfol
 import { DeveloperShowcasePortfolioTemplate } from './DeveloperShowcasePortfolioTemplate';
 import { HmbldvDocPortfolioTemplate } from './HmbldvDocPortfolioTemplate';
 import { AstroGlassPortfolioTemplate } from './AstroGlassPortfolioTemplate';
+import { KCSujeetPortfolioTemplate } from './KCSujeetPortfolioTemplate';
+import { AppleStylePortfolioTemplate } from './AppleStylePortfolioTemplate';
+import { OperatorPortfolioTemplate } from './OperatorPortfolioTemplate';
+import { WindowedPortfolioTemplate } from './WindowedPortfolioTemplate';
+import { X100VisualPortfolioTemplate } from './X100VisualPortfolioTemplate';
+import { PaperframeEditorialTemplate } from './PaperframeEditorialTemplate';
+import { RustfolioBrutalistTemplate } from './RustfolioBrutalistTemplate';
+import { MaisonLuxuryPortfolioTemplate } from './MaisonLuxuryPortfolioTemplate';
 
 interface TemplateRendererProps {
   data: PortfolioData;
@@ -38,6 +46,40 @@ export const TemplateRenderer: React.FC<TemplateRendererProps> = ({ data, config
   const typeLower = (rendererType || '').toLowerCase();
 
   switch (typeLower) {
+    case 'maison-luxury-portfolio':
+    case 'maison':
+    case 'maison-luxury':
+      return <MaisonLuxuryPortfolioTemplate data={data} config={config} />;
+    case 'rustfolio-brutalist':
+    case 'rustfolio':
+    case 'rust-portfolio':
+      return <RustfolioBrutalistTemplate data={data} config={config} />;
+    case 'paperframe-editorial':
+    case 'paperframe':
+    case 'paperframe-portfolio':
+      return <PaperframeEditorialTemplate data={data} config={config} />;
+    case 'x100-visual-portfolio':
+    case 'x100':
+    case 'x100-visual-story':
+      return <X100VisualPortfolioTemplate data={data} config={config} />;
+    case 'windowed-portfolio':
+    case 'windowed':
+      return <WindowedPortfolioTemplate data={data} config={config} />;
+    case 'operator-portfolio':
+    case 'operator':
+    case 'github-operator-031':
+      return <OperatorPortfolioTemplate data={data} config={config} />;
+    case 'apple-style-portfolio':
+    case 'apple-portfolio':
+    case 'apple-style':
+    case 'larryxue':
+    case 'larry-xue':
+    case 'github-apple-style-030':
+      return <AppleStylePortfolioTemplate data={data} config={config} />;
+    case 'kcsujeet-portfolio':
+    case 'kcsujeet':
+    case 'github-kcsujeet-029':
+      return <KCSujeetPortfolioTemplate data={data} config={config} />;
     case 'astro-glass':
     case 'astro-portfolio':
     case 'mohammedaljer':

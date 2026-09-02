@@ -1445,8 +1445,787 @@ export const demoDataByTemplate: Record<string, PortfolioData> = {
         year: "2024"
       }
     ]
+  },
+
+  'kcsujeet-portfolio': {
+    ...defaultPortfolioData,
+    profile: {
+      name: "Sujeet Kumar",
+      title: "Systems & Full-Stack Developer",
+      location: "San Francisco, CA / Remote",
+      bio: "Crafting minimalist technical web applications, developer tools, and zero-dependency open-source software libraries.",
+      email: "sujeet.kumar@example.dev",
+      phone: "+1 (415) 890-1234",
+      website: "https://kcsujeet.dev",
+      profilePhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+    },
+    socialLinks: {
+      ...defaultPortfolioData.socialLinks,
+      github: "https://github.com/kcsujeet",
+      linkedin: "https://linkedin.com/in/kcsujeet",
+      twitter: "https://twitter.com/kcsujeet",
+      website: "https://kcsujeet.dev"
+    },
+    about: {
+      aboutText: "I am a full-stack software engineer focused on building clean, modular web architecture. My design philosophy prioritizes performance, typography, and zero client JS overhead.",
+      interests: ["Minimalist UI Design", "Astro & WebAssembly", "Developer Tooling", "Distributed Systems", "TypeScript Primitives"],
+      services: ["Web Architecture", "Frontend Performance Auditing", "Open Source Design Systems"]
+    },
+    experience: [
+      {
+        id: "exp-sujeet-1",
+        company: "CoreLabs Infrastructure",
+        role: "Senior Full-Stack Architect",
+        duration: "2023 — Present",
+        description: "Leading the development of high-throughput edge web engines and lightweight design systems for developer platform portals.",
+        achievements: [
+          "Reduced client JavaScript bundle footprint by 65% across 20+ micro-frontends.",
+          "Designed accessible component primitives using zero-dependency Astro and native Web Components.",
+          "Mentored 8 core engineers on web performance and TypeScript typings."
+        ],
+        technologies: ["Astro", "TypeScript", "Tailwind CSS v4", "Bun", "PostgreSQL"],
+        current: true
+      },
+      {
+        id: "exp-sujeet-2",
+        company: "Veloce UI Tools",
+        role: "Systems Engineer & Maintainer",
+        duration: "2021 — 2023",
+        description: "Maintained popular open-source calendar abstractions and developer utility suites downloaded over 500k times monthly.",
+        achievements: [
+          "Built Ilamy Calendar, a lightweight zero-dependency Full Calendar alternative for modern web apps.",
+          "Implemented automated CI/CD benchmark testing pipeline with Biome and Bun."
+        ],
+        technologies: ["React", "TypeScript", "Rust", "WebAssembly", "GitHub Actions"],
+        current: false
+      }
+    ],
+    skills: [
+      { id: "ssujeet-1", name: "Astro & React", category: "Frameworks", proficiency: 98 },
+      { id: "ssujeet-2", name: "TypeScript & Rust", category: "Languages", proficiency: 95 },
+      { id: "ssujeet-3", name: "Tailwind CSS v4", category: "Styling", proficiency: 96 },
+      { id: "ssujeet-4", name: "Bun & Biome", category: "Tooling", proficiency: 92 },
+      { id: "ssujeet-5", name: "PostgreSQL & SQLite", category: "Databases", proficiency: 90 }
+    ],
+    projects: [
+      {
+        id: "psujeet-1",
+        name: "Minimalist Astro Portfolio Template",
+        description: "An open-source, zero-JS hydrated portfolio template featuring a side navigation rail, numbered section headings, and Geist Mono typography.",
+        technologies: ["Astro", "Tailwind CSS v4", "TypeScript", "Bun"],
+        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
+        githubUrl: "https://github.com/kcsujeet/portfolio",
+        liveUrl: "https://kcsujeet.dev",
+        featured: true,
+        year: "2026",
+        status: "ACTIVE"
+      },
+      {
+        id: "psujeet-2",
+        name: "Ilamy Calendar Engine",
+        description: "A modern, open-source Full Calendar alternative for React and web applications with sub-10KB bundle size and zero heavy dependencies.",
+        technologies: ["React", "TypeScript", "Tailwind CSS", "Astro"],
+        image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=800",
+        githubUrl: "https://github.com/kcsujeet/ilamy-calendar",
+        liveUrl: "https://ilamy-calendar.dev",
+        featured: true,
+        year: "2025",
+        status: "SHIPPED"
+      },
+      {
+        id: "psujeet-3",
+        name: "PulseGrid Telemetry CLI",
+        description: "Minimalist terminal utility and web dashboard for monitoring server metrics and container health in real-time.",
+        technologies: ["Rust", "TypeScript", "WebSockets", "Tailwind CSS"],
+        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800",
+        githubUrl: "https://github.com/kcsujeet/pulsegrid",
+        liveUrl: "https://pulsegrid.dev",
+        featured: false,
+        year: "2025",
+        status: "OPEN SOURCE"
+      }
+    ]
+  },
+
+  'apple-style-portfolio': {
+    ...defaultPortfolioData,
+    profile: {
+      name: "Julian Vance",
+      title: "Principal Creative Technologist & Product Architect",
+      location: "Cupertino, CA / San Francisco",
+      bio: "Pioneering seamless digital hardware & software experiences where human intuition meets high-performance engineering. Built with Apple-inspired visual precision.",
+      email: "julian.vance@apple-design.dev",
+      phone: "+1 (408) 996-1010",
+      website: "https://apple-style-portfolio.larryxue.dev",
+      profilePhoto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600",
+    },
+    socialLinks: {
+      ...defaultPortfolioData.socialLinks,
+      github: "https://github.com/larry-xue/apple-style-portfolio",
+      linkedin: "https://linkedin.com/in/julianvance",
+      twitter: "https://twitter.com/julianvance_dev",
+      website: "https://apple-style-portfolio.larryxue.dev"
+    },
+    about: {
+      aboutText: "Simplicity is not just a visual aesthetic—it is an architectural discipline. I design hardware-grade web applications with zero unnecessary noise, liquid smooth 60fps animations, and tactile micro-interactions.",
+      interests: ["Apple Aesthetic UI", "Three.js & WebGL", "GSAP Motion Physics", "Hardware & Metal API", "Spatial Computing"],
+      services: ["Product Design Systems", "High-Performance WebGL Engineering", "Executive Keynote UI Architecture"]
+    },
+    experience: [
+      {
+        id: "exp-julian-1",
+        company: "Apex Product Design Labs",
+        role: "Principal Creative Technologist",
+        duration: "2023 — Present",
+        description: "Directing next-generation spatial computing interfaces, WebGL 3D graphics rendering, and fluid gesture physics across flagship applications.",
+        achievements: [
+          "Architected 60 FPS Three.js particle systems integrated with native browser shaders.",
+          "Engineered accessible dark/light Apple-style bento component frameworks used by over 2M active users.",
+          "Awarded 4 international design patents for spatial interaction models."
+        ],
+        technologies: ["Astro", "Three.js", "GSAP", "TypeScript", "Tailwind CSS"],
+        current: true
+      },
+      {
+        id: "exp-julian-2",
+        company: "Monolith Systems",
+        role: "Lead Frontend Engineer",
+        duration: "2020 — 2023",
+        description: "Led frontend design systems and real-time canvas visualizers for cloud infrastructure platforms.",
+        achievements: [
+          "Reduced DOM render recalculation bottlenecks by 75% using web worker threads.",
+          "Designed and delivered end-to-end dark titanium visual design system."
+        ],
+        technologies: ["React", "TypeScript", "WebGL", "Rust", "WebAssembly"],
+        current: false
+      }
+    ],
+    skills: [
+      { id: "sjulian-1", name: "Three.js & WebGL", category: "Graphics 3D", proficiency: 98 },
+      { id: "sjulian-2", name: "GSAP & Framer Motion", category: "Animation Physics", proficiency: 96 },
+      { id: "sjulian-3", name: "TypeScript & Rust", category: "Core Languages", proficiency: 95 },
+      { id: "sjulian-4", name: "Astro & React", category: "Web Frameworks", proficiency: 97 },
+      { id: "sjulian-5", name: "Tailwind CSS & Canvas", category: "Styling & Render", proficiency: 99 }
+    ],
+    projects: [
+      {
+        id: "pjulian-1",
+        name: "Apple-Style Portfolio Framework",
+        description: "A cinematic, Apple-inspired portfolio template featuring Three.js 3D canvas interaction, GSAP scroll reveals, and blurred glass dock navigation.",
+        technologies: ["Astro", "Tailwind CSS", "GSAP", "Three.js", "TypeScript"],
+        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1000",
+        githubUrl: "https://github.com/larry-xue/apple-style-portfolio",
+        liveUrl: "https://apple-style-portfolio.larryxue.dev",
+        featured: true,
+        year: "2026",
+        status: "FLAGSHIP RELEASE"
+      },
+      {
+        id: "pjulian-2",
+        name: "Spatial Audio Visualizer 3D",
+        description: "Interactive real-time audio spectrum analyzer rendering WebGL shaders in harmony with spatial surround sound APIs.",
+        technologies: ["Three.js", "Web Audio API", "TypeScript", "Tailwind CSS"],
+        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000",
+        githubUrl: "https://github.com/larry-xue/spatial-audio-3d",
+        liveUrl: "https://spatial-audio-3d.dev",
+        featured: true,
+        year: "2025",
+        status: "OPEN SOURCE"
+      },
+      {
+        id: "pjulian-3",
+        name: "Titanium UI Design System",
+        description: "Apple Store-grade dark mode component library built with zero external CSS footprint and ultra-fast accessibility standards.",
+        technologies: ["React", "TypeScript", "Tailwind CSS", "GSAP"],
+        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000",
+        githubUrl: "https://github.com/larry-xue/titanium-ui",
+        liveUrl: "https://titanium-ui.dev",
+        featured: false,
+        year: "2025",
+        status: "PRODUCTION"
+      }
+    ]
+  },
+
+  'operator-portfolio': {
+    ...defaultPortfolioData,
+    profile: {
+      name: "Arden Vale",
+      title: "System Security Analyst & Full-Stack Compiler Engineer",
+      bio: "Building resilient compilers, custom kernels, and brutalist web architectures. Engineering high-throughput distributed architectures under minimal resource footprints.",
+      profilePhoto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000",
+      location: "Cupertino, CA",
+      email: "arden.vale@operator.sh",
+      phone: "+1 (408) 555-0192",
+      website: "https://arden.vale.operator.sh"
+    },
+    socialLinks: {
+      github: "https://github.com/LucidAkshay",
+      linkedin: "#",
+      twitter: "#",
+      dribbble: "",
+      behance: "",
+      youtube: "",
+      website: "https://arden.vale.operator.sh"
+    },
+    experience: [
+      {
+        id: "earden-1",
+        company: "OPERATOR LABS",
+        role: "Principal Compiler Engineer",
+        duration: "2024 - PRESENT",
+        description: "Designing real-time optimized binary code-generators. Reduced cold start performance latency of system edge containers by 48%.",
+        current: true
+      },
+      {
+        id: "earden-2",
+        company: "CYBERDYNE SYSTEMS",
+        role: "Low-Level Kernel Developer",
+        duration: "2022 - 2024",
+        description: "Refined multi-core task schedulers and secure virtual-memory controllers for high-integrity embedded controller boards.",
+        current: false
+      },
+      {
+        id: "earden-3",
+        company: "TELEMETRY HQ",
+        role: "Systems Security Analyst",
+        duration: "2020 - 2022",
+        description: "Designed eBPF-powered event log monitors and automated threat detection microservices tracking secure system calls.",
+        current: false
+      }
+    ],
+    skills: [
+      { id: "sarden-1", name: "Rust & C++20", category: "Languages", proficiency: 98 },
+      { id: "sarden-2", name: "eBPF & Linux Kernel", category: "Systems", proficiency: 94 },
+      { id: "sarden-3", name: "Wasm & Compilers", category: "Tooling", proficiency: 92 },
+      { id: "sarden-4", name: "React & Tailwind CSS v4", category: "Web Frontend", proficiency: 90 },
+      { id: "sarden-5", name: "PostgreSQL & SQLite", category: "Databases", proficiency: 88 }
+    ],
+    projects: [
+      {
+        id: "parden-1",
+        name: "Vesper Core (Microkernel)",
+        description: "An ultra-low latency microkernel designed for real-time robotic controls and asynchronous message passing.",
+        technologies: ["C++20", "Assembly", "Microkernel", "Rust"],
+        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
+        githubUrl: "https://github.com/LucidAkshay/vesper",
+        liveUrl: "https://vesper-kernel.dev",
+        featured: true,
+        year: "2026",
+        status: "ACTIVE_KERN"
+      },
+      {
+        id: "parden-2",
+        name: "Atlas Compiler",
+        description: "An optimizing compiler that transforms rust-like grammar to modular web-assembly binaries with sub-microsecond cold start times.",
+        technologies: ["Rust", "Wasm", "Astro", "Tailwind CSS"],
+        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
+        githubUrl: "https://github.com/LucidAkshay/atlas",
+        liveUrl: "https://atlas-compiler.dev",
+        featured: true,
+        year: "2025",
+        status: "STABLE"
+      },
+      {
+        id: "parden-3",
+        name: "Sentinel Tactical Firewall",
+        description: "An eBPF-powered traffic sentinel tracking kernel packet flows and reporting real-time anomalies to browser visualizers.",
+        technologies: ["eBPF", "C", "TypeScript", "Tailwind CSS"],
+        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
+        githubUrl: "https://github.com/LucidAkshay/sentinel",
+        liveUrl: "https://sentinel-firewall.dev",
+        featured: false,
+        year: "2025",
+        status: "OPEN_SRC"
+      }
+    ]
+  },
+  'windowed-portfolio': {
+    ...defaultPortfolioData,
+    profile: {
+      name: "Zara Beaumont",
+      title: "Product Engineer",
+      location: "London, UK",
+      bio: "Designing high-fidelity user interfaces and resilient interactive systems. Bridging the gap between creative execution and clean, mathematical software architecture.",
+      email: "zara@beaumont.sh",
+      phone: "+44 20 7946 0192",
+      website: "https://beaumont.sh",
+      profilePhoto: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800",
+    },
+    about: {
+      aboutText: "I construct durable software systems that balance typographic elegance with rigid, performant geometry. Operating at the boundary of visual design and system engineering, I bring technical focus to human interfaces.",
+      interests: ["Retro-Computing", "WebGL & WebGPU", "User Experience Physics", "Type Systems", "Modular Architecture"],
+      services: ["Product Engineering", "Frontend Architecture", "Interface Mechanics", "Interactive Tooling"]
+    },
+    experience: [
+      {
+        id: "exp-z1",
+        company: "Grid Computing Corp",
+        role: "Senior Product Engineer",
+        duration: "2023 — Present",
+        description: "Coordinated the transition of large-scale frontend configurations to modular WebGL canvas systems, improving fluid interface performance by 40%.",
+        current: true
+      },
+      {
+        id: "exp-z2",
+        company: "Nexus Labs",
+        role: "Frontend Engineer",
+        duration: "2021 — 2023",
+        description: "Engineered responsive dashboard systems, retro command suites, and fully custom component compilers for multi-device deployments.",
+        current: false
+      }
+    ],
+    skills: [
+      { id: "sz-1", name: "TypeScript", category: "Languages", proficiency: 98 },
+      { id: "sz-2", name: "React", category: "Frameworks", proficiency: 95 },
+      { id: "sz-3", name: "Next.js", category: "Frameworks", proficiency: 90 },
+      { id: "sz-4", name: "Node.js", category: "Backend", proficiency: 90 },
+      { id: "sz-5", name: "PostgreSQL", category: "Storage", proficiency: 88 },
+      { id: "sz-6", name: "Three.js", category: "Graphics", proficiency: 85 },
+      { id: "sz-7", name: "Figma", category: "Design Tooling", proficiency: 92 }
+    ],
+    projects: [
+      {
+        id: "pz-1",
+        name: "Atlas",
+        description: "A modular design token engine that compiles Tailwind CSS utilities to type-safe Figma assets with automated schema checks.",
+        technologies: ["TypeScript", "Next.js", "Figma API", "Tailwind CSS"],
+        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800",
+        githubUrl: "https://github.com/beaumont/atlas-engine",
+        liveUrl: "https://atlas-tokens.dev",
+        featured: true,
+        year: "2026",
+        status: "PRODUCTION"
+      },
+      {
+        id: "pz-2",
+        name: "Relay",
+        description: "A peer-to-peer real-time event pipeline designed for ultra-low latency collaboration canvases and multiplayer state-sharing.",
+        technologies: ["React", "WebRTC", "Rust", "TypeScript"],
+        image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80&w=800",
+        githubUrl: "https://github.com/beaumont/relay-webrtc",
+        liveUrl: "https://relay-stream.dev",
+        featured: true,
+        year: "2025",
+        status: "STABLE"
+      },
+      {
+        id: "pz-3",
+        name: "Prism",
+        description: "A high-fidelity WebGL shader compiler and canvas sandbox for rendering custom mathematical fractals in real-time.",
+        technologies: ["Three.js", "GLSL", "Vite", "React"],
+        image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800",
+        githubUrl: "https://github.com/beaumont/prism-shaders",
+        liveUrl: "https://prism-sandbox.dev",
+        featured: false,
+        year: "2025",
+        status: "ACTIVE_CORE"
+      },
+      {
+        id: "pz-4",
+        name: "Orbit",
+        description: "An autonomous scheduler that maps developer task dependencies across complex agile boards using graph-search algorithms.",
+        technologies: ["Node.js", "Graphlib", "Tailwind CSS", "React"],
+        image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=800",
+        githubUrl: "https://github.com/beaumont/orbit-scheduler",
+        liveUrl: "https://orbit-agile.dev",
+        featured: false,
+        year: "2024",
+        status: "DELEGATED"
+      }
+    ],
+    socialLinks: {
+      github: "https://github.com/beaumont-fictional",
+      linkedin: "https://linkedin.com/in/beaumont-fictional",
+      twitter: "https://twitter.com/beaumont_fictional",
+      dribbble: "",
+      behance: "",
+      youtube: "",
+      website: "https://beaumont.sh"
+    }
+  },
+  'x100-visual-portfolio': {
+    ...defaultPortfolioData,
+    profile: {
+      name: "Elara Monroe",
+      title: "Visual Storyteller",
+      location: "Tokyo, Japan",
+      bio: "Editorial photographer mapping the poetic stillness of human space. Documenting cities, wild terrains, and silent atmospheres in rich, high-fidelity color spectrums.",
+      email: "hello@elaramonroe.com",
+      phone: "+81 3 5555 0192",
+      website: "https://elaramonroe.com",
+      profilePhoto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800"
+    },
+    about: {
+      aboutText: "For Elara Monroe, photography is not about capturing swift action, but discovering the structural silent moments that define a landscape or city. Every image operates as an editorial chapter, focusing on typographic geometry, natural color calibration, and spacious compositions.",
+      interests: ["Editorial Composition", "Analog Chemistry", "Ambient Soundscapes", "Brutalist Spaces", "Architectural Scale"],
+      services: ["Editorial Photography", "Creative Visual Direction", "Color Calibration", "Print Publications"]
+    },
+    experience: [
+      {
+        id: "exp-e1",
+        company: "Visions Magazine",
+        role: "Editorial Photographer",
+        duration: "2024 — Present",
+        description: "Assigned to document global urban shifts, producing full-spread cover stories for the Tokyo, Iceland, and Morocco features.",
+        current: true
+      },
+      {
+        id: "exp-e2",
+        company: "Monolith Agency",
+        role: "Visual Director",
+        duration: "2021 — 2024",
+        description: "Orchestrated aesthetic branding structures, photography guidelines, and publication formats for spatial and travel enterprises.",
+        current: false
+      }
+    ],
+    skills: [
+      { id: "se-1", name: "Medium Format Capture", category: "Camera Systems", proficiency: 98 },
+      { id: "se-2", name: "Color Grading & Lab Calibration", category: "Processing", proficiency: 95 },
+      { id: "se-3", name: "Natural Light Sculpting", category: "Lighting", proficiency: 92 },
+      { id: "se-4", name: "Editorial Page Design", category: "Layout", proficiency: 88 }
+    ],
+    projects: [
+      {
+        id: "pe-1",
+        name: "Urban Nights Series",
+        description: "High-contrast visual study of cyberpunk architectural atmospheres and neon luminescence across Tokyo, Chongqing, and New York.",
+        technologies: ["Digital Capture", "Low-Light", "High-Contrast Color Calibration"],
+        image: "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&q=80&w=800",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2026",
+        status: "ACTIVE_CORE"
+      },
+      {
+        id: "pe-2",
+        name: "Glacial Silent Lands",
+        description: "A panoramic series exploring the blue shadows, active auroras, and black basalt sands of Iceland's south coast.",
+        technologies: ["Medium Format Analog", "Long Exposure", "Natural Diffuse Light"],
+        image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=800",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2025",
+        status: "EXHIBITED"
+      }
+    ],
+    socialLinks: {
+      github: "https://github.com/elaramonroe-fictional",
+      linkedin: "https://linkedin.com/in/elaramonroe-fictional",
+      twitter: "https://twitter.com/elara_monroe",
+      website: "https://elaramonroe.com",
+      dribbble: "",
+      behance: "https://behance.net/elaramonroe",
+      youtube: ""
+    }
+  },
+  'paperframe-editorial': {
+    ...defaultPortfolioData,
+    profile: {
+      name: "Amelia Rowan",
+      title: "Independent Designer & Developer",
+      location: "London, UK",
+      bio: "Crafting lightweight products, quiet digital interfaces, and spatial design architectures.",
+      email: "amelia@rowan-independent.com",
+      phone: "+44 20 7946 0524",
+      website: "https://rowan-independent.com",
+      profilePhoto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800"
+    },
+    about: {
+      aboutText: "Operating at the intersection of print layout traditions and modern React compilation layers, my work challenges the frantic nature of modern software design. I work with a highly restricted color palette, robust sans/serif hierarchy, and a strict subtraction strategy to create interfaces that feel calm, durable, and highly readable.",
+      interests: ["Archival Mathematics", "Analog Linocutting", "Atmospheric Sounds", "Minimal Typography"],
+      services: ["Product Design", "Creative Development", "Interaction Design", "Digital Strategy"]
+    },
+    experience: [
+      {
+        id: "exp-p1",
+        company: "Rowan Independent Studio",
+        role: "Lead Designer & Developer",
+        duration: "2023 — Present",
+        description: "Shipped custom static engines, lightweight database interfaces, and visual systems for clients across Europe.",
+        current: true
+      },
+      {
+        id: "exp-p2",
+        company: "Atelier Berlin",
+        role: "Interaction Designer",
+        duration: "2020 — 2023",
+        description: "Orchestrated aesthetic branding structures, design systems, and visual publication formats for physical exhibitions.",
+        current: false
+      }
+    ],
+    skills: [
+      { id: "sp-1", name: "TypeScript", category: "Languages", proficiency: 96 },
+      { id: "sp-2", name: "React / Vite", category: "Frameworks", proficiency: 95 },
+      { id: "sp-3", name: "Tailwind CSS", category: "Design", proficiency: 98 },
+      { id: "sp-4", name: "D3.js / Graphics", category: "Visuals", proficiency: 90 }
+    ],
+    projects: [
+      {
+        id: "pf-1",
+        name: "Field Notes",
+        description: "A minimalist archiving platform built for local botanists to catalogue flora migrations across Northern Europe.",
+        technologies: ["React", "IndexedDB", "Tailwind CSS", "TypeScript"],
+        image: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2026",
+        status: "PRODUCTION"
+      },
+      {
+        id: "pf-2",
+        name: "Northline",
+        description: "A custom, geometry-driven digital identity and design system built for a modular architectural collective.",
+        technologies: ["Next.js", "Framer Motion", "Tailwind CSS", "CSS Variables"],
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2025",
+        status: "PRODUCTION"
+      },
+      {
+        id: "pf-3",
+        name: "Common Ground",
+        description: "An interactive audio-visual mapping of urban community gardens using real-time atmospheric telemetry sensors.",
+        technologies: ["React", "D3.js", "WebSockets", "Tailwind CSS"],
+        image: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2025",
+        status: "EXHIBITED"
+      },
+      {
+        id: "pf-4",
+        name: "Signal Archive",
+        description: "A quiet database interface built to preserve and index forgotten radio broadcasts and sub-cultural auditory histories.",
+        technologies: ["Node.js", "React", "Tailwind CSS", "SQLite"],
+        image: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2024",
+        status: "STABLE"
+      }
+    ],
+    socialLinks: {
+      github: "https://github.com/amelia-rowan",
+      linkedin: "https://linkedin.com/in/amelia-rowan",
+      twitter: "https://twitter.com/amelia_rowan",
+      website: "https://rowan-independent.com",
+      dribbble: "",
+      behance: "",
+      youtube: ""
+    }
+  },
+  'rustfolio-brutalist': {
+    ...defaultPortfolioData,
+    profile: {
+      name: "Arden Vale",
+      title: "Creative Technologist",
+      location: "Amsterdam / Remote",
+      bio: "I build digital experiences where technology becomes part of the story.",
+      email: "hello@ardenvale.sh",
+      phone: "+31 20 555 0199",
+      website: "https://ardenvale.sh",
+      profilePhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800"
+    },
+    about: {
+      aboutText: "I build dynamic digital installations, variable-typography brand structures, and high-fidelity low-latency web environments. Operating at the boundary of mathematical system logic and physical tactile layout aesthetics.",
+      interests: ["KINETIC WEB SHADERS", "SUB-PIXEL COMPILER ARITHMETIC", "REAL-TIME AUDITORY REVERB", "VARIABLE OUTLINE SYSTEMS"],
+      services: ["Creative Development", "Interactive Design", "Digital Art Direction", "Experimental Web", "Motion & Interaction"]
+    },
+    experience: [
+      {
+        id: "exp-rf1",
+        company: "Arden Vale Laboratories",
+        role: "Creative Technologist",
+        duration: "2024 — PRESENT",
+        description: "Executing sensory hardware mappings, real-time SVG grid deformation programs, and low-overhead audio visualizer modules.",
+        current: true
+      },
+      {
+        id: "exp-rf2",
+        company: "Kinetic Guild Amsterdam",
+        role: "Technical Art Lead",
+        duration: "2021 — 2024",
+        description: "Built performant WebGL visual streams and canvas engines for interactive gallery exhibitions across Northern Europe.",
+        current: false
+      }
+    ],
+    skills: [
+      { id: "sk-rf1", name: "Three.js", category: "Graphics", proficiency: 98 },
+      { id: "sk-rf2", name: "WebGL / GLSL", category: "Graphics", proficiency: 95 },
+      { id: "sk-rf3", name: "Web Audio API", category: "APIs", proficiency: 92 },
+      { id: "sk-rf4", name: "React / Vite", category: "Frameworks", proficiency: 96 }
+    ],
+    projects: [
+      {
+        id: "rf-1",
+        name: "VOID / SPACE",
+        description: "A responsive visual space deforming dynamically to auditory and atmospheric environmental inputs.",
+        technologies: ["Three.js", "WebGL", "GLSL Shaders", "WebSockets"],
+        image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2026",
+        status: "PRODUCTION"
+      },
+      {
+        id: "rf-2",
+        name: "AFTERIMAGE",
+        description: "An experimental brand architecture featuring responsive typography and fluid sub-pixel layouts.",
+        technologies: ["Variable Fonts", "CSS Variables", "Next.js", "Tailwind CSS"],
+        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2025",
+        status: "PRODUCTION"
+      },
+      {
+        id: "rf-3",
+        name: "SIGNAL / 09",
+        description: "A persistent, low-latency browser experience integrating audio processing and visual distortion patterns.",
+        technologies: ["Web Audio API", "React", "Offscreen Canvas", "Framer Motion"],
+        image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2025",
+        status: "RELEASED"
+      },
+      {
+        id: "rf-4",
+        name: "MONUMENT",
+        description: "An architectural layout translation of physical monolithic structures into interactive editorial grids.",
+        technologies: ["React", "CSS Grids", "Sub-pixel Alignment", "Framer Motion"],
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2024",
+        status: "EXHIBITED"
+      }
+    ],
+    socialLinks: {
+      github: "https://github.com/ardenvale-fictional",
+      linkedin: "https://linkedin.com/in/ardenvale-fictional",
+      twitter: "https://twitter.com/ardenvale",
+      website: "https://ardenvale.sh",
+      dribbble: "",
+      behance: "",
+      youtube: ""
+    }
+  },
+  'maison-luxury-portfolio': {
+    ...defaultPortfolioData,
+    profile: {
+      name: "Celeste Laurent",
+      title: "Creative Director & Digital Designer",
+      location: "Paris / Worldwide",
+      bio: "Sculpting high-end creative directions, luxurious digital identities, and immersive artistic campaigns.",
+      email: "celeste@laurent-luxury.fr",
+      phone: "+33 1 42 27 78 50",
+      website: "https://laurent-luxury.fr",
+      profilePhoto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800"
+    },
+    about: {
+      aboutText: "Celeste Laurent is an independent creative director, digital designer, and art consultant operating out of Paris, France. Blending classical French printing traditions with modern fluid layout compilation architectures.",
+      interests: ["EXTREME WHITESPACE", "HIGH CONTRAST TYPOGRAPHY", "RESTRICTED NEUTRAL PALETTES", "CINEMATIC COMPOSITIONS"],
+      services: ["Creative Direction", "Digital Design", "Brand Identity", "Interactive Experiences", "Art Direction"]
+    },
+    experience: [
+      {
+        id: "exp-ml1",
+        company: "Maison Laurent Studio",
+        role: "Creative Director",
+        duration: "2022 — PRESENT",
+        description: "Sculpting visual directives, luxury digital campaigns, and customized typographical guidelines for European fashion and design clients.",
+        current: true
+      },
+      {
+        id: "exp-ml2",
+        company: "Atelier de Design Paris",
+        role: "Lead Interactive Designer",
+        duration: "2019 — 2022",
+        description: "Coordinated fine digital architecture showcases and high-end editorial portfolios across premium design networks.",
+        current: false
+      }
+    ],
+    skills: [
+      { id: "sk-ml1", name: "Art Direction", category: "Directives", proficiency: 99 },
+      { id: "sk-ml2", name: "Interactive Design", category: "Digital", proficiency: 95 },
+      { id: "sk-ml3", name: "Typography Strategy", category: "Print", proficiency: 97 },
+      { id: "sk-ml4", name: "Modern Frameworks", category: "Code", proficiency: 90 }
+    ],
+    projects: [
+      {
+        id: "ml-1",
+        name: "AURELIA",
+        description: "A complete typographic re-imagining and visual campaign direction for a high-jewelry house based in Paris.",
+        technologies: ["Typography", "Art Direction", "Digital Catalog"],
+        image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2026",
+        status: "PUBLISHED"
+      },
+      {
+        id: "ml-2",
+        name: "NOCTURNE",
+        description: "An immersive digital presentation for a modular monolithic villa collection along the Mediterranean coast.",
+        technologies: ["Architecture", "Digital Design", "Layout Systems"],
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2025",
+        status: "COMPLETED"
+      },
+      {
+        id: "ml-3",
+        name: "ÉLAN",
+        description: "A visual-first web exhibition highlighting avant-garde apparel designs through interactive typography.",
+        technologies: ["Fashion", "Exhibition Design", "Interactive Campaign"],
+        image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2025",
+        status: "RELEASED"
+      },
+      {
+        id: "ml-4",
+        name: "MONUMENT",
+        description: "A comprehensive branding and interactive catalog archiving contemporary sculptures and modern art works.",
+        technologies: ["Branding", "Cataloguing", "Cultural Identity"],
+        image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&q=80&w=1200",
+        githubUrl: "",
+        liveUrl: "",
+        featured: true,
+        year: "2024",
+        status: "COMMISSIONED"
+      }
+    ],
+    socialLinks: {
+      github: "https://github.com/celeste-laurent",
+      linkedin: "https://linkedin.com/in/celeste-laurent",
+      twitter: "https://twitter.com/celeste-laurent",
+      website: "https://laurent-luxury.fr",
+      dribbble: "",
+      behance: "",
+      youtube: ""
+    }
   }
 };
+
 
 export function getDemoDataForTemplate(templateId: string): PortfolioData {
   return demoDataByTemplate[templateId] || demoDataByTemplate['github-codebucks-001'] || defaultPortfolioData;

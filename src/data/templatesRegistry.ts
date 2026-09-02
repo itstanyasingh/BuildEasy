@@ -730,6 +730,222 @@ export const templatesRegistry: TemplateDefinition[] = [
     status: 'production',
     sourceReference: 'https://github.com/Mohammedaljer/astro-portfolio-template',
     licenseReference: 'MIT'
+  },
+  {
+    id: 'kcsujeet-portfolio',
+    name: 'KCSujeet Minimal Technical Portfolio',
+    category: 'Minimalist / Technical',
+    interactionModel: 'Sticky side-rail navigation, numbered technical section headers, expandable experience accordions, and integrated writing reader',
+    description: 'Faithful reproduction of kcsujeet/portfolio. Features a minimalist technical design aesthetic, side-rail navigation rail with live availability status indicator, numbered section headings (01. About, 02. Experience, 03. Projects, 04. Writing, 05. Contact), Geist Mono typography, expandable job details, and clean article reader modal.',
+    bestFor: 'Full-Stack Developers, Systems Engineers, Open Source Contributors, Technical Authors, Astro Developers',
+    tags: ['Astro', 'Minimalist', 'Side Rail', 'Geist Mono', 'Technical', 'Accordion', 'Writing'],
+    previewGradient: 'from-neutral-950 via-neutral-900 to-emerald-950',
+    supportedSections: ['profile', 'about', 'experience', 'projects', 'articles', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'mono',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#10b981',
+      spacing: 'compact',
+      sectionOrder: ['profile', 'about', 'experience', 'projects', 'articles', 'contact']
+    },
+    rendererType: 'kcsujeet-portfolio',
+    animationLevel: 'Subtle',
+    layout: 'Fixed side-rail navigation layout with numbered section headers and expandable experience cards',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/kcsujeet/portfolio',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'apple-style-portfolio',
+    name: 'Apple Style Portfolio',
+    category: 'Cinematic / Premium',
+    interactionModel: 'Floating blurred glass dock navigation, interactive Three.js 3D hero geometry, GSAP timeline reveals, cinematic edge-to-edge project cards, and Apple spec bento grid',
+    description: 'Faithful implementation of larry-xue/apple-style-portfolio. Built with Apple product launch minimalism, large visual typography, generous whitespace, interactive Three.js 3D canvas element, GSAP motion reveals, floating blurred pill navigation dock, expandable project lightbox, and Apple Store styled contact CTAs.',
+    bestFor: 'Creative Technologists, Product Architects, Hardware/Software Designers, Full-Stack Engineers, Apple Aesthetic Enthusiasts',
+    tags: ['Apple Design', 'Three.js 3D', 'GSAP Motion', 'Cinematic', 'Minimalist', 'Astro', 'Tailwind CSS'],
+    previewGradient: 'from-neutral-950 via-blue-950/40 to-black',
+    supportedSections: ['profile', 'about', 'experience', 'projects', 'skills', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'sans',
+      bgStyle: 'dark',
+      cardStyle: 'glass',
+      accentColor: '#0071e3',
+      spacing: 'relaxed',
+      sectionOrder: ['profile', 'about', 'experience', 'projects', 'skills', 'contact']
+    },
+    rendererType: 'apple-style-portfolio',
+    animationLevel: 'High',
+    layout: 'Cinematic Apple product presentation with floating glass dock, 3D Hero canvas, and bento spec grid',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/larry-xue/apple-style-portfolio',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'operator-portfolio',
+    name: 'Operator Portfolio',
+    category: 'Terminal',
+    interactionModel: 'Fully functional retro-cyber terminal console supporting active subroutines (help, whoami, projects, skills, neofetch), high-contrast raw grid systems, and encrypted message outbound forms',
+    description: 'Faithful brutalist-editorial developer portfolio inspired by LucidAkshay/operator-portfolio. Engineered with raw structured layouts, monospace specifications, brutalist progress bars, fully functional developer terminal command log, and solid heavy drop shadow accents.',
+    bestFor: 'Systems Security Analysts, Compiler Engineers, Kernels/Low-Level Developers, Brutalist Designers, Command-Line Enthusiasts',
+    tags: ['Brutalist', 'Terminal CLI', 'Editorial', 'Developer', 'Retro Cyber', 'Tailwind CSS'],
+    previewGradient: 'from-zinc-950 via-zinc-900 to-black',
+    supportedSections: ['profile', 'about', 'experience', 'projects', 'skills', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'mono',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#10b981',
+      spacing: 'relaxed',
+      sectionOrder: ['profile', 'about', 'experience', 'projects', 'skills', 'contact']
+    },
+    rendererType: 'operator-portfolio',
+    animationLevel: 'Subtle',
+    layout: 'Raw grid-based brutalist editorial system with real-time responsive command-line terminal and ASCII metrics',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/LucidAkshay/operator-portfolio',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'windowed-portfolio',
+    name: 'Windowed Portfolio',
+    category: 'Desktop',
+    interactionModel: 'Functional OS Windowing Environment, Tiled Shortcuts, Draggable Panels',
+    description: 'Distinctive neobrutalist portfolio presented through a classic operating-system window interface. Features draggable, maximizable, and minimizable windows, custom start menu dock, desktop shortcuts, grid-aligned panels, and fully functional interactive controls.',
+    bestFor: 'Product Engineers, Creative Technologists, Software Architects, Retro Enthusiasts',
+    tags: ['Neo-Brutalism', 'Desktop-UI', 'Interactive', 'Product Engineer', 'Windowed'],
+    previewGradient: 'from-indigo-400 via-[#818cf8] to-zinc-950',
+    supportedSections: ['profile', 'about', 'experience', 'skills', 'projects', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'mono',
+      bgStyle: 'light',
+      cardStyle: 'border',
+      accentColor: '#818cf8',
+      spacing: 'normal',
+      sectionOrder: ['profile', 'about', 'experience', 'projects', 'skills', 'contact']
+    },
+    rendererType: 'windowed-portfolio',
+    animationLevel: 'Moderate',
+    layout: 'Classic Desktop Windowing System',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/neobrutalism-templates/windowed-portfolio',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'x100-visual-portfolio',
+    name: 'X100 — Visual Story Portfolio',
+    category: 'Creative',
+    interactionModel: 'Horizontal Photography Masonry, Collections, Detail Lightbox, Dynamic Cursor, Theme Syncing',
+    description: 'Editorial creative portfolio designed to tell high-fidelity visual stories. Features fluid masonry grids, dynamic photography collections, custom hover states, detail lightboxes, and light/dark theme persistence.',
+    bestFor: 'Photographers, Creative Directors, Visual Artists, Editorial Storytellers',
+    tags: ['Photography', 'Creative', 'Masonry', 'Editorial', 'Lightbox', 'Visual', 'Dark/Light'],
+    previewGradient: 'from-[#0b0c0e] via-[#4b5563] to-[#fafaf9]',
+    supportedSections: ['profile', 'about', 'projects', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'serif',
+      bgStyle: 'dark',
+      cardStyle: 'border',
+      accentColor: '#f4f5f6',
+      spacing: 'relaxed',
+      sectionOrder: ['profile', 'about', 'projects', 'contact']
+    },
+    rendererType: 'x100-visual-portfolio',
+    animationLevel: 'Moderate',
+    layout: 'Editorial Media Masonry',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/lilxyzz/X100',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'paperframe-editorial',
+    name: 'Paperframe — Editorial Portfolio',
+    category: 'Editorial',
+    interactionModel: 'Journal Articles, Document-driven Project Details, Clean Layout, Minimal Typography, Spacious Spacing',
+    description: 'Minimalist editorial portfolio design with beautiful serif/sans contrast, magazine layout grid, dedicated reading article pages, services structure, and full-bleed minimal image placeholders.',
+    bestFor: 'Designers, Writers, Creative Technologists, Product Architects',
+    tags: ['Editorial', 'Typography', 'Minimal', 'Case Studies', 'Journal', 'Publication'],
+    previewGradient: 'from-[#faf9f6] via-[#e1dfda] to-[#1c1c1a]',
+    supportedSections: ['profile', 'about', 'experience', 'projects', 'skills', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'serif',
+      bgStyle: 'light',
+      cardStyle: 'flat',
+      accentColor: '#1c1c1a',
+      spacing: 'relaxed',
+      sectionOrder: ['profile', 'about', 'projects', 'contact']
+    },
+    rendererType: 'paperframe-editorial',
+    animationLevel: 'Subtle',
+    layout: 'Editorial Journal Publication Grid',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/Afeng01/paperframe',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'rustfolio-brutalist',
+    name: 'Rustfolio — Brutalist Interactive Portfolio',
+    category: 'Brutalist',
+    interactionModel: 'Oversized Typography, Hard Edges, Asymmetric Grid Layouts, Full Screen Immersive Case Studies',
+    description: 'A high-end experimental brutalist portfolio featuring high contrast elements, oversized typography, interactive project timelines, and raw layout grids.',
+    bestFor: 'Creative Technologists, Interaction Designers, Technical Directors, Digital Artists',
+    tags: ['Brutalist', 'Typography', 'Experimental', 'Interactive', 'Minimal', 'Raw Grid'],
+    previewGradient: 'from-[#f3f3f3] via-[#888888] to-[#000000]',
+    supportedSections: ['profile', 'about', 'experience', 'projects', 'skills', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'mono',
+      bgStyle: 'light',
+      cardStyle: 'border',
+      accentColor: '#000000',
+      spacing: 'relaxed',
+      sectionOrder: ['profile', 'about', 'projects', 'contact']
+    },
+    rendererType: 'rustfolio-brutalist',
+    animationLevel: 'Moderate',
+    layout: 'Brutalist Editorial Interactive Grid',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/aarambh-darshan/rust-portfolio',
+    licenseReference: 'MIT'
+  },
+  {
+    id: 'maison-luxury-portfolio',
+    name: 'Maison — Luxury Creative Portfolio',
+    category: 'Luxury',
+    interactionModel: 'Luxury Typography, Fine Whitespace, Cinematic Image Layouts, Subtle Elegant Custom Cursor Controls',
+    description: 'A high-end editorial luxury portfolio inspired by fashion, art direction, and modular architecture, featuring Celeste Laurent.',
+    bestFor: 'Creative Directors, Fashion Stylists, Art Consultants, Premium Designers',
+    tags: ['Luxury', 'Serif', 'Editorial', 'Minimal', 'Sophisticated'],
+    previewGradient: 'from-[#faf8f5] via-[#e5dfd5] to-[#1a1a19]',
+    supportedSections: ['profile', 'about', 'experience', 'projects', 'skills', 'contact'],
+    defaultConfig: {
+      ...defaultConfig,
+      typography: 'serif',
+      bgStyle: 'light',
+      cardStyle: 'border',
+      accentColor: '#1a1a19',
+      spacing: 'relaxed',
+      sectionOrder: ['profile', 'about', 'projects', 'contact']
+    },
+    rendererType: 'maison-luxury-portfolio',
+    animationLevel: 'Subtle',
+    layout: 'Luxury Editorial Creative Grid',
+    responsive: true,
+    status: 'production',
+    sourceReference: 'https://github.com/moriletech000/Template-Luxury-Portfolio',
+    licenseReference: 'MIT'
   }
 ];
 
@@ -740,6 +956,14 @@ export const getTemplateById = (id: string): TemplateDefinition => {
   const idLower = (id || '').toLowerCase();
   
   // Specific alias mappings
+  if (idLower === 'maison-luxury-portfolio' || idLower === 'maison' || idLower === 'maison-luxury') return templatesRegistry.find(t => t.id === 'maison-luxury-portfolio') || templatesRegistry[0];
+  if (idLower === 'rustfolio-brutalist' || idLower === 'rustfolio' || idLower === 'rust-portfolio') return templatesRegistry.find(t => t.id === 'rustfolio-brutalist') || templatesRegistry[0];
+  if (idLower === 'paperframe-editorial' || idLower === 'paperframe' || idLower === 'paperframe-portfolio') return templatesRegistry.find(t => t.id === 'paperframe-editorial') || templatesRegistry[0];
+  if (idLower === 'x100-visual-portfolio' || idLower === 'x100' || idLower === 'x100-visual-story') return templatesRegistry.find(t => t.id === 'x100-visual-portfolio') || templatesRegistry[0];
+  if (idLower === 'windowed-portfolio' || idLower === 'windowed') return templatesRegistry.find(t => t.id === 'windowed-portfolio') || templatesRegistry[0];
+  if (idLower === 'operator-portfolio' || idLower === 'operator' || idLower === 'github-operator-031') return templatesRegistry.find(t => t.id === 'operator-portfolio') || templatesRegistry[0];
+  if (idLower === 'apple-style-portfolio' || idLower === 'apple-portfolio' || idLower === 'apple-style' || idLower === 'larryxue' || idLower === 'larry-xue' || idLower === 'github-apple-style-030') return templatesRegistry.find(t => t.id === 'apple-style-portfolio') || templatesRegistry[0];
+  if (idLower === 'kcsujeet-portfolio' || idLower === 'kcsujeet' || idLower === 'github-kcsujeet-029') return templatesRegistry.find(t => t.id === 'kcsujeet-portfolio') || templatesRegistry[0];
   if (idLower === 'astro-glass' || idLower === 'astro-portfolio' || idLower === 'mohammedaljer' || idLower === 'glassmorphic') return templatesRegistry.find(t => t.id === 'github-astro-glass-028') || templatesRegistry[0];
   if (idLower === 'hmbldv' || idLower === 'doc-portfolio' || idLower === 'hmbldv-doc-portfolio' || idLower === 'documentation' || idLower === 'technical-doc') return templatesRegistry.find(t => t.id === 'github-hmbldv-027') || templatesRegistry[0];
   if (idLower === 'developer-showcase' || idLower === 'developershowcase' || idLower === 'developer-showcase-portfolio' || idLower === '1hanzla100' || idLower === '1hanzla100-portfolio') return templatesRegistry.find(t => t.id === 'github-1hanzla100-026') || templatesRegistry[0];
