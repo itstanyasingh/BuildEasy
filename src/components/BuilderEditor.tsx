@@ -1229,6 +1229,8 @@ export const BuilderEditor: React.FC<BuilderEditorProps> = ({
               data={data} 
               config={config} 
               rendererType={currentTemplate.rendererType}
+              isEditable={true}
+              onUpdateData={updateData}
             />
           </div>
         </div>

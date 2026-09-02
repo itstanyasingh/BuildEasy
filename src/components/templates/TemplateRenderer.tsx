@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { PortfolioData, LayoutConfiguration } from '../../types';
 import { CodeBucksDeveloperPortfolioTemplate } from './CodeBucksDeveloperPortfolioTemplate';
 import { Interactive3DDeveloperPortfolioTemplate } from './Interactive3DDeveloperPortfolioTemplate';
@@ -36,14 +36,496 @@ import { PaperframeEditorialTemplate } from './PaperframeEditorialTemplate';
 import { RustfolioBrutalistTemplate } from './RustfolioBrutalistTemplate';
 import { MaisonLuxuryPortfolioTemplate } from './MaisonLuxuryPortfolioTemplate';
 
+interface ImageEditWrapperProps {
+  children: React.ReactNode;
+  data: PortfolioData;
+  isEditable: boolean;
+  onUpdateData?: (updater: (prev: PortfolioData) => PortfolioData) => void;
+}
+
+export const ImageEditWrapper: React.FC<ImageEditWrapperProps> = ({
+  children,
+  data,
+  isEditable,
+  onUpdateData
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [hoveredElement, setHoveredElement] = useState<HTMLElement | null>(null);
+  const [activeTarget, setActiveTarget] = useState<{ element: HTMLElement; src: string } | null>(null);
+  const [overlayStyle, setOverlayStyle] = useState<React.CSSProperties | null>(null);
+  const [errorToast, setErrorToast] = useState<string | null>(null);
+
+  const showToast = (message: string) => {
+    setErrorToast(message);
+    setTimeout(() => {
+      setErrorToast((prev) => prev === message ? null : prev);
+    }, 4500);
+  };
+
+  // Helper to extract the editable target element & its original source from any hover or click target
+  const getEditableTarget = (target: HTMLElement): { element: HTMLElement; src: string } | null => {
+    if (!target) return null;
+
+    let current: HTMLElement | null = target;
+    let level = 0;
+
+    while (current && level < 4) {
+      // 1. Is it an IMG tag directly?
+      if (current.tagName === 'IMG') {
+        const img = current as HTMLImageElement;
+        if (img.offsetWidth >= 30 && img.offsetHeight >= 30) {
+          const src = img.getAttribute('data-original-src') || img.src;
+          if (src && !src.startsWith('data:')) {
+            return { element: img, src };
+          }
+        }
+      }
+
+      // 2. Does it have a child IMG?
+      const childImg = current.querySelector('img');
+      if (childImg) {
+        if (childImg.offsetWidth >= 30 && childImg.offsetHeight >= 30) {
+          const src = childImg.getAttribute('data-original-src') || childImg.src;
+          if (src && !src.startsWith('data:')) {
+            return { element: childImg, src };
+          }
+        }
+      }
+
+      // 3. Does it have background-image style directly?
+      if (current.style && current.style.backgroundImage) {
+        const bg = current.style.backgroundImage;
+        const match = bg.match(/url\(["']?([^"']+)["']?\)/);
+        if (match) {
+          const src = current.getAttribute('data-original-bg') || match[1];
+          if (src && !src.startsWith('data:')) {
+            return { element: current, src };
+          }
+        }
+      }
+
+      // 4. Does it have a child with background-image style?
+      const childBg = current.querySelector('[style*="background-image"]');
+      if (childBg) {
+        const el = childBg as HTMLElement;
+        const bg = el.style.backgroundImage;
+        const match = bg.match(/url\(["']?([^"']+)["']?\)/);
+        if (match) {
+          const src = el.getAttribute('data-original-bg') || match[1];
+          if (src && !src.startsWith('data:')) {
+            return { element: el, src };
+          }
+        }
+      }
+
+      current = current.parentElement;
+      level++;
+    }
+
+    return null;
+  };
+
+  // Helper to update img sources and background-images in the DOM
+  const updateImages = () => {
+    if (!containerRef.current) return;
+
+    // A. Update regular img tags
+    const imgs = containerRef.current.querySelectorAll('img');
+    imgs.forEach((img) => {
+      if (img.closest('.image-edit-overlay-container')) return;
+
+      let originalSrc = img.getAttribute('data-original-src');
+      if (!originalSrc) {
+        originalSrc = img.src;
+        if (originalSrc && !originalSrc.startsWith('data:')) {
+          img.setAttribute('data-original-src', originalSrc);
+        }
+      }
+
+      if (originalSrc) {
+        const replacement = data?.imageReplacements?.[originalSrc];
+        const targetSrc = replacement || originalSrc;
+        if (img.src !== targetSrc) {
+          img.src = targetSrc;
+        }
+      }
+    });
+
+    // B. Update inline styles with background-images
+    const bgs = containerRef.current.querySelectorAll('[style*="background-image"]');
+    bgs.forEach((bgEl) => {
+      if (bgEl.closest('.image-edit-overlay-container')) return;
+      const el = bgEl as HTMLElement;
+
+      const bgStyle = el.style.backgroundImage;
+      const match = bgStyle.match(/url\(["']?([^"']+)["']?\)/);
+      if (match) {
+        let originalBg = el.getAttribute('data-original-bg');
+        if (!originalBg) {
+          originalBg = match[1];
+          if (originalBg && !originalBg.startsWith('data:')) {
+            el.setAttribute('data-original-bg', originalBg);
+          }
+        }
+
+        if (originalBg) {
+          const replacement = data?.imageReplacements?.[originalBg];
+          const expectedBg = replacement ? `url("${replacement}")` : `url("${originalBg}")`;
+          if (el.style.backgroundImage !== expectedBg) {
+            el.style.backgroundImage = expectedBg;
+          }
+        }
+      }
+    });
+  };
+
+  // Sync state to DOM on render/changes
+  useLayoutEffect(() => {
+    updateImages();
+
+    const observer = new MutationObserver((mutations) => {
+      let shouldUpdate = false;
+      for (const mutation of mutations) {
+        if (mutation.type === 'childList') {
+          shouldUpdate = true;
+          break;
+        } else if (mutation.type === 'attributes') {
+          const target = mutation.target as HTMLElement;
+          if (target.closest && target.closest('.image-edit-overlay-container')) continue;
+          shouldUpdate = true;
+          break;
+        }
+      }
+      if (shouldUpdate) {
+        updateImages();
+      }
+    });
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['src', 'style'],
+      });
+    }
+
+    return () => observer.disconnect();
+  }, [data?.imageReplacements]);
+
+  // Handle position tracking of the screen-space overlay
+  useEffect(() => {
+    if (!isEditable || !hoveredElement || !containerRef.current) {
+      setOverlayStyle(null);
+      return;
+    }
+
+    const handleScrollAndResize = () => {
+      if (!hoveredElement) return;
+      const rect = hoveredElement.getBoundingClientRect();
+      const style = window.getComputedStyle(hoveredElement);
+
+      setOverlayStyle({
+        position: 'fixed',
+        top: rect.top,
+        left: rect.left,
+        width: rect.width,
+        height: rect.height,
+        borderRadius: style.borderRadius,
+        pointerEvents: 'auto',
+        zIndex: 99999,
+      });
+    };
+
+    // Use capturing to listen to scroll events inside any nested scroll containers
+    window.addEventListener('scroll', handleScrollAndResize, { capture: true });
+    window.addEventListener('resize', handleScrollAndResize);
+
+    handleScrollAndResize();
+
+    return () => {
+      window.removeEventListener('scroll', handleScrollAndResize, { capture: true });
+      window.removeEventListener('resize', handleScrollAndResize);
+    };
+  }, [hoveredElement, isEditable]);
+
+  // Global mousemove tracker to cleanly tear down hovers when exiting boundary
+  useEffect(() => {
+    if (!isEditable || !hoveredElement) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target) return;
+
+      const editable = getEditableTarget(target);
+      const isOverOverlay = target.closest('.image-edit-overlay-container');
+
+      if (!isOverOverlay && (!editable || editable.element !== hoveredElement)) {
+        setHoveredElement(null);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [hoveredElement, isEditable]);
+
+  const handleMouseOver = (e: React.MouseEvent) => {
+    if (!isEditable) return;
+    const target = e.target as HTMLElement;
+    const editable = getEditableTarget(target);
+    if (editable) {
+      setHoveredElement(editable.element);
+    }
+  };
+
+  const handleContainerClickCapture = (e: React.MouseEvent) => {
+    if (!isEditable) return;
+    const target = e.target as HTMLElement;
+    const editable = getEditableTarget(target);
+
+    if (editable) {
+      // Intercept and handle click immediately, preventing default link/button actions
+      e.preventDefault();
+      e.stopPropagation();
+
+      setActiveTarget(editable);
+      if (fileInputRef.current) {
+        fileInputRef.current.click();
+      }
+    }
+  };
+
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    if (hoveredElement) {
+      const isImg = hoveredElement.tagName === 'IMG';
+      const src = isImg 
+        ? hoveredElement.getAttribute('data-original-src') || (hoveredElement as HTMLImageElement).src 
+        : hoveredElement.getAttribute('data-original-bg') || '';
+
+      setActiveTarget({ element: hoveredElement, src });
+    }
+
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleResetClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const target = activeTarget || (hoveredElement ? {
+      element: hoveredElement,
+      src: hoveredElement.tagName === 'IMG'
+        ? hoveredElement.getAttribute('data-original-src') || (hoveredElement as HTMLImageElement).src
+        : hoveredElement.getAttribute('data-original-bg') || ''
+    } : null);
+
+    if (target && onUpdateData) {
+      const originalSrc = target.src;
+      onUpdateData((prev) => {
+        const imageReplacements = { ...(prev.imageReplacements || {}) };
+        delete imageReplacements[originalSrc];
+        return {
+          ...prev,
+          imageReplacements,
+        };
+      });
+      setHoveredElement(null);
+      setActiveTarget(null);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      showToast('Please select a valid image file.');
+      e.target.value = '';
+      return;
+    }
+
+    const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+    if (file.size > MAX_SIZE) {
+      showToast('Image is too large. Please choose an image under 10 MB.');
+      e.target.value = '';
+      return;
+    }
+
+    compressImage(file, (dataUrl) => {
+      const target = activeTarget || (hoveredElement ? {
+        element: hoveredElement,
+        src: hoveredElement.tagName === 'IMG'
+          ? hoveredElement.getAttribute('data-original-src') || (hoveredElement as HTMLImageElement).src
+          : hoveredElement.getAttribute('data-original-bg') || ''
+      } : null);
+
+      if (target && onUpdateData) {
+        const originalSrc = target.src;
+        onUpdateData((prev) => {
+          const imageReplacements = { ...(prev.imageReplacements || {}) };
+          imageReplacements[originalSrc] = dataUrl;
+          return {
+            ...prev,
+            imageReplacements,
+          };
+        });
+      }
+      setHoveredElement(null);
+      setActiveTarget(null);
+    }, () => {
+      showToast('Failed to process image. Please try another file.');
+    });
+
+    e.target.value = '';
+  };
+
+  const compressImage = (file: File, callback: (dataUrl: string) => void, onError: () => void) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const MAX_DIM = 1600;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > MAX_DIM || height > MAX_DIM) {
+          if (width > height) {
+            height = Math.round((height * MAX_DIM) / width);
+            width = MAX_DIM;
+          } else {
+            width = Math.round((width * MAX_DIM) / height);
+            height = MAX_DIM;
+          }
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          callback(e.target?.result as string);
+          return;
+        }
+
+        ctx.drawImage(img, 0, 0, width, height);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+        callback(dataUrl);
+      };
+      img.onerror = onError;
+      img.src = e.target?.result as string;
+    };
+    reader.onerror = onError;
+    reader.readAsDataURL(file);
+  };
+
+  const currentOriginalSrc = activeTarget?.src || (hoveredElement 
+    ? (hoveredElement.tagName === 'IMG' 
+        ? hoveredElement.getAttribute('data-original-src') || (hoveredElement as HTMLImageElement).src
+        : hoveredElement.getAttribute('data-original-bg') || '')
+    : '');
+
+  const hasReplacement = !!(currentOriginalSrc && data?.imageReplacements?.[currentOriginalSrc]);
+
+  return (
+    <div 
+      ref={containerRef} 
+      className="relative w-full h-full"
+      onMouseOver={handleMouseOver}
+      onClickCapture={handleContainerClickCapture}
+    >
+      {children}
+
+      {/* Hidden File Input */}
+      {isEditable && (
+        <input 
+          type="file" 
+          ref={fileInputRef} 
+          accept="image/*" 
+          onChange={handleFileChange} 
+          className="hidden" 
+        />
+      )}
+
+      {/* Screen-Space Overlay */}
+      {isEditable && overlayStyle && (
+        <div 
+          style={overlayStyle}
+          className="group overflow-hidden transition-all duration-200 image-edit-overlay-container"
+        >
+          {/* Transparent click target that goes semi-dark on hover */}
+          <div 
+            onClick={handleOverlayClick}
+            className="w-full h-full bg-black/0 hover:bg-black/55 flex flex-col items-center justify-center text-white cursor-pointer transition-all duration-200"
+          >
+            {/* Minimal edit icon only shown on hover */}
+            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center gap-1.5 p-2.5 text-center select-none bg-black/45 rounded-xl backdrop-blur-xs">
+              <svg className="w-5 h-5 text-white drop-shadow-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span className="text-xs font-bold tracking-wide text-white font-sans drop-shadow-sm uppercase">
+                Change Photo
+              </span>
+            </div>
+          </div>
+
+          {/* Minimal Floating Delete button */}
+          {hasReplacement && (
+            <button
+              onClick={handleResetClick}
+              className="absolute top-2 right-2 w-7.5 h-7.5 rounded-full bg-zinc-950/95 hover:bg-zinc-900 text-white shadow-md flex items-center justify-center transition-all hover:scale-105 z-50 cursor-pointer border border-white/10"
+              title="Reset to default demo image"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Visual Toast Notification Banner */}
+      {errorToast && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-zinc-950/95 text-white px-5 py-3 rounded-xl shadow-xl border border-zinc-800 z-[999999] flex items-center gap-3 animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <svg className="w-5 h-5 text-red-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <span className="text-xs font-bold tracking-wide font-sans">{errorToast}</span>
+          <button 
+            onClick={() => setErrorToast(null)}
+            className="text-zinc-400 hover:text-white text-xs font-bold pl-2 font-sans"
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
 interface TemplateRendererProps {
   data: PortfolioData;
   config: LayoutConfiguration;
   rendererType: string;
+  isEditable?: boolean;
+  onUpdateData?: (updater: (prev: PortfolioData) => PortfolioData) => void;
 }
 
-export const TemplateRenderer: React.FC<TemplateRendererProps> = ({ data, config, rendererType }) => {
+export const TemplateRenderer: React.FC<TemplateRendererProps> = ({ 
+  data, 
+  config, 
+  rendererType, 
+  isEditable = false, 
+  onUpdateData 
+}) => {
   const typeLower = (rendererType || '').toLowerCase();
+
+  const renderActiveTemplate = () => {
 
   switch (typeLower) {
     case 'maison-luxury-portfolio':
@@ -262,4 +744,15 @@ export const TemplateRenderer: React.FC<TemplateRendererProps> = ({ data, config
     default:
       return <CodeBucksDeveloperPortfolioTemplate data={data} config={config} />;
   }
+  };
+
+  return (
+    <ImageEditWrapper 
+      data={data} 
+      isEditable={isEditable} 
+      onUpdateData={onUpdateData}
+    >
+      {renderActiveTemplate()}
+    </ImageEditWrapper>
+  );
 };

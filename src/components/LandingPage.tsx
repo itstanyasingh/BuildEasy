@@ -585,7 +585,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* 4. FEATURE SECTION ("Everything you need. Nothing you don't.")            */}
       {/* ========================================================================= */}
       <section id="features" className="py-24 border-t border-zinc-200 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
           <div className="max-w-3xl space-y-3">
             <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-semibold">FEATURES</span>
@@ -598,138 +598,201 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </p>
           </div>
 
-          <div className="space-y-16">
+          <div className="space-y-8">
             
-            {/* Feature Block 01 */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center p-8 sm:p-10 rounded-2xl bg-[#FAF9F6] border border-zinc-200">
-              <div className="lg:col-span-5 space-y-3">
+            {/* FIRST ROW — ONE LARGE FEATURE CARD */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center p-8 sm:p-12 rounded-2xl bg-[#FAF9F6] border border-zinc-200/90 shadow-2xs">
+              <div className="lg:col-span-5 space-y-4">
                 <span className="text-xs font-mono font-bold text-zinc-400">01</span>
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-zinc-900">
+                <h3 className="font-serif text-2xl sm:text-3xl font-normal text-zinc-900 leading-snug">
                   Build without the clutter
                 </h3>
                 <p className="text-zinc-600 text-sm sm:text-base leading-relaxed">
-                  Keep every portfolio section in one compact workspace and expand only what you're editing.
+                  Keep every portfolio section in one focused workspace and edit exactly what you need without getting buried in settings.
                 </p>
               </div>
-              <div className="lg:col-span-7 bg-white p-5 rounded-xl border border-zinc-200 shadow-2xs space-y-2">
-                <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider pb-1 border-b border-zinc-100">
-                  PORTFOLIO SECTIONS
+              
+              {/* RIGHT SIDE: Real UI Representation of the BuildEasy Portfolio Editor */}
+              <div className="lg:col-span-7 bg-white p-6 rounded-xl border border-zinc-200/80 shadow-xs space-y-4 text-left">
+                <div className="flex items-center justify-between pb-3 border-b border-zinc-100">
+                  <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">
+                    PORTFOLIO SECTIONS
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-600 text-[10px] font-medium border border-zinc-200/50">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Focused
+                  </span>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
-                  {['Personal Information', 'About', 'Projects', 'Experience', 'Skills', 'Education', 'Contact'].map((item, idx) => (
-                    <div key={idx} className="p-2 rounded-lg bg-zinc-50 border border-zinc-200 text-zinc-800 font-medium flex items-center justify-between">
-                      <span className="text-[11px]">{item}</span>
-                      <Check className="w-3 h-3 text-zinc-400" />
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {[
+                    { label: 'Personal Information', icon: User, checked: true },
+                    { label: 'About Section', icon: FileText, checked: true },
+                    { label: 'Featured Projects', icon: FolderKanban, checked: true },
+                    { label: 'Work Experience', icon: Briefcase, checked: true },
+                    { label: 'Technical Skills', icon: Code2, checked: true },
+                    { label: 'Education & Credentials', icon: Award, checked: true },
+                    { label: 'Contact Details', icon: Mail, checked: true }
+                  ].map((item, idx) => (
+                    <div 
+                      key={idx} 
+                      className="flex items-center justify-between p-2.5 rounded-lg bg-[#FAF9F6] border border-zinc-200/60 hover:border-zinc-300 transition-colors text-xs"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <GripVertical className="w-3.5 h-3.5 text-zinc-300" />
+                        <item.icon className="w-3.5 h-3.5 text-zinc-500" />
+                        <span className="font-medium text-zinc-700">{item.label}</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Check className="w-3.5 h-3.5 text-zinc-400" />
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Feature Block 02 */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center p-8 sm:p-10 rounded-2xl bg-[#FAF9F6] border border-zinc-200">
-              <div className="lg:col-span-5 space-y-3">
-                <span className="text-xs font-mono font-bold text-zinc-400">02</span>
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-zinc-900">
-                  Put your work first
-                </h3>
-                <p className="text-zinc-600 text-sm sm:text-base leading-relaxed">
-                  Organize your projects into a clear story that helps people understand what you built and why it matters.
-                </p>
-              </div>
-              <div className="lg:col-span-7 bg-white p-5 rounded-xl border border-zinc-200 shadow-2xs space-y-2.5">
-                <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider pb-1 border-b border-zinc-100">
-                  PROJECTS
+            {/* SECOND ROW — TWO FEATURE CARDS */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              
+              {/* LEFT CARD — ORGANIZE YOUR WORK */}
+              <div className="rounded-2xl bg-[#FAF9F6] border border-zinc-200/90 p-8 sm:p-10 flex flex-col justify-between space-y-8 shadow-2xs">
+                <div className="space-y-4">
+                  <span className="text-xs font-mono font-bold text-zinc-400">02</span>
+                  <h3 className="font-serif text-2xl font-normal text-zinc-900 leading-snug">
+                    Put your work first
+                  </h3>
+                  <p className="text-zinc-600 text-sm leading-relaxed">
+                    Organize your projects, experience, and skills into a clear story that helps visitors understand what you build and why it matters.
+                  </p>
                 </div>
-                <div className="space-y-2 text-xs">
-                  <div className="p-3 rounded-lg bg-zinc-50 border border-zinc-200 space-y-1">
-                    <div className="flex items-center justify-between">
-                      <span className="font-serif font-bold text-zinc-900 text-xs">01 · AI Coding Behaviour Analyzer</span>
-                      <span className="text-[9px] font-mono text-zinc-500">Full-Stack</span>
-                    </div>
-                    <p className="text-[11px] text-zinc-600">Visualized developer patterns and syntax transitions across multi-session logs.</p>
-                    <div className="text-[9px] font-mono text-zinc-500 pt-0.5">Tech: React · TypeScript · Node.js</div>
+
+                {/* Miniature Project/Content Editor */}
+                <div className="bg-white p-5 rounded-xl border border-zinc-200/80 shadow-xs space-y-3.5 text-left">
+                  <div className="flex items-center justify-between pb-2 border-b border-zinc-100">
+                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">CONTENT</span>
+                    <span className="text-[9px] font-mono text-zinc-400">Active Form</span>
                   </div>
 
-                  <div className="p-3 rounded-lg bg-zinc-50 border border-zinc-200 space-y-1">
-                    <div className="flex items-center justify-between">
-                      <span className="font-serif font-bold text-zinc-900 text-xs">02 · Video RAG Assistant</span>
-                      <span className="text-[9px] font-mono text-zinc-500">AI / ML</span>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between p-2 rounded-lg bg-zinc-50 border border-zinc-200/60">
+                      <div className="flex items-center gap-2">
+                        <GripVertical className="w-3 h-3 text-zinc-400" />
+                        <span className="text-[11px] font-medium text-zinc-800">Projects</span>
+                      </div>
+                      <span className="text-[9px] text-zinc-500 bg-white border border-zinc-200 px-1.5 py-0.2 rounded">3 items</span>
                     </div>
-                    <p className="text-[11px] text-zinc-600">Multimodal document indexing and contextual video retrieval pipeline.</p>
-                    <div className="text-[9px] font-mono text-zinc-500 pt-0.5">Tech: Python · RAG · NVIDIA NIM</div>
-                  </div>
 
-                  <div className="p-3 rounded-lg bg-zinc-50 border border-zinc-200 space-y-1">
-                    <div className="flex items-center justify-between">
-                      <span className="font-serif font-bold text-zinc-900 text-xs">03 · BuildEasy</span>
-                      <span className="text-[9px] font-mono text-zinc-500">Design System</span>
+                    {/* Miniature fields */}
+                    <div className="p-3.5 rounded-lg border border-zinc-200 bg-white space-y-2 text-xs shadow-3xs">
+                      <div className="flex items-center justify-between text-[9px] font-mono text-zinc-400">
+                        <span>PROJECT #1</span>
+                        <span className="text-zinc-500 uppercase bg-zinc-100 px-1 py-0.2 rounded font-semibold text-[8px]">EDITING</span>
+                      </div>
+                      <div className="space-y-1.5">
+                        <div>
+                          <div className="text-[8px] font-mono text-zinc-400 uppercase tracking-wider">TITLE</div>
+                          <div className="text-[10.5px] font-serif font-semibold text-zinc-900 border-b border-zinc-100 pb-0.5">AI Coding Behaviour Analyzer</div>
+                        </div>
+                        <div>
+                          <div className="text-[8px] font-mono text-zinc-400 uppercase tracking-wider">TECH STACK</div>
+                          <div className="text-[10px] font-mono text-zinc-600 border-b border-zinc-100 pb-0.5">React · TypeScript · Node.js</div>
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-[11px] text-zinc-600">Distraction-free portfolio generation engine with typography-first system.</p>
-                    <div className="text-[9px] font-mono text-zinc-500 pt-0.5">Tech: React · TypeScript</div>
                   </div>
                 </div>
               </div>
+
+              {/* RIGHT CARD — LIVE PORTFOLIO PREVIEW */}
+              <div className="rounded-2xl bg-[#FAF9F6] border border-zinc-200/90 p-8 sm:p-10 flex flex-col justify-between space-y-8 shadow-2xs">
+                <div className="space-y-4">
+                  <span className="text-xs font-mono font-bold text-zinc-400">03</span>
+                  <h3 className="font-serif text-2xl font-normal text-zinc-900 leading-snug">
+                    See it as you build
+                  </h3>
+                  <p className="text-zinc-600 text-sm leading-relaxed">
+                    Your portfolio updates alongside your edits, so you always know exactly what visitors will see.
+                  </p>
+                </div>
+
+                {/* Miniature Live Preview resembling actual template */}
+                <div className="bg-white p-5 rounded-xl border border-zinc-200/80 shadow-xs flex flex-col justify-between text-left overflow-hidden h-[180px]">
+                  <div className="flex items-center justify-between border-b border-zinc-100 pb-2">
+                    {/* Browser Dots */}
+                    <div className="flex gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-200" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-200" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-200" />
+                    </div>
+                    {/* Address bar */}
+                    <div className="bg-zinc-50 border border-zinc-200/50 rounded px-2.5 py-0.5 text-[8px] font-mono text-zinc-400 w-32 text-center truncate">
+                      build-easy.site/alex
+                    </div>
+                    <ExternalLink className="w-2.5 h-2.5 text-zinc-300" />
+                  </div>
+
+                  <div className="space-y-1.5 flex-1 pt-2">
+                    {/* Compact layout */}
+                    <div className="flex items-center justify-between text-[8px] font-mono text-zinc-400">
+                      <span className="font-serif font-bold text-zinc-900 text-[10px]">Alex Morgan</span>
+                      <div className="flex gap-2">
+                        <span className="text-zinc-900 border-b border-zinc-900 font-semibold">Work</span>
+                        <span>About</span>
+                        <span>Contact</span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-0.5 py-0.5">
+                      <div className="font-serif text-[11.5px] font-normal text-zinc-900 tracking-tight leading-tight">
+                        Full-Stack Developer
+                      </div>
+                      <p className="text-[8.5px] text-zinc-500 leading-relaxed line-clamp-2">
+                        Building reliable web applications and digital products with refined typography.
+                      </p>
+                    </div>
+
+                    {/* Miniature project card */}
+                    <div className="p-1.5 bg-zinc-50 border border-zinc-100 rounded-md space-y-0.5">
+                      <div className="flex items-center justify-between">
+                        <span className="font-serif font-bold text-[8.5px] text-zinc-800">Atlas Engine</span>
+                        <span className="text-[7px] font-mono text-zinc-400 bg-zinc-100 px-1 py-0.2 rounded">Web</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
-            {/* Feature Block 03 */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center p-8 sm:p-10 rounded-2xl bg-[#FAF9F6] border border-zinc-200">
-              <div className="lg:col-span-5 space-y-3">
-                <span className="text-xs font-mono font-bold text-zinc-400">03</span>
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-zinc-900">
-                  See it as you build
-                </h3>
-                <p className="text-zinc-600 text-sm sm:text-base leading-relaxed">
-                  Your portfolio updates alongside your edits, so you always know exactly what visitors will see.
-                </p>
-              </div>
-              <div className="lg:col-span-7 bg-white p-5 rounded-xl border border-zinc-200 shadow-2xs">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                  <div className="p-3 rounded-lg bg-zinc-50 border border-zinc-200 space-y-2">
-                    <div className="text-[10px] font-mono text-zinc-400 uppercase font-semibold">DESIGN CONTROLS</div>
-                    <div className="space-y-1">
-                      <div className="text-[11px] font-medium text-zinc-800">Typography: Editorial Serif</div>
-                      <div className="text-[11px] font-medium text-zinc-800">Spacing: Balanced</div>
-                      <div className="text-[11px] font-medium text-zinc-800">Palette: Monochrome Neutral</div>
-                    </div>
-                  </div>
-                  <div className="p-3 rounded-lg bg-zinc-50 border border-zinc-200 space-y-1.5">
-                    <div className="text-[10px] font-mono text-zinc-400 uppercase font-semibold">LIVE OUTPUT</div>
-                    <div className="font-serif font-bold text-zinc-900 text-xs">Alex Morgan</div>
-                    <p className="text-[10px] text-zinc-600 line-clamp-2">Building reliable web applications and thoughtful digital products.</p>
-                  </div>
+            {/* OPTIONAL FOURTH FEATURE — COMPACT BOTTOM PUBLISH STRIP */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-8 rounded-2xl bg-[#FAF9F6] border border-zinc-200/90 shadow-3xs">
+              <div className="space-y-1 text-center sm:text-left">
+                <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-zinc-400">
+                  <span>04</span>
+                  <span className="uppercase text-[10px] tracking-wider text-zinc-400 font-bold">READY</span>
                 </div>
-              </div>
-            </div>
-
-            {/* Feature Block 04 */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center p-8 sm:p-10 rounded-2xl bg-[#FAF9F6] border border-zinc-200">
-              <div className="lg:col-span-5 space-y-3">
-                <span className="text-xs font-mono font-bold text-zinc-400">04</span>
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-zinc-900">
+                <h4 className="font-serif text-lg sm:text-xl font-normal text-zinc-900">
                   Publish when you're ready
-                </h3>
-                <p className="text-zinc-600 text-sm sm:text-base leading-relaxed">
+                </h4>
+                <p className="text-zinc-500 text-xs sm:text-sm">
                   Turn your finished portfolio into a polished personal website with a simple publish flow.
                 </p>
               </div>
-              <div className="lg:col-span-7 bg-white p-5 rounded-xl border border-zinc-200 shadow-2xs space-y-3">
-                <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider pb-1 border-b border-zinc-100">
-                  PORTFOLIO READY
+
+              {/* Miniature Publish interface box */}
+              <div className="flex items-center gap-4 bg-white p-2.5 px-4 rounded-xl border border-zinc-200/80 shadow-3xs w-full sm:w-auto">
+                <div className="text-left flex-1 sm:flex-none">
+                  <div className="font-serif font-bold text-zinc-900 text-[11px]">My Portfolio</div>
+                  <div className="text-[9.5px] font-mono text-zinc-400">tanya.build-easy.site</div>
                 </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-50 border border-zinc-200">
-                  <div>
-                    <div className="font-serif font-bold text-zinc-900 text-xs">My Portfolio</div>
-                    <div className="text-[10px] font-mono text-zinc-500">tanya.build-easy.site</div>
-                  </div>
-                  <button 
-                    onClick={onOpenBuilder}
-                    className="px-3.5 py-1.5 rounded-lg bg-zinc-900 text-white font-medium text-xs flex items-center gap-1 hover:bg-zinc-800 transition-colors cursor-pointer"
-                  >
-                    <span>Publish</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </button>
-                </div>
+                <button 
+                  onClick={onOpenBuilder}
+                  className="px-3.5 py-1.5 rounded-lg bg-zinc-900 text-white font-medium text-xs flex items-center gap-1 hover:bg-zinc-800 transition-colors cursor-pointer shadow-3xs"
+                >
+                  <span>Publish</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
               </div>
             </div>
 

@@ -144,6 +144,7 @@ export interface PortfolioData {
   services?: string[];
   githubUsername?: string;
   activity?: LiveActivityData;
+  imageReplacements?: Record<string, string>;
 }
 
 export type SectionKey = 
